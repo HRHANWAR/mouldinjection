@@ -16,12 +16,24 @@
 .ih-admin-messages-page .ihc *{box-sizing:border-box;margin:0;padding:0}
 .ih-admin-messages-page .ihc{font-family:var(--ih-ui);color:var(--ih-text)}
 .ih-admin-messages-page .ihc-hide{display:none!important}
-.ih-admin-messages-page .ih-content{padding:12px 14px 24px!important;overflow:hidden!important;display:flex;flex-direction:column;min-height:0;background:var(--ih-canvas,#eceef4)!important}
-.ih-admin-messages-page .ihc{flex:1;display:flex;flex-direction:column;min-height:0;border-radius:var(--ih-radius);overflow:hidden;border:1px solid var(--ih-border);background:var(--ih-surface);box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.ih-admin-messages-page .ihc-area{flex:1;display:flex;min-width:0;position:relative;min-height:0;height:calc(100vh - 150px);height:calc(100dvh - 150px);max-height:calc(100dvh - 150px)}
+/* ── Robust 3-column auto-layout (Figma 196:2199) ───────────────────────────
+   IMPORTANT: .ih-content is the PARENT of .ih-admin-messages-page (see
+   pages/layout.php → <div class="ih-content">…echo $content…</div>), so it MUST
+   be targeted with :has(), not as a descendant. The old `.ih-admin-messages-page
+   .ih-content` selector never matched, which left the WP-admin 24px padding +
+   default overflow in place and collapsed the flex height chain — the root cause
+   of the broken layout. The admin Figma shell (.ih-wrap.is-admin) is block-flow
+   with no viewport height chain, so the messaging root anchors its OWN height to
+   the viewport (minus the WP admin bar + sticky nav header + content padding)
+   and lets the three panes fill it: rails are fixed (330 / 322), the chat column
+   flexes, and each pane keeps min-height:0 with its own independent scroll. */
+.ih-wrap .ih-content:has(> .ih-admin-messages-page){padding:12px 14px 16px!important;overflow:hidden!important;background:var(--ih-canvas,#eceef4)!important;min-width:0}
+.ih-admin-messages-page{display:flex;flex-direction:column;min-width:0;min-height:0;--ih-am-extra:85px;height:calc(100vh - var(--ih-wp-admin-bar,32px) - var(--ih-am-extra));height:calc(100dvh - var(--ih-wp-admin-bar,32px) - var(--ih-am-extra))}
+.ih-admin-messages-page .ihc{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;min-width:0;border-radius:var(--ih-radius);overflow:hidden;border:1px solid var(--ih-border);background:var(--ih-surface);box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.ih-admin-messages-page .ihc-area{flex:1 1 auto;display:flex;flex-direction:row;align-items:stretch;min-width:0;min-height:0;position:relative;overflow:hidden}
 .ih-admin-messages-page .ih-topbar--legacy{display:none}
 
-.ihc-p1{width:330px;flex:0 0 auto;background:var(--ih-surface);border-right:1px solid var(--ih-border);display:flex;flex-direction:column;min-height:0}
+.ih-admin-messages-page .ihc-p1{width:330px;flex:0 0 330px;background:var(--ih-surface);border-right:1px solid var(--ih-border);display:flex;flex-direction:column;min-height:0;min-width:0}
 .ihc-p1-head{padding:18px 18px 12px;display:flex;flex-direction:column;gap:12px;flex-shrink:0}
 .ihc-p1-title{display:flex;align-items:center;justify-content:space-between;gap:8px}
 .ihc-p1-title h2{font-size:20px;font-weight:900}
@@ -51,7 +63,7 @@
 .ihc-online{position:absolute;right:-1px;bottom:-1px;width:12px;height:12px;border-radius:50%;background:var(--ih-green);border:2px solid var(--ih-surface)}
 .ihc-online.off{background:var(--ih-mut)}
 
-.ihc-p2{flex:1;display:flex;flex-direction:column;min-width:0;background:var(--ih-canvas)}
+.ih-admin-messages-page .ihc-p2{flex:1 1 auto;display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--ih-canvas)}
 .ihc-chat-head{min-height:72px;flex:0 0 auto;display:flex;align-items:center;gap:12px;padding:10px 18px 10px 20px;background:var(--ih-surface);border-bottom:1px solid var(--ih-border2);flex-wrap:wrap}
 .ihc-chat-head .ci{flex:1;min-width:0}
 .ihc-chat-head .nm{font-weight:700;font-size:14.5px}
@@ -205,7 +217,7 @@
 .ihc-emoji span{width:30px;height:30px;display:grid;place-items:center;font-size:18px;border-radius:7px;cursor:pointer}
 .ihc-emoji span:hover{background:var(--ih-surface2)}
 
-.ihc-p3{width:322px;flex:0 0 auto;background:var(--ih-surface);border-left:1px solid var(--ih-border);overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:16px}
+.ih-admin-messages-page .ihc-p3{width:322px;flex:0 0 322px;background:var(--ih-surface);border-left:1px solid var(--ih-border);overflow-y:auto;min-height:0;padding:18px;display:flex;flex-direction:column;gap:16px}
 .ihc-slabel{font:500 10px/1 var(--ih-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--ih-mut)}
 .ihc-prof{display:flex;flex-direction:column;align-items:center;gap:12px;padding:6px 0 14px}
 .ihc-prof .nm{font-size:17px;font-weight:900}
@@ -343,16 +355,21 @@
  .ih-admin-messages-page .ihc *,.ih-admin-messages-page .ihc *::before,.ih-admin-messages-page .ihc *::after,.ih-invite-modal *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
 }
 
-@media(max-width:1080px){
- .ihc-p3{display:none}
- .ihc-p3.open{display:flex;position:absolute;right:0;top:0;bottom:0;z-index:30;box-shadow:-12px 0 40px -16px rgba(0,0,0,.2)}
+/* ≥1280: all three panes (330 / flex / 322). 769–1279: drop the Context rail —
+   it stays reachable via the header info button (#ihcInfoBtn → .ihc-p3.open) as
+   a right-edge overlay, so the chat column keeps a usable width. */
+@media(max-width:1279px){
+ .ih-admin-messages-page .ihc-p3{display:none}
+ .ih-admin-messages-page .ihc-p3.open{display:flex;position:absolute;right:0;top:0;bottom:0;width:322px;max-width:88%;z-index:30;box-shadow:-12px 0 40px -16px rgba(0,0,0,.2)}
 }
-@media(max-width:760px){
- .ih-admin-messages-page .ih-content{padding:8px 8px 20px!important}
- .ih-admin-messages-page .ihc-area{height:calc(100vh - 110px);max-height:calc(100dvh - 110px)}
- .ihc-p1{width:100%;border-right:0}
- .ihc-area.in-chat .ihc-p1{display:none}
- .ihc-area:not(.in-chat) .ihc-p2{display:none}
+/* ≤768: single-pane flow — the thread list and the chat swap via .in-chat /
+   #ihcBack; the context overlay spans full width. No horizontal scroll. */
+@media(max-width:768px){
+ .ih-wrap .ih-content:has(> .ih-admin-messages-page){padding:8px 8px 12px!important}
+ .ih-admin-messages-page{--ih-am-extra:62px}
+ .ih-admin-messages-page .ihc-p1{width:100%;flex:1 1 auto;border-right:0}
+ .ih-admin-messages-page .ihc-area.in-chat .ihc-p1{display:none}
+ .ih-admin-messages-page .ihc-area:not(.in-chat) .ihc-p2{display:none}
  .ihc-back{display:grid}
  .ihc-bubble,.ihc-row>.ihc-bubble{max-width:min(80%,340px)}
  .ihc-msg-wrap,.ihc-row.me .ihc-msg-wrap{max-width:min(80%,340px)}
@@ -361,7 +378,7 @@
  .ihc-back{place-items:center}
  .ihc-msgs{padding:16px 14px 14px}
  .ihc-composer{padding:10px 12px 14px}
- .ihc-p3.open{width:100%;left:0;border-left:0}
+ .ih-admin-messages-page .ihc-p3.open{width:100%;max-width:100%;left:0;border-left:0}
  .ihc-btn-wa span{display:none}
  .ihc-btn-wa{padding:0 11px}
  .ihc-btn-soft span{display:none}

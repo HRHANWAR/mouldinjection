@@ -295,11 +295,14 @@
 .ih-user-messages-page .ihc-composer .ihc-input textarea::placeholder{color:var(--ih-mut);font-size:13.5px}
 .ih-user-messages-page .ihc-composer .ihc-send{width:44px;height:44px;border-radius:12px;background:var(--ih-brand)}
 
-@media(max-width:1080px){
+/* ≥1280: all three panes. 769–1279: drop the right rail (info request / activity)
+   — reachable via the header info button (#ihcInfoBtn → .ihc-p3.open) overlay. */
+@media(max-width:1279px){
  .ihc-p3{display:none}
- .ihc-p3.open{display:flex;position:absolute;right:0;top:0;bottom:0;z-index:30;box-shadow:-12px 0 40px -16px rgba(0,0,0,.2)}
+ .ihc-p3.open{display:flex;position:absolute;right:0;top:0;bottom:0;width:322px;max-width:88%;z-index:30;box-shadow:-12px 0 40px -16px rgba(0,0,0,.2)}
 }
-@media(max-width:760px){
+/* ≤768: single-pane flow (list ⇄ chat) via .in-chat / #ihcBack. No h-scroll. */
+@media(max-width:768px){
  .ih-user-messages-page .ih-content{padding:8px 8px 20px!important}
  .ih-user-messages-page .ihc-area{height:auto;max-height:none}
  .ih-user-messages-page .ihc:has(> .ihc-p3){flex-direction:column}
@@ -311,7 +314,7 @@
  .ihc-bubble,.ihc-row>.ihc-bubble{max-width:min(80%,340px)}
  .ihc-msg-wrap,.ihc-row.me .ihc-msg-wrap{max-width:min(80%,340px)}
  .ihc-reqcard{max-width:88%}
- .ihc-p3.open{width:100%;left:0;border-left:0}
+ .ihc-p3.open{width:100%;max-width:100%;left:0;border-left:0}
  .ihc-btn-wa span{display:none}
  .ihc-btn-wa{padding:0 11px}
  .ihc-toasts{bottom:100px;right:10px;left:10px}
