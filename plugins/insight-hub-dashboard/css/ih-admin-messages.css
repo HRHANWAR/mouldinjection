@@ -82,6 +82,14 @@
 .ih-msg-system-row{display:flex;justify-content:center;width:100%}
 .ih-msg-system-pill{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:var(--ih-surface);border:1px solid var(--ih-border);font-size:11.5px;font-weight:500;color:var(--ih-text2);box-shadow:0 4px 14px rgba(26,28,43,.04)}
 .ih-msg-system-icon{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--ih-accent-soft);color:var(--ih-brand);flex-shrink:0}
+/* Access/contact-request card — clean replacement for the raw IH_REQUEST_DATA bubble. */
+.ihc-reqmsg{display:flex;align-items:center;gap:11px;max-width:80%;min-width:0;padding:12px 14px;border-radius:14px;background:var(--ih-surface);border:1px solid var(--ih-border);box-shadow:0 4px 14px rgba(26,28,43,.05)}
+.ihc-reqmsg-ico{flex:0 0 auto;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;background:var(--ih-accent-soft);color:var(--ih-brand)}
+.ihc-reqmsg .tx{min-width:0;display:flex;flex-direction:column;gap:2px;flex:1 1 auto}
+.ihc-reqmsg .tx b{font-size:12.5px;color:var(--ih-text);line-height:1.35}
+.ihc-reqmsg .tx span{font-size:11.5px;line-height:1.4;color:var(--ih-text2);overflow-wrap:anywhere}
+.ihc-reqmsg .ihc-statuspill{flex:0 0 auto;align-self:center}
+@media (max-width:420px){.ihc-reqmsg{max-width:94%}}
 .ihc-row.group{align-items:flex-end;gap:8px}
 .ih-msg-sender-av{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff;background:var(--ih-av-color,#8c5cf5);flex-shrink:0;align-self:flex-end;margin-bottom:2px}
 .ih-msg-sender-name{font-size:11px;font-weight:700;line-height:1.2;margin-bottom:2px}

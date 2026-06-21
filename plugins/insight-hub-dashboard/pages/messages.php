@@ -485,6 +485,34 @@ ob_start();
 							<?php
 							continue;
 						endif;
+						$req_marker = function_exists( 'ih_chat_parse_request_marker' ) ? ih_chat_parse_request_marker( $msg_body ) : null;
+						if ( $req_marker ) :
+							$rm_ref    = function_exists( 'ih_am_listing_ref' ) ? ih_am_listing_ref( $req_marker['listing_type'], $req_marker['listing_id'] ) : '';
+							$rm_meta   = function_exists( 'ih_chat_request_card_meta' ) ? ih_chat_request_card_meta( $req_marker['id'] ) : array( 'status' => 'Pending', 'ref' => '' );
+							$rm_status = $rm_meta['status'] ?: 'Pending';
+							$rm_reqref = $rm_meta['ref'] ?: ( 'REQ-' . date_i18n( 'Y', strtotime( get_date_from_gmt( $m['sent_at'] ) ) ) . '-' . str_pad( (string) $req_marker['id'], 4, '0', STR_PAD_LEFT ) );
+							$rm_from   = $req_marker['requester_id'] ? 'USR-' . (int) $req_marker['requester_id'] : '';
+							$rm_listing = $rm_ref
+								? ( ( $req_marker['listing_type'] === 'tool' ? __( 'Tool', 'insight-hub-dashboard' ) : __( 'Machine', 'insight-hub-dashboard' ) ) . ' ' . $rm_ref )
+								: __( 'Contact access', 'insight-hub-dashboard' );
+							$rm_sub = $rm_from ? ( $rm_from . ' · ' . $rm_listing ) : $rm_listing;
+							?>
+							<div class="ih-msg-system-row" data-id="<?php echo $mid; ?>" data-msg-type="request">
+								<div class="ihc-reqmsg" role="note" aria-label="<?php esc_attr_e( 'Access request', 'insight-hub-dashboard' ); ?>">
+									<span class="ihc-reqmsg-ico" aria-hidden="true">
+										<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+									</span>
+									<div class="tx">
+										<?php /* translators: %s: request reference such as REQ-2026-0203 */ ?>
+										<b><?php echo esc_html( sprintf( __( 'Access request · %s', 'insight-hub-dashboard' ), $rm_reqref ) ); ?></b>
+										<span><?php echo esc_html( $rm_sub ); ?></span>
+									</div>
+									<span class="ihc-statuspill <?php echo esc_attr( strtolower( $rm_status ) ); ?>"><?php echo esc_html( $rm_status ); ?></span>
+								</div>
+							</div>
+							<?php
+							continue;
+						endif;
 						$sender_id = isset( $m['sender_id'] ) && $m['sender_id'] ? (int) $m['sender_id'] : ( $me ? $admin_id : $active_uid );
 						$sender    = $ih_participant_map[ $sender_id ] ?? null;
 						if ( ! $sender && $sender_id ) {

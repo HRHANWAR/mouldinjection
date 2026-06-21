@@ -913,6 +913,99 @@ if ( ! function_exists( 'ih_chat_system_message_label' ) ) {
     }
 }
 
+if ( ! function_exists( 'ih_chat_is_request_marker' ) ) {
+    /**
+     * True when a chat message body carries the access/contact-request marker.
+     * These rows are inserted into ih_chats with from_me=0 and would otherwise
+     * paint as a raw outbound bubble that leaks the listing owner's identity.
+     */
+    function ih_chat_is_request_marker( $text ) {
+        return is_string( $text ) && strpos( $text, 'IH_REQUEST_DATA' ) !== false;
+    }
+}
+
+if ( ! function_exists( 'ih_chat_parse_request_marker' ) ) {
+    /**
+     * Parse a request-marker chat body into a normalised, SAFE array.
+     *
+     * The raw body embeds a machine-readable payload, e.g.
+     *   <!-- IH_REQUEST_DATA:{"id":86,"listing_id":63,"type":"ih_contact_tool",…} -->
+     *
+     * The owner identity fields (owner_name / owner_uid) carried in that payload
+     * are deliberately DROPPED here so they can never reach any chat UI. Returns
+     * null when no usable marker is present.
+     */
+    function ih_chat_parse_request_marker( $text ) {
+        $text = (string) $text;
+        if ( strpos( $text, 'IH_REQUEST_DATA' ) === false ) {
+            return null;
+        }
+        $data = array();
+        if ( preg_match( '/IH_REQUEST_DATA[:\-]?\s*(\{.*\})/s', $text, $mm ) ) {
+            $decoded = json_decode( $mm[1], true );
+            if ( is_array( $decoded ) ) {
+                $data = $decoded;
+            }
+        }
+        $type_raw = (string) ( $data['type'] ?? '' );
+        $ltype    = ( stripos( $type_raw, 'tool' ) !== false ) ? 'tool' : 'machine';
+
+        return array(
+            'id'            => (int) ( $data['id'] ?? 0 ),
+            'requester_id'  => (int) ( $data['requester_id'] ?? 0 ),
+            'listing_id'    => (int) ( $data['listing_id'] ?? 0 ),
+            'listing_type'  => $ltype,
+            'requester_uid' => isset( $data['uid'] ) ? sanitize_text_field( (string) $data['uid'] ) : '',
+        );
+    }
+}
+
+if ( ! function_exists( 'ih_chat_request_card_meta' ) ) {
+    /**
+     * Resolve a request marker's display status + reference from ih_requests
+     * (read-only, prepared). When $user_id is supplied the lookup is constrained
+     * to that user so a marker can only ever surface its own request's status.
+     * Falls back to "Pending" / a derived REQ ref when the row is unavailable.
+     */
+    function ih_chat_request_card_meta( $request_id, $user_id = 0 ) {
+        global $wpdb;
+        $request_id = (int) $request_id;
+        $user_id    = (int) $user_id;
+        $status     = 'Pending';
+        $ref        = $request_id > 0
+            ? 'REQ-' . gmdate( 'Y' ) . '-' . str_pad( (string) $request_id, 4, '0', STR_PAD_LEFT )
+            : '';
+
+        if ( $request_id > 0 ) {
+            if ( $user_id > 0 ) {
+                $row = $wpdb->get_row( $wpdb->prepare(
+                    "SELECT status, request_date FROM {$wpdb->prefix}ih_requests WHERE id=%d AND user_id=%d",
+                    $request_id,
+                    $user_id
+                ), ARRAY_A );
+            } else {
+                $row = $wpdb->get_row( $wpdb->prepare(
+                    "SELECT status, request_date FROM {$wpdb->prefix}ih_requests WHERE id=%d",
+                    $request_id
+                ), ARRAY_A );
+            }
+            if ( $row ) {
+                $st = strtolower( trim( (string) ( $row['status'] ?? '' ) ) );
+                if ( in_array( $st, array( 'approved', 'rejected', 'pending' ), true ) ) {
+                    $status = ucfirst( $st );
+                }
+                $yr  = ! empty( $row['request_date'] ) ? gmdate( 'Y', strtotime( $row['request_date'] ) ) : gmdate( 'Y' );
+                $ref = 'REQ-' . $yr . '-' . str_pad( (string) $request_id, 4, '0', STR_PAD_LEFT );
+            }
+        }
+
+        return array(
+            'status' => $status,
+            'ref'    => $ref,
+        );
+    }
+}
+
 if ( ! function_exists( 'ih_chat_group_title' ) ) {
     function ih_chat_group_title( $participants, $viewer_id = 0 ) {
         $viewer_id = $viewer_id ?: (int) get_current_user_id();

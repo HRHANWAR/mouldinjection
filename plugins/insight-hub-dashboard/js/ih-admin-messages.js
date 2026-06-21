@@ -32,6 +32,48 @@
 
   function msgText(m) { return m.message || m.text || ''; }
 
+  function isRequestMarker(text) { return String(text || '').indexOf('IH_REQUEST_DATA') !== -1; }
+
+  function parseRequestMarker(text) {
+    text = String(text || '');
+    if (text.indexOf('IH_REQUEST_DATA') === -1) return null;
+    var data = {};
+    var mm = text.match(/IH_REQUEST_DATA[:\-]?\s*(\{[\s\S]*\})/);
+    if (mm) { try { data = JSON.parse(mm[1]) || {}; } catch (e) { data = {}; } }
+    var typeRaw = String(data.type || '');
+    return {
+      id: parseInt(data.id, 10) || 0,
+      requester_id: parseInt(data.requester_id, 10) || 0,
+      listing_id: parseInt(data.listing_id, 10) || 0,
+      listing_type: /tool/i.test(typeRaw) ? 'tool' : 'machine'
+    };
+  }
+
+  function listingRef(type, id) {
+    id = parseInt(id, 10) || 0;
+    if (id <= 0) return '';
+    return (type === 'tool' ? 'TL-' : 'MCH-') + ('00000' + id).slice(-5);
+  }
+
+  function requestMsgHTML(m) {
+    var rm = parseRequestMarker(msgText(m));
+    if (!rm) return '';
+    var ref = listingRef(rm.listing_type, rm.listing_id);
+    var reqRef = 'REQ-' + (new Date().getFullYear()) + '-' + ('0000' + rm.id).slice(-4);
+    var from = rm.requester_id ? 'USR-' + rm.requester_id : '';
+    var listing = ref
+      ? ((rm.listing_type === 'tool' ? 'Tool ' : 'Machine ') + ref)
+      : 'Contact access';
+    var sub = from ? (from + ' · ' + listing) : listing;
+    var status = m.request_status ? String(m.request_status) : 'Pending';
+    return '<div class="ih-msg-system-row" data-id="' + (m.id || '') + '" data-msg-type="request">'
+      + '<div class="ihc-reqmsg" role="note" aria-label="Access request">'
+      + '<span class="ihc-reqmsg-ico" aria-hidden="true">'
+      + '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>'
+      + '</span><div class="tx"><b>' + esc('Access request · ' + reqRef) + '</b><span>' + esc(sub) + '</span></div>'
+      + '<span class="ihc-statuspill ' + esc(status.toLowerCase()) + '">' + esc(status) + '</span></div></div>';
+  }
+
 
 
   function api(action, params, method) {
@@ -109,6 +151,8 @@
 
 
   function bubbleHTML(m) {
+
+    if (isRequestMarker(msgText(m))) return requestMsgHTML(m);
 
     var me = mine(m.from_me);
 
@@ -252,7 +296,7 @@
 
     else msgs.insertAdjacentHTML('beforeend', bubbleHTML(m));
 
-    bindReactions(m);
+    if (!isRequestMarker(msgText(m))) bindReactions(m);
 
     if (m.id && m.id > lastId) lastId = m.id;
 

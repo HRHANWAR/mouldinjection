@@ -374,6 +374,40 @@ include IH_DIR . 'pages/partials/ih-user-shell-header.php';
 										<?php
 										continue;
 									endif;
+									$req_marker = function_exists( 'ih_chat_parse_request_marker' ) ? ih_chat_parse_request_marker( $msg_body ) : null;
+									if ( $req_marker ) :
+										$rm_ref    = ih_um_listing_ref( $req_marker['listing_type'], $req_marker['listing_id'] );
+										$rm_meta   = function_exists( 'ih_chat_request_card_meta' )
+											? ih_chat_request_card_meta( $req_marker['id'], $uid )
+											: array( 'status' => 'Pending', 'ref' => '' );
+										$rm_status = $rm_meta['status'] ?: 'Pending';
+										$rm_reqref = $rm_meta['ref'] ?: ( 'REQ-' . date_i18n( 'Y', strtotime( get_date_from_gmt( $m['sent_at'] ) ) ) . '-' . str_pad( (string) $req_marker['id'], 4, '0', STR_PAD_LEFT ) );
+										if ( $rm_ref ) {
+											$rm_action = ( $req_marker['listing_type'] === 'tool' )
+												/* translators: %s: tool reference such as TL-00231 */
+												? sprintf( __( 'View access to tool %s', 'insight-hub-dashboard' ), $rm_ref )
+												/* translators: %s: machine reference such as MCH-00114 */
+												: sprintf( __( 'View access to machine %s', 'insight-hub-dashboard' ), $rm_ref );
+										} else {
+											$rm_action = __( 'Contact access request', 'insight-hub-dashboard' );
+										}
+										?>
+										<div class="ih-msg-system-row" data-id="<?php echo $mid; ?>" data-msg-type="request">
+											<div class="ihc-reqmsg" role="note" aria-label="<?php esc_attr_e( 'Access request', 'insight-hub-dashboard' ); ?>">
+												<span class="ihc-reqmsg-ico" aria-hidden="true">
+													<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+												</span>
+												<div class="tx">
+													<?php /* translators: %s: request reference such as REQ-2026-0203 */ ?>
+													<b><?php echo esc_html( sprintf( __( 'Your request · %s', 'insight-hub-dashboard' ), $rm_reqref ) ); ?></b>
+													<span><?php echo esc_html( $rm_action ); ?></span>
+												</div>
+												<span class="ihc-statuspill <?php echo esc_attr( strtolower( $rm_status ) ); ?>"><?php echo esc_html( $rm_status ); ?></span>
+											</div>
+										</div>
+										<?php
+										continue;
+									endif;
 									if ( ih_um_is_admin_notice( $msg_body ) ) :
 										$notice_lines = preg_split( '/\r\n|\r|\n/', ih_um_admin_notice_text( $msg_body ) );
 										?>
