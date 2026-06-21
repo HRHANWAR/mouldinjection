@@ -1,0 +1,29 @@
+# Ignore everything by default — this repo only tracks our custom code.
+/*
+
+# Keep these meta files at the root
+!/.gitignore
+!/README.md
+
+# Track ONLY the custom theme (keep standard WP path), ignore other themes
+!/themes/
+/themes/*
+!/themes/Injection-Moulding/
+
+# Track ONLY the custom plugin (keep standard WP path), ignore other plugins
+!/plugins/
+/plugins/*
+!/plugins/insight-hub-dashboard/
+
+# Junk / build artifacts inside tracked folders
+**/node_modules/
+**/.DS_Store
+**/Thumbs.db
+**/*.log
+**/.cache/
+**/vendor/
+
+# Never commit secrets/local config
+**/*.env
+**/.env
+**/wp-config*.php

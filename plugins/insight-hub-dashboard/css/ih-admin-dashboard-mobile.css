@@ -1,0 +1,592 @@
+/* ============================================================
+   ih-admin-dashboard-mobile.css — Admin Dashboard mobile (Figma 33:780)
+   Scoped to .ih-rd.ih-admin.ih-dash-page — desktop layout unchanged.
+   Requires ih-redesign.css (Nexus tokens).
+   ============================================================ */
+
+/* Desktop: 7-column KPI grid (replaces removed inline style) */
+@media (min-width: 1025px) {
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-kpis.ih-admin-kpi-7 {
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approvals,
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-listings,
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-requests {
+    margin-top: 22px;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-status .ih-donut-wrap {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: auto !important;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-status .ih-donut {
+    width: clamp(118px, 9vw, 132px);
+    height: clamp(118px, 9vw, 132px);
+    flex: 0 0 clamp(118px, 9vw, 132px);
+    margin: 0;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-status .ih-legend {
+    flex: 1 1 128px;
+    width: auto;
+    max-width: none;
+    overflow: visible;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-status .ih-legend .lg {
+    display: grid;
+    grid-template-columns: 9px minmax(0, 1fr) auto;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approvals,
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-listings,
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-requests {
+    margin-top: 22px;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-status .ih-donut-wrap {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: auto !important;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-status .ih-donut {
+    width: 132px;
+    height: 132px;
+    flex: 0 0 132px;
+    margin: 0;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-status .ih-legend {
+    flex: 1 1 180px;
+    width: auto;
+    max-width: 260px;
+    overflow: visible;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-status .ih-legend .lg {
+    display: grid;
+    grid-template-columns: 9px minmax(0, 1fr) auto;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Mobile-only blocks hidden on desktop */
+.ih-rd.ih-admin.ih-dash-page .ih-dash-eyebrow-short,
+.ih-rd.ih-admin.ih-dash-page .ih-dash-sub-short,
+.ih-rd.ih-admin.ih-dash-page .ih-dash-approval-mobile-cards,
+.ih-rd.ih-admin.ih-dash-page .ih-dash-req-mobile-cards {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  body.ih-site-nav-admin:has(.ih-dash-page) #wpbody,
+  body.ih-site-nav-admin:has(.ih-dash-page) #wpcontent,
+  body.ih-site-nav-admin:has(.ih-dash-page) #wpbody-content,
+  body.ih-site-nav-admin:has(.ih-dash-page) .ih-wrap.ih-figma-nav,
+  body.ih-site-nav-admin:has(.ih-dash-page) .ih-wrap.ih-figma-nav .ih-main,
+  body.ih-site-nav-admin:has(.ih-dash-page) .ih-wrap.ih-figma-nav .ih-content {
+    background: #1c1b27 !important;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 0 28px !important;
+    overflow-x: hidden;
+  }
+
+  /* Header — Figma 33:795 */
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-header {
+    margin-bottom: 0 !important;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-eyebrow-long,
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-sub-long {
+    display: none;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-eyebrow-short,
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-sub-short {
+    display: block;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 12px 5px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--ih-lime);
+    background: var(--ih-accent-soft);
+    color: var(--ih-text);
+    margin: 0 0 5px;
+    font-family: var(--ih-mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-eyebrow .dot {
+    background: var(--ih-lime);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ih-lime) 24%, transparent);
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dashboard-title {
+    font-size: 26px !important;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-sub-short {
+    font-size: 12.5px !important;
+    margin-top: 4px !important;
+    color: var(--ih-text2);
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-desktop-only,
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approval-desktop,
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-req-desktop {
+    display: none !important;
+  }
+
+  /* KPI 2×2 — Figma 33:801 (Pending, Approved, Requests, Rejected) */
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-kpis {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 12px !important;
+    margin: 0;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-kpi {
+    flex: 1 1 calc(50% - 6px);
+    min-width: min(140px, 100%);
+    max-width: calc(50% - 6px);
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-kpi--pending { order: 1; }
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-kpi--approved { order: 2; }
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-kpi--requests { order: 3; }
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-kpi--rejected { order: 4; }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-kpi .ih-stat {
+    padding: 18px !important;
+    border-radius: 16px;
+    min-height: 0;
+    background: var(--ih-surface);
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-kpi--pending .ih-stat-value { color: #f59e0a; }
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-kpi--approved .ih-stat-value { color: #21c45e; }
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-kpi--requests .ih-stat-value { color: #887cfd; }
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-kpi--rejected .ih-stat-value { color: #f04545; }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-kpi .ih-stat-value {
+    font-size: 30px;
+  }
+
+  /* Section cards */
+  .ih-rd.ih-admin.ih-dash-page .ih-section {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-top: 0 !important;
+    padding: 16px;
+    border-radius: 18px;
+    background: var(--ih-surface);
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-section-head h3,
+  .ih-rd.ih-admin.ih-dash-page .ih-figma-section-title {
+    font-size: 16px;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-section-head .csub,
+  .ih-rd.ih-admin.ih-dash-page .ih-figma-section-sub {
+    font-size: 12px;
+  }
+
+  /* Approvals queue — Figma 33:850 */
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approvals {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approvals .ih-figma-section-head {
+    margin-bottom: 0;
+    align-items: center;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approval-mobile-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-figma-approval-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 12px;
+    border: 1px solid var(--ih-border);
+    border-radius: 12px;
+    background: var(--ih-surface2);
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approval-card-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approval-av {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    border-radius: 999px;
+    font-size: 11px;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approval-ident {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    flex: 1 1 0;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approval-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ih-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approval-meta {
+    font-family: var(--ih-mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--ih-text2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approval-card-head .ih-figma-type {
+    flex: 0 0 auto;
+    font-size: 8.5px;
+    letter-spacing: 0.085px;
+    padding: 4px 9px;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approval-card-actions {
+    display: flex;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approval-card-actions .ih-figma-approval-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    border-radius: 999px;
+    min-height: 36px;
+    font-size: 12px;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approval-card-actions .ih-figma-approval-btn.is-approve {
+    background: var(--ih-lime);
+    color: var(--ih-on-accent);
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approval-card-actions .ih-figma-approval-btn.is-reject {
+    background: var(--ih-surface);
+    border: 1px solid var(--ih-border);
+    color: #ef4444;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-approval-mobile-empty {
+    margin: 0;
+  }
+
+  /* Analytics — Figma 90:1356 */
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 0 !important;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-bars,
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-status {
+    position: relative;
+    overflow: visible;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-bars::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #887cfd;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-status::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #a88cfa;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-head {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-title {
+    font-size: 16px;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-sub,
+  .ih-rd.ih-admin.ih-dash-page .ih-status-sub {
+    font-size: 12px;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-period-filters {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-donut-wrap {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: auto !important;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-analytics-status .ih-donut {
+    width: clamp(112px, 38vw, 128px);
+    height: clamp(112px, 38vw, 128px);
+    flex: 0 0 auto;
+    margin: 0 auto;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-legend {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 12px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-legend .lg {
+    box-sizing: border-box;
+    min-width: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 9px minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 8px;
+    margin: 0;
+    padding: 4px 6px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-legend .lg b {
+    margin-left: 0;
+  }
+
+  /* Latest listings */
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-listings .ih-grid-cards {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-listings .ih-section-head .ih-rd-head-btn {
+    font-size: 11px;
+    padding: 7px 12px;
+  }
+
+  /* Message requests cards */
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-req-mobile-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-req-mobile-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    border: 1px solid var(--ih-border);
+    border-radius: 14px;
+    background: var(--ih-surface2);
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-req-mobile-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-req-mobile-av {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    border-radius: 999px;
+    font-size: 11px;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-req-mobile-ident {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    flex: 1 1 0;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-req-mobile-name {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--ih-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-req-mobile-uid {
+    font-family: var(--ih-mono);
+    font-size: 10px;
+    color: var(--ih-text2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-req-mobile-head .ih-status-pill {
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-req-mobile-intent {
+    align-self: flex-start;
+    font-size: 11px;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-req-mobile-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-req-mobile-target {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #4896fe;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-req-mobile-date {
+    font-family: var(--ih-mono);
+    font-size: 11px;
+    color: var(--ih-mut);
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-req-mobile-view {
+    width: 100%;
+    justify-content: center;
+    border-radius: 10px;
+    min-height: 38px;
+  }
+
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-requests .ih-section-head .ih-rd-head-btn {
+    font-size: 11px;
+    padding: 7px 12px;
+  }
+
+  /* Footer — Figma 89:1374 */
+  .ih-rd.ih-admin.ih-dash-page .ih-footer {
+    border-top: 1px solid var(--ih-border);
+    padding-top: 14px;
+    margin-top: 0;
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 390px) {
+  .ih-rd.ih-admin.ih-dash-page .ih-dash-kpi {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 375px) {
+  .ih-rd.ih-admin.ih-dash-page .ih-legend {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

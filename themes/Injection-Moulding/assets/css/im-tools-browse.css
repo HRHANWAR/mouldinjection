@@ -1,0 +1,41 @@
+/* =====================================================================
+   Public /tools BROWSE — scoped variant of the Machine browse system.
+   Loads AFTER im-machines-browse.css and only overrides the handful of
+   tool-specific touches. All structural/layout styling is inherited from
+   the shared .mh-* classes so we never duplicate the whole stylesheet.
+   Scope: .mh-browse--tools (applied on the <main> in page-tools.php).
+   ===================================================================== */
+
+/* Tool card media uses a distinct (tooling) gradient so tools read as a
+   different catalogue from machines while keeping the same card chrome. */
+.mh-browse--tools .mh-card__media {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+}
+
+/* Tool tag chips (runner/gate + grade trust signals) read as neutral
+   technical pills in the Figma — lavender ground with brand ink — distinct
+   from the machine capability (info-blue) tags. */
+.mh-browse--tools .mh-tag {
+  color: var(--mh-brand, #5347ce);
+  background: var(--mh-accent-soft, #ece9ff);
+}
+
+/* Card title is a link to the detail page — keep it visually identical to the
+   plain heading (no underline / inherit colour) so the design is unchanged. */
+.mh-browse--tools .mh-card__title a {
+  color: inherit;
+  text-decoration: none;
+}
+.mh-browse--tools .mh-card__title a:hover { color: var(--mh-brand, #5347ce); }
+
+/* The tool mobile bottom nav carries 5 items (Home · Browse · Saved · Messages ·
+   Account) vs the machine nav's 3, so tighten the per-item type a touch on the
+   narrowest phones to keep all five on one row with no horizontal overflow. */
+@media (max-width: 400px) {
+  .mh-browse--tools .mh-botnav { gap: 2px; padding-left: 4px; padding-right: 4px; }
+  .mh-browse--tools .mh-botnav__item { font-size: 10px; }
+  .mh-browse--tools .mh-botnav__item svg { width: 20px; height: 20px; }
+}
+@media (max-width: 340px) {
+  .mh-browse--tools .mh-botnav__item { font-size: 9.5px; }
+}

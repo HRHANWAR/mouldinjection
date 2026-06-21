@@ -1,0 +1,914 @@
+/* User portal shell — Figma tokens (file VfzCieeZ8ebjwm6vPiGajl) */
+
+body.ih-user-page,
+body[class*="ih-user"],
+body.ih-user-portal {
+  background: #fff !important;
+  font-family: var(--ih-figma-sans);
+  color: var(--ih-figma-text);
+  min-width: 0;
+}
+
+#wpwrap,
+#wpcontent,
+#wpbody,
+#wpbody-content,
+#wpfooter {
+  margin: 0 !important;
+  padding: 0 !important;
+  float: none !important;
+  width: 100% !important;
+}
+
+body.ih-user-portal #wpwrap,
+body.ih-user-portal #wpcontent,
+body.ih-user-portal #wpbody,
+body.ih-user-portal #wpbody-content {
+  background: #fff !important;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: visible !important;
+  transform: none !important;
+  filter: none !important;
+  contain: none !important;
+}
+
+#wpadminbar,
+#adminmenuback,
+#adminmenuwrap {
+  display: none !important;
+}
+
+html.wp-toolbar {
+  padding-top: 0 !important;
+}
+
+.ih-shell.ih-figma-dashboard.is-user {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-width: 100vw;
+  min-width: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  height: 100%;
+  height: 100dvh;
+  width: 100vw;
+  background: #fff;
+  box-sizing: border-box;
+  isolation: isolate;
+}
+
+/* ── Desktop header ── */
+.ih-shell .ih-header--desktop {
+  height: 58px;
+  background: var(--ih-figma-surface);
+  border-bottom: 1px solid var(--ih-figma-border);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 14px;
+  flex-shrink: 0;
+  z-index: 200;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ih-header-logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.ih-header-logo img {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.ih-header-logo span {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ih-figma-brand);
+  white-space: nowrap;
+  letter-spacing: -0.02em;
+}
+
+.ih-header-search {
+  flex: 1;
+  max-width: 440px;
+  position: relative;
+}
+
+.ih-search-wrap {
+  display: flex;
+  align-items: center;
+  background: var(--ih-figma-surface-2);
+  border: 1.5px solid var(--ih-figma-border);
+  border-radius: 12px;
+  padding: 0 12px 0 10px;
+  gap: 8px;
+  transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+}
+
+.ih-search-wrap:focus-within {
+  border-color: var(--ih-figma-brand);
+  background: var(--ih-figma-surface);
+  box-shadow: 0 0 0 3px rgba(22, 75, 63, 0.08);
+}
+
+.ih-search-icon {
+  display: flex;
+  align-items: center;
+  color: var(--ih-figma-text-secondary);
+  flex-shrink: 0;
+}
+
+.ih-search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 9px 0;
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  color: var(--ih-figma-text);
+  font-weight: 500;
+  min-width: 0;
+}
+
+.ih-search-input::placeholder {
+  color: var(--ih-figma-text-muted);
+}
+
+.ih-search-kbd {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.ih-search-kbd kbd {
+  font-family: var(--ih-figma-mono);
+  font-size: 10px;
+  background: var(--ih-figma-accent-soft);
+  color: var(--ih-figma-brand);
+  border: 1px solid var(--ih-figma-border);
+  border-radius: 5px;
+  padding: 1px 5px;
+}
+
+.ih-search-clear {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--ih-figma-border);
+  color: var(--ih-figma-text-secondary);
+  cursor: pointer;
+  border: none;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.ih-search-clear.visible {
+  display: flex;
+}
+
+.ih-search-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background: var(--ih-figma-surface);
+  border: 1.5px solid var(--ih-figma-border);
+  border-radius: 14px;
+  box-shadow: 0 12px 40px rgba(17, 39, 29, 0.12);
+  z-index: 9999;
+  overflow: hidden;
+  display: none;
+}
+
+.ih-search-dropdown.open {
+  display: block;
+}
+
+.ih-header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 0 0 auto;
+}
+
+.ih-notif-wrap {
+  position: relative;
+}
+
+.ih-header-bell {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--ih-nav-radius);
+  border: 1px solid var(--ih-figma-border);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ih-figma-text-secondary);
+  cursor: pointer;
+  transition: 0.15s;
+  position: relative;
+}
+
+.ih-header-bell:hover,
+.ih-header-bell:focus-visible {
+  background: var(--ih-figma-surface-2);
+  color: var(--ih-figma-brand);
+}
+
+.ih-header-bell:focus-visible {
+  outline: 3px solid rgba(22, 75, 63, 0.14);
+  outline-offset: 2px;
+}
+
+.ih-notif-dot {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ih-figma-danger);
+  border: 2px solid var(--ih-figma-surface);
+}
+
+.ih-notif-dropdown,
+.ih-account-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: var(--ih-figma-surface);
+  border: 1px solid var(--ih-figma-border);
+  border-radius: 16px;
+  box-shadow: 0 16px 48px rgba(17, 39, 29, 0.12);
+  z-index: 10080;
+  display: none;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.ih-notif-dropdown.open,
+.ih-account-dropdown.open {
+  display: block;
+}
+
+.ih-notif-dropdown {
+  width: 300px;
+}
+
+.ih-account-dropdown {
+  width: min(300px, calc(100vw - 24px));
+  padding: 8px;
+}
+
+.ih-notif-head {
+  padding: 13px 16px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ih-figma-text);
+  border-bottom: 1px solid var(--ih-figma-border);
+}
+
+.ih-notif-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  min-height: 18px;
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.ih-notif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 15px;
+  border-bottom: 1px solid var(--ih-figma-surface-2);
+}
+
+.ih-notif-copy,
+.ih-account-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.ih-account-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  padding: 10px 12px 12px;
+}
+
+.ih-account-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: var(--ih-figma-brand);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.ih-account-name {
+  color: var(--ih-figma-ink);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ih-account-email {
+  color: var(--ih-figma-text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.35;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ih-account-link {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: var(--ih-figma-ink);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.ih-account-link:hover,
+.ih-account-link:focus-visible {
+  background: var(--ih-figma-accent-soft);
+  color: var(--ih-figma-brand);
+  outline: none;
+}
+
+.ih-account-link.danger {
+  color: var(--ih-figma-danger);
+}
+
+.ih-account-link.danger:hover,
+.ih-account-link.danger:focus-visible {
+  background: rgba(239, 68, 68, 0.08);
+  color: #b91c1c;
+}
+
+.ih-account-divider {
+  height: 1px;
+  margin: 5px 8px;
+  background: var(--ih-figma-border);
+}
+
+.ih-notif-empty {
+  padding: 24px;
+  text-align: center;
+  color: var(--ih-figma-text-muted);
+  font-size: 13px;
+}
+
+.ih-avatar-wrap {
+  position: relative;
+}
+
+.ih-header-avatar-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: var(--ih-nav-radius);
+  cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.ih-header-avatar-btn:focus-visible {
+  outline: 3px solid rgba(22, 75, 63, 0.18);
+  outline-offset: 3px;
+}
+
+.ih-header-avatar,
+.ih-header-avatar-fallback {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--ih-nav-radius);
+  flex-shrink: 0;
+}
+
+.ih-header-avatar {
+  object-fit: cover;
+  border: 2px solid var(--ih-figma-border);
+}
+
+.ih-header-avatar-fallback {
+  background: var(--ih-figma-brand);
+  color: #fff;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 13px;
+}
+
+/* ── Body layout ── */
+.ih-body {
+  flex: 1 1 0;
+  display: flex;
+  overflow: hidden;
+  min-height: 0;
+  background: #fff;
+  min-width: 0;
+  width: 100%;
+}
+
+.ih-shell.ih-figma-dashboard.is-user .ih-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  min-height: 1px;
+}
+
+.ih-main {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #fff;
+}
+
+.ih-shell.ih-figma-dashboard.is-user .ih-main {
+  flex: 1 1 auto;
+  min-height: 1px;
+}
+
+.ih-page-header {
+  padding: 13px 20px 12px;
+  background: var(--ih-figma-surface);
+  border-bottom: 1px solid var(--ih-figma-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ih-page-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--ih-figma-text);
+  letter-spacing: -0.02em;
+}
+
+.ih-page-sub {
+  font-size: 12px;
+  color: var(--ih-figma-text-muted);
+  margin-top: 2px;
+}
+
+.ih-content {
+  flex: 1 1 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: clamp(14px, 2vw, 22px) clamp(14px, 2.2vw, 24px) 40px;
+  background: #fff;
+  min-width: 0;
+  min-height: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  width: 100%;
+  scrollbar-gutter: stable;
+}
+
+.ih-shell.ih-figma-dashboard.is-user .ih-content {
+  flex: 1 1 auto;
+  min-height: 1px;
+}
+
+/* Prevent cards/sections from blowing out flex/grid tracks */
+.ih-shell .ih-card,
+.ih-shell .ih-section,
+.ih-shell .ih-stat-card,
+.ih-shell .ih-banner,
+.ih-shell .ud-card,
+.ih-shell .ih-ov,
+.ih-shell .ih-dash-panel {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.ih-shell .ih-stat-grid,
+.ih-shell .ud-cards-grid,
+.ih-shell .ih-enq-grid,
+.ih-shell .ih-ov-charts,
+.ih-shell .ih-dash-panels {
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* ── User sidebar (Figma light) ── */
+.ih-shell .ih-sidebar {
+  width: 248px;
+  flex-shrink: 0;
+  background: var(--ih-figma-surface);
+  border-right: 1px solid var(--ih-figma-border);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px 20px;
+  gap: 4px;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.ih-sb-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 4px 8px;
+}
+
+.ih-sb-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--ih-figma-brand);
+  color: var(--ih-figma-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.ih-sb-brand-txt {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  min-width: 0;
+}
+
+.ih-sb-brand-txt b {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--ih-figma-text);
+  letter-spacing: 0.02em;
+}
+
+.ih-sb-brand-txt i {
+  font-style: normal;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--ih-figma-text-secondary);
+  letter-spacing: 0.06em;
+}
+
+.ih-sb-menu-label,
+.ih-sidebar .ih-sidebar-label {
+  font-family: var(--ih-figma-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  color: var(--ih-figma-text-muted);
+  padding: 6px 8px;
+  text-transform: uppercase;
+}
+
+.ih-sidebar-toggler {
+  display: none;
+}
+
+.ih-shell .ih-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px;
+  border-radius: var(--ih-nav-radius);
+  text-decoration: none;
+  color: var(--ih-figma-text-secondary);
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: background 0.15s, color 0.15s;
+}
+
+.ih-shell .ih-nav-item:hover {
+  background: var(--ih-figma-surface-2);
+  color: var(--ih-figma-text);
+}
+
+.ih-shell .ih-nav-item:focus-visible,
+.ih-search-clear:focus-visible,
+.ih-dropdown-link:focus-visible {
+  outline: 3px solid rgba(22, 75, 63, 0.16);
+  outline-offset: 2px;
+}
+
+.ih-shell .ih-nav-item.active {
+  background: var(--ih-figma-accent-soft);
+  color: var(--ih-figma-ink);
+  font-weight: 600;
+}
+
+.ih-shell .ih-nav-item.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 3px;
+  height: 20px;
+  border-radius: 2px;
+  background: var(--ih-figma-brand);
+}
+
+.ih-shell .ih-nav-label {
+  opacity: 1;
+  width: auto;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.ih-shell .ih-nav-item img {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.ih-shell .ih-nav-item.active img {
+  filter: none;
+}
+
+.ih-sidebar .ih-nav-badge {
+  margin-left: auto;
+  min-width: 21px;
+  height: 16px;
+  padding: 0 7px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+}
+
+.ih-sidebar .ih-nav-badge.is-warn {
+  background: #f04545;
+  color: #fff;
+}
+
+.ih-sidebar .ih-nav-badge.is-lime {
+  background: var(--ih-figma-accent-soft);
+  color: var(--ih-figma-ink);
+}
+
+.ih-profile-dropdown {
+  width: 100%;
+  margin-top: auto;
+}
+
+.ih-profile-dropdown summary {
+  list-style: none;
+  cursor: pointer;
+}
+
+.ih-profile-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+.ih-dropdown-menu {
+  margin-top: 8px;
+  background: var(--ih-figma-surface);
+  border: 1px solid var(--ih-figma-border);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 8px 24px rgba(17, 39, 29, 0.08);
+}
+
+.ih-dropdown-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--ih-figma-border);
+  margin-bottom: 10px;
+}
+
+.ih-dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--ih-figma-danger);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.ih-dropdown-link:hover {
+  background: #fee2e2;
+}
+
+/* Overlay */
+.ih-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(12, 23, 20, 0.45);
+  z-index: 150;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+
+.ih-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Collapsed desktop sidebar */
+@media (min-width: 769px) {
+  .ih-shell.ih-figma-dashboard.is-user .ih-body {
+    min-width: 0;
+  }
+
+  .ih-shell.ih-figma-dashboard.is-user .ih-content.ih-corp-dash {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .ih-shell.sb-collapsed .ih-sidebar {
+    width: 74px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .ih-shell.sb-collapsed .ih-sb-brand-txt,
+  .ih-shell.sb-collapsed .ih-sb-menu-label,
+  .ih-shell.sb-collapsed .ih-nav-label,
+  .ih-shell.sb-collapsed .ih-nav-badge {
+    display: none;
+  }
+
+  .ih-shell.sb-collapsed .ih-nav-item {
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .ih-shell.sb-collapsed .ih-nav-item::after {
+    content: attr(data-tip);
+    position: absolute;
+    left: calc(100% + 8px);
+    background: var(--ih-figma-brand);
+    color: var(--ih-figma-brand);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 999;
+  }
+
+  .ih-shell.sb-collapsed .ih-nav-item:hover::after {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  body.ih-user-portal {
+    overflow: hidden !important;
+    padding-bottom: 0 !important;
+  }
+
+  body.ih-user-portal #wpcontent,
+  body.ih-user-portal #wpbody-content {
+    padding-bottom: 0 !important;
+  }
+
+  .ih-shell .ih-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 248px !important;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+    padding-bottom: calc(var(--ih-nav-height) + 16px);
+    z-index: 10050;
+  }
+
+  .ih-shell .ih-sidebar.mobile-open {
+    transform: translateX(0);
+  }
+
+  /* Legacy sidebar drawer only — float-nav shells have no drawer */
+  .ih-shell:not(.ih-shell--float-nav) .ih-overlay,
+  .ih-shell:not(.ih-shell--float-nav) #ihOverlay.ih-overlay {
+    display: block;
+    z-index: 10040;
+    pointer-events: none;
+  }
+
+  .ih-shell:not(.ih-shell--float-nav) .ih-overlay.show,
+  .ih-shell:not(.ih-shell--float-nav) #ihOverlay.ih-overlay.show {
+    pointer-events: auto;
+  }
+
+  .ih-shell--float-nav .ih-overlay,
+  .ih-shell--float-nav #ihOverlay.ih-overlay {
+    display: none !important;
+    pointer-events: none !important;
+  }
+
+  body.ih-user-menu-open {
+    overflow: hidden;
+  }
+
+  .ih-shell:has(.ih-site-nav-header) .ih-page-header,
+  .ih-shell.ih-corp-dash-page .ih-page-header {
+    padding-top: 8px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .ih-shell.ih-figma-dashboard.is-user {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  .ih-shell.ih-figma-dashboard.is-user .ih-content {
+    padding: 12px 12px calc(var(--ih-nav-height, 72px) + env(safe-area-inset-bottom, 0px) + 8px) !important;
+    background: #fff !important;
+    scrollbar-gutter: auto;
+  }
+
+  .ih-shell.ih-figma-dashboard.is-user .ih-content.ih-corp-dash {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ih-shell.ih-figma-dashboard.is-user {
+    width: 100vw;
+    max-width: 100vw;
+  }
+
+  .ih-content {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .ih-notif-dropdown,
+  .ih-account-dropdown {
+    right: 0;
+    max-width: calc(100vw - 24px);
+  }
+}

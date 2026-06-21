@@ -1,0 +1,318 @@
+/* ═══════════════════════════════════════════════════════════════════
+   IH RESIZABLE UI — card menus + chat height handles
+═══════════════════════════════════════════════════════════════════ */
+
+/* ── Listing cards: show all info, menu always on top ── */
+.ih-listing-card,
+.ih-dash-listing-card {
+  overflow: visible !important;
+  position: relative;
+  isolation: isolate;
+}
+
+.ih-listing-img-wrap {
+  overflow: hidden;
+  border-radius: 16px 16px 0 0;
+}
+
+.ih-listing-card.is-menu-open,
+.ih-dash-listing-card.is-menu-open {
+  z-index: 200 !important;
+}
+
+/* 3-dot menu — always in front of image */
+.ih-card-menu {
+  position: absolute !important;
+  top: 10px !important;
+  right: 10px !important;
+  z-index: 50 !important;
+}
+
+.ih-card-menu-btn {
+  position: relative;
+  z-index: 51;
+  background: rgba(255, 255, 255, 0.96) !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.18) !important;
+}
+
+.ih-card-menu .ih-dropdown {
+  position: fixed !important;
+  z-index: 100050 !important;
+  min-width: 180px;
+  border-radius: 12px !important;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.18) !important;
+  border: 1px solid #d9e7f7 !important;
+}
+
+.ih-card-menu .ih-dropdown.hidden {
+  display: none !important;
+}
+
+/* Request queues: clickable profiles, colored IDs, contact actions, column resize. */
+.ih-req-user-cell,
+.ih-req-profile-link {
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
+.ih-req-user-cell:hover .ih-req-name-text,
+.ih-req-profile-link:hover .ih-req-name {
+  color: #1e5f8a !important;
+  text-decoration: underline;
+}
+
+.ih-id-chip {
+  display: inline-flex !important;
+  align-items: center;
+  width: fit-content;
+  border-radius: 999px;
+  padding: 3px 8px;
+  font-family: "Roboto Mono", Consolas, monospace;
+  font-size: 10.5px !important;
+  font-style: normal;
+  font-weight: 800 !important;
+  line-height: 1.2;
+  letter-spacing: .01em;
+}
+
+.ih-id-chip.is-user {
+  background: #eaf4ff;
+  color: #1e5f8a !important;
+  border: 1px solid #bfdbfe;
+}
+
+.ih-id-chip.is-req {
+  background: #f0fdf4;
+  color: #166534 !important;
+  border: 1px solid #bbf7d0;
+}
+
+.ih-id-chip.is-machine {
+  background: #eef2ff;
+  color: #3730a3 !important;
+  border: 1px solid #c7d2fe;
+}
+
+.ih-id-chip.is-tool {
+  background: #fff8e1;
+  color: #b45309 !important;
+  border: 1px solid #fde68a;
+}
+
+.ih-contact-actions,
+.ih-contact-line {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.ih-contact-actions {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.ih-contact-text {
+  max-width: 190px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #6b8aa3;
+  font-size: 11px;
+}
+
+.ih-contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 22px;
+  border-radius: 999px;
+  padding: 0 7px;
+  font-size: 9.5px;
+  font-weight: 800;
+  text-decoration: none !important;
+  border: 1px solid transparent;
+}
+
+.ih-contact-icon.is-email,
+.ih-req-btn.is-email {
+  background: #eaf4ff;
+  color: #1e5f8a;
+  border-color: #bfdbfe;
+}
+
+.ih-contact-icon.is-call,
+.ih-req-btn.is-call {
+  background: #f0fdf4;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+.ih-contact-icon.is-sms,
+.ih-req-btn.is-sms {
+  background: #fff8e1;
+  color: #b45309;
+  border-color: #fde68a;
+}
+
+.ih-contact-icon.is-wa,
+.ih-req-btn.is-wa {
+  background: #dcfce7;
+  color: #128c4a;
+  border-color: #86efac;
+}
+
+#ihReqTable .ih-req-th-actions,
+#ihReqTable .ih-req-actions-cell {
+  min-width: 220px !important;
+}
+
+#ihReqTable .ih-req-col-actions {
+  min-width: 220px;
+}
+
+.ih-resizable-table {
+  table-layout: fixed;
+}
+
+.ih-resizable-table th {
+  position: relative;
+}
+
+.ih-column-resize-handle {
+  position: absolute;
+  top: 0;
+  right: -4px;
+  bottom: 0;
+  width: 10px;
+  cursor: col-resize;
+  border-right: 2px solid transparent;
+  touch-action: none;
+  z-index: 4;
+}
+
+.ih-column-resize-handle:hover,
+.ih-column-resize-handle.is-dragging {
+  border-right-color: #1e5f8a;
+}
+
+#ihReqTable .ih-req-column-resize-handle {
+  right: -5px;
+  width: 12px;
+  border-right-color: color-mix(in srgb, var(--ih-mut, #8b87a8) 45%, transparent);
+}
+
+#ihReqTable .ih-req-column-resize-handle:hover,
+#ihReqTable .ih-req-column-resize-handle.is-dragging {
+  border-right-color: var(--ih-lime, #887cfd);
+  background: color-mix(in srgb, var(--ih-lime, #887cfd) 14%, transparent);
+}
+
+body.ih-col-resize-active,
+body.ih-col-resize-active * {
+  cursor: col-resize !important;
+  user-select: none !important;
+}
+
+/* Dashboard listing cards — elegant fixed/responsive cards, no resize controls */
+#wpcontent .ih-dash-listing-grid .ih-dash-listing-card {
+  min-height: 420px !important;
+  max-height: none !important;
+  height: auto !important;
+  overflow: visible !important;
+  resize: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  transform-origin: center top;
+  will-change: transform;
+}
+
+#wpcontent .ih-dash-listing-grid .ih-dash-listing-card .ih-listing-body {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+#wpcontent .ih-dash-listing-grid .ih-pill-row,
+#wpcontent .ih-dash-listing-grid .ih-grade-row {
+  flex-wrap: wrap !important;
+  gap: 4px !important;
+  max-height: none !important;
+}
+
+#wpcontent .ih-dash-listing-grid .ih-listing-title {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  line-height: 1.3 !important;
+}
+
+/* Legacy card size controls are intentionally hidden/removed. */
+.ih-card-size-bar {
+  display: none !important;
+}
+
+/* Bottom-only chat height adjuster (for viewing large images/docs). */
+.ih-messages-wrap,
+#ihMsgLayout {
+  height: 875px;
+  max-height: none;
+}
+
+.ih-chat-height-adjustable {
+  position: relative !important;
+}
+
+.ih-chat-height-handle {
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  z-index: 80;
+  width: 92px;
+  height: 16px;
+  transform: translateX(-50%);
+  cursor: ns-resize;
+  touch-action: none;
+}
+
+.ih-chat-height-handle::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 6px;
+  width: 72px;
+  height: 5px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, .12);
+  transition: background .15s, width .15s;
+}
+
+.ih-chat-height-handle:hover::before,
+.ih-chat-height-handle.is-dragging::before {
+  width: 92px;
+  background: #164b3f;
+}
+
+@media (max-width: 900px) {
+  .ih-chat-height-handle {
+    display: none !important;
+  }
+
+  .ih-messages-wrap,
+  #ihMsgLayout {
+    height: auto;
+  }
+
+  #wpcontent .ih-dash-listing-grid .ih-dash-listing-card {
+    height: auto !important;
+    min-height: 340px !important;
+    resize: none;
+  }
+}

@@ -1,0 +1,235 @@
+/**
+ * Legacy admin shell styles (non-Figma layouts).
+ * Moved from pages/layout.php — layout.php always uses .ih-figma-nav, so these
+ * rules never applied there; they remain for any legacy .ih-wrap without Figma nav.
+ */
+
+/* ── Mobile bar — hidden on desktop ── */
+.ih-mobile-bar { display: none; }
+
+/* ── Overlay (legacy shells — Figma admin overlay in ih-admin-sidebar-figma.css) ── */
+.ih-wrap:not(.ih-figma-nav) .ih-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 998;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.ih-wrap:not(.ih-figma-nav) .ih-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Nav items ── */
+.ih-wrap:not(.ih-figma-nav) .ih-nav-item { position: relative !important; }
+.ih-wrap:not(.ih-figma-nav) .ih-nav-item img { width: 18px; height: 18px; transition: 0.3s; }
+
+/* ── Tablet ≤ 1024px ── */
+@media (max-width: 1024px) {
+  .ih-wrap:not(.ih-figma-nav) { grid-template-columns: 64px 1fr; }
+
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar {
+    width: 64px;
+    overflow: hidden;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar:hover,
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar.open {
+    width: 240px;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar-logo .ih-logo-text,
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar-label,
+  .ih-wrap:not(.ih-figma-nav) .ih-nav-item span {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: opacity 0.2s ease 0s, width 0.3s ease;
+  }
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar:hover .ih-logo-text,
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar:hover .ih-sidebar-label,
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar:hover .ih-nav-item span,
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar.open .ih-logo-text,
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar.open .ih-sidebar-label,
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar.open .ih-nav-item span {
+    opacity: 1;
+    width: auto;
+    transition: opacity 0.2s ease 0.15s, width 0.3s ease;
+  }
+
+  .ih-wrap:not(.ih-figma-nav) .ih-nav-item { justify-content: flex-start; padding: 12px 20px; }
+  .ih-wrap:not(.ih-figma-nav) .ih-nav-item svg { flex-shrink: 0; }
+
+  .ih-wrap:not(.ih-figma-nav) #ihSidebarBadge { top: 4px !important; right: 4px !important; }
+  .ih-wrap:not(.ih-figma-nav) .ih-nav-req-badge { top: 4px !important; right: 4px !important; }
+
+  .ih-wrap:not(.ih-figma-nav) .ih-global-search-wrap { max-width: 260px; }
+}
+
+/* ── Mobile ≤ 768px ── */
+@media (max-width: 768px) {
+  .ih-wrap:not(.ih-figma-nav) .ih-mobile-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    height: 44px;
+    background: var(--ih-sidebar-bg, #1a1f2e);
+    color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  }
+  .ih-wrap:not(.ih-figma-nav) .ih-mobile-bar .ih-hamburger { color: #fff; }
+  .ih-wrap:not(.ih-figma-nav) .ih-mobile-bar .ih-hamburger span { background: #fff; }
+  .ih-wrap:not(.ih-figma-nav) .ih-mobile-logo-text {
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .ih-wrap:not(.ih-figma-nav) {
+    display: block !important;
+    padding-top: 44px;
+    grid-template-columns: none !important;
+    margin-left: 0 !important;
+  }
+  .ih-wrap:not(.ih-figma-nav) .ih-main {
+    width: 100% !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    min-height: calc(100dvh - 44px);
+  }
+  .ih-wrap:not(.ih-figma-nav) .ih-content { padding: 16px !important; }
+
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100dvh;
+    width: 280px !important;
+    z-index: 1001;
+    transform: translateX(-100%);
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    padding-top: 16px;
+  }
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar.open {
+    transform: translateX(0);
+    box-shadow: 8px 0 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .ih-wrap:not(.ih-figma-nav) .ih-overlay { display: block; }
+
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    color: inherit;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar-close:hover { background: rgba(255, 255, 255, 0.15); }
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar-close svg { width: 16px; height: 16px; }
+
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar .ih-logo-text,
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar .ih-sidebar-label,
+  .ih-wrap:not(.ih-figma-nav) .ih-sidebar .ih-nav-item span {
+    opacity: 1 !important;
+    width: auto !important;
+    overflow: visible !important;
+  }
+
+  .ih-wrap:not(.ih-figma-nav) .ih-topbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .ih-wrap:not(.ih-figma-nav) .ih-topbar-left { order: 1; flex: 1; min-width: 0; }
+  .ih-wrap:not(.ih-figma-nav) .ih-topbar-right { order: 2; display: flex; align-items: center; flex-shrink: 0; gap: 8px; }
+  .ih-wrap:not(.ih-figma-nav) .ih-global-search-wrap {
+    order: 3;
+    flex: 0 0 100%;
+    max-width: 100% !important;
+    min-width: 0;
+  }
+  .ih-wrap:not(.ih-figma-nav) .ih-search-wrap { width: 100%; }
+  .ih-wrap:not(.ih-figma-nav) .ih-search-input { width: 100%; }
+  .ih-wrap:not(.ih-figma-nav) .ih-topbar .ih-avatar { display: none; }
+
+  .ih-wrap:not(.ih-figma-nav) #ihBellPanel {
+    position: fixed !important;
+    top: 54px !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) !important;
+    width: calc(100vw - 24px) !important;
+    max-width: 340px !important;
+    z-index: 10000 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ih-wrap:not(.ih-figma-nav) .ih-topbar-title { font-size: 16px; }
+  .ih-wrap:not(.ih-figma-nav) #ihBellList { max-height: 320px; }
+}
+
+.ih-wrap:not(.ih-figma-nav) .ih-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 28px;
+  height: 28px;
+  padding: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.ih-wrap:not(.ih-figma-nav) .ih-hamburger:hover { background: rgba(255, 255, 255, 0.1); }
+.ih-wrap:not(.ih-figma-nav) .ih-hamburger span {
+  display: block;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+.ih-wrap:not(.ih-figma-nav) .ih-hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.ih-wrap:not(.ih-figma-nav) .ih-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.ih-wrap:not(.ih-figma-nav) .ih-hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+.ih-wrap:not(.ih-figma-nav) .ih-mobile-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ih-wrap:not(.ih-figma-nav) .ih-mobile-avatar img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+}

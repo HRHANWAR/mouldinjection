@@ -1,0 +1,139 @@
+/* Public /machines listing — Nexus shell (Figma 125:1386) */
+
+.im-machines-listings {
+  --ih-canvas: #f2effc;
+  --ih-surface: #ffffff;
+  --ih-surface2: #f4f6fb;
+  --ih-border: #e6e9f2;
+  --ih-text: #1a1c2b;
+  --ih-text2: #6b7185;
+  --ih-mut: #9aa0b4;
+  --ih-brand: #5347ce;
+  --ih-lime: #887cfd;
+  --ih-accent-soft: #ece9ff;
+  --ih-ink: #3d2f9e;
+  background: var(--ih-canvas);
+}
+
+.im-machines-listings .ih-card.ih-machines-page {
+  max-width: 80rem;
+  margin: 0 auto;
+}
+
+.im-machines-listings .im-machines-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.im-machines-listings .im-machines-search-wrap {
+  position: relative;
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.im-machines-listings .im-machines-search-wrap svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: var(--ih-mut);
+  pointer-events: none;
+}
+
+.im-machines-listings .im-machines-search-input,
+.im-machines-listings .im-machines-filter-select {
+  width: 100%;
+  min-height: 40px;
+  padding: 0 14px 0 38px;
+  border: 1px solid var(--ih-border);
+  border-radius: 10px;
+  background: var(--ih-surface2);
+  color: var(--ih-text);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--ih-figma-sans, "Montserrat", sans-serif);
+}
+
+.im-machines-listings .im-machines-filter-select {
+  padding: 0 14px;
+  flex: 0 1 160px;
+  min-width: 140px;
+  cursor: pointer;
+}
+
+.im-machines-listings .im-machines-results-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 14px;
+  min-height: 40px;
+  border: 1px solid var(--ih-border);
+  border-radius: 10px;
+  background: var(--ih-surface);
+  color: var(--ih-text2);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.im-machines-listings .machine-card.pg-hidden {
+  display: none !important;
+}
+
+/* No card hover lift/scale on public listing */
+.im-machines-listings .ih-machine-card--figma,
+.im-machines-listings .ih-machine-card--figma:hover {
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+.im-machines-listings .ih-machine-card--figma .ih-listing-img {
+  transform: none !important;
+  transition: none !important;
+}
+
+@media (max-width: 1024px) {
+  .im-machines-listings .ih-card.ih-machines-page {
+    padding-inline: 16px;
+  }
+
+  .im-machines-listings .ih-machine-grid-boost {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .im-machines-listings .ih-machine-grid-boost {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .im-machines-listings .im-machines-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .im-machines-listings .im-machines-filter-select,
+  .im-machines-listings .im-machines-results-pill {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 390px) {
+  .im-machines-listings .ih-card.ih-machines-page {
+    padding-inline: 12px;
+  }
+
+  .im-machines-listings .im-machines-search-input,
+  .im-machines-listings .im-machines-filter-select {
+    font-size: 12px;
+    min-height: 38px;
+  }
+}

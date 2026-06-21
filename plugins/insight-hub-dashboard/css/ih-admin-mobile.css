@@ -1,0 +1,316 @@
+/* Admin mobile shell — Figma node 33:780 */
+
+/* Scroll lock — position:fixed body (JS restores scrollY on unlock) */
+body.ih-nav-scroll-lock {
+  overflow: hidden !important;
+}
+
+/* Admin: no floating hamburger — bell/profile header + bottom icon nav */
+body.ih-site-nav-admin .ih-mobile-menu-toggle,
+body.ih-site-nav-admin .ih-sidebar-fab {
+  display: none !important;
+}
+
+/* Floating menu button — opens sidebar drawer on mobile */
+.ih-sidebar-fab {
+  display: none;
+  position: fixed;
+  left: 16px;
+  bottom: calc(var(--ih-nav-height) + 12px);
+  z-index: 10060;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: none;
+  border-radius: 14px;
+  background: var(--ih-figma-brand);
+  color: var(--ih-figma-lime);
+  box-shadow: 0 12px 32px rgba(15, 46, 33, 0.28);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.ih-sidebar-fab span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 0.2s, opacity 0.2s;
+}
+.ih-sidebar-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(15, 46, 33, 0.32);
+}
+.ih-sidebar-fab.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.ih-sidebar-fab.is-open span:nth-child(2) { opacity: 0; }
+.ih-sidebar-fab.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.ih-site-nav-logo-text--stack {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.ih-site-nav-logo-text--stack strong {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ih-figma-brand);
+  letter-spacing: -0.02em;
+}
+.ih-site-nav-logo-text--stack em {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 600;
+  color: #1e5f8a;
+}
+
+@media (max-width: 768px) {
+  body.ih-site-nav-admin #wpadminbar {
+    display: none !important;
+  }
+
+  body.ih-site-nav-admin:not(:has(.ih-rd)) #wpbody,
+  body.ih-site-nav-admin:not(:has(.ih-rd)) #wpcontent,
+  body.ih-site-nav-admin:not(:has(.ih-rd)) #wpbody-content,
+  body.ih-site-nav-admin:not(:has(.ih-rd)) .ih-wrap.ih-figma-nav {
+    background: #ffffff !important;
+  }
+
+  body.ih-site-nav-admin:has(.ih-rd) #wpbody,
+  body.ih-site-nav-admin:has(.ih-rd) #wpcontent,
+  body.ih-site-nav-admin:has(.ih-rd) #wpbody-content,
+  body.ih-site-nav-admin:has(.ih-rd) .ih-wrap.ih-figma-nav {
+    background: var(--ih-figma-admin-canvas) !important;
+  }
+
+  .ih-wrap.ih-figma-nav {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+  }
+
+  .ih-wrap.ih-figma-nav .ih-wrap-grid {
+    display: block;
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    overflow: visible !important;
+  }
+
+  /* Page content never slides with the drawer */
+  .ih-wrap.ih-figma-nav .ih-main,
+  .ih-wrap.ih-figma-nav .ih-content,
+  .ih-wrap.ih-figma-nav #ihAdminWrap,
+  body.ih-admin-drawer-open .ih-wrap.ih-figma-nav .ih-main,
+  body.ih-admin-drawer-open .ih-wrap.ih-figma-nav .ih-content,
+  body.ih-mobile-drawer-open .ih-wrap.ih-figma-nav:not(.is-admin) .ih-main,
+  body.ih-mobile-drawer-open .ih-wrap.ih-figma-nav:not(.is-admin) .ih-content {
+    transform: none !important;
+    transition: background-color 0.45s ease, color 0.35s ease, border-color 0.35s ease !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+
+  .ih-wrap.ih-figma-nav .ih-site-nav-header {
+    transform: none !important;
+  }
+
+  /* Admin drawer — mobile overrides (base rules in ih-admin-sidebar-figma.css) */
+  .ih-wrap.ih-figma-nav.is-admin .ih-sidebar {
+    height: 100dvh;
+    width: 280px !important;
+    max-width: min(280px, 88vw);
+    z-index: var(--ih-admin-sidebar-z, 10100) !important;
+    padding-top: 16px;
+    padding-bottom: calc(var(--ih-nav-height) + 16px);
+    overflow-x: hidden;
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin .ih-sidebar.open {
+    transform: translate3d(0, 0, 0) !important;
+    pointer-events: auto !important;
+    box-shadow: 8px 0 32px rgba(0, 0, 0, 0.45);
+  }
+
+  /* sb-collapsed must not block mobile drawer open state */
+  .ih-wrap.ih-figma-nav.is-admin.sb-collapsed .ih-sidebar {
+    transform: translate3d(-105%, 0, 0);
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin.sb-collapsed .ih-sidebar.open {
+    transform: translate3d(0, 0, 0) !important;
+    pointer-events: auto !important;
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin .ih-overlay {
+    z-index: var(--ih-admin-overlay-z, 10050);
+    background: rgba(15, 30, 24, 0.45);
+  }
+
+  .ih-wrap.ih-figma-nav .ih-site-nav-header {
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    z-index: var(--ih-admin-header-z, 9400);
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)) .ih-main {
+    width: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin:has(.ih-rd) .ih-main {
+    width: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: var(--ih-figma-admin-canvas) !important;
+  }
+
+  .ih-wrap.ih-figma-nav .ih-topbar {
+    display: none !important;
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)) .ih-content {
+    padding: 12px 14px calc(var(--ih-nav-height) + 20px) !important;
+    background: #ffffff !important;
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin:has(.ih-rd) .ih-content {
+    padding: 12px 14px calc(var(--ih-nav-height) + 20px) !important;
+    background: var(--ih-figma-admin-canvas) !important;
+  }
+
+  .ih-wrap.ih-figma-nav .ih-sidebar .ih-logo-text,
+  .ih-wrap.ih-figma-nav .ih-sidebar .ih-sidebar-label,
+  .ih-wrap.ih-figma-nav .ih-sidebar .ih-nav-item span {
+    opacity: 1 !important;
+    width: auto !important;
+    overflow: visible !important;
+  }
+
+  /* .ih-rd.ih-admin dark panel — owned by ih-redesign.css; shell stays white above */
+
+  .ih-figma-dashboard.is-admin .ih-dashboard-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+  }
+
+  .ih-figma-dashboard.is-admin .ih-dash-stat-card {
+    min-height: 0 !important;
+    padding: 14px !important;
+  }
+
+  .ih-figma-dashboard.is-admin .ih-dash-stat-card .ih-stat-value {
+    font-size: 24px !important;
+  }
+
+  .ih-figma-dashboard.is-admin .ih-dashboard-modern {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .ih-figma-dashboard.is-admin .ih-card,
+  .ih-figma-dashboard.is-admin .ih-section,
+  .ih-figma-dashboard.is-admin .ih-dash-stat-card {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Generic admin pages (not dashboard, not requests — those have own styles) */
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-card,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-stat-card {
+    background: var(--ih-figma-admin-surface) !important;
+    border-color: var(--ih-figma-admin-border) !important;
+    color: var(--ih-figma-admin-text);
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-topbar-title,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) h1,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) h2,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) h3,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) label,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) p,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-card-title,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-form-label {
+    color: var(--ih-figma-admin-text);
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-muted,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-table th,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-stat-label {
+    color: var(--ih-figma-admin-text-secondary) !important;
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-table td {
+    color: var(--ih-figma-admin-text);
+    border-top-color: var(--ih-figma-admin-border) !important;
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-form-section,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-modal,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-search-dropdown,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-dropdown {
+    background: var(--ih-figma-admin-surface) !important;
+    border-color: var(--ih-figma-admin-border) !important;
+    color: var(--ih-figma-admin-text);
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-input,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-search-input,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) select,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) textarea {
+    background: var(--ih-figma-admin-surface-2) !important;
+    border-color: var(--ih-figma-admin-border) !important;
+    color: var(--ih-figma-admin-text) !important;
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-input::placeholder,
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-search-input::placeholder {
+    color: var(--ih-figma-admin-nav-muted) !important;
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)):not(:has(.ih-req-page)) .ih-btn-secondary {
+    background: var(--ih-figma-admin-surface-2) !important;
+    border-color: var(--ih-figma-admin-border) !important;
+    color: var(--ih-figma-admin-text) !important;
+  }
+
+  /* Light admin shell on mobile (matches sidebar) */
+  .ih-wrap.ih-figma-nav.ih-theme-light {
+    --ih-card: var(--ih-figma-surface);
+    --ih-border: var(--ih-figma-border);
+    --ih-text: var(--ih-figma-text);
+    --ih-muted: var(--ih-figma-text-secondary);
+    --ih-secondary: var(--ih-figma-surface-2);
+  }
+
+  .ih-wrap.ih-figma-nav.ih-theme-light .ih-sidebar {
+    background: var(--ih-figma-surface) !important;
+    border-color: var(--ih-figma-border) !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .ih-wrap.ih-figma-nav.is-admin .ih-content {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
+
+  .ih-wrap.ih-figma-nav .ih-site-nav-header {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}

@@ -1,0 +1,817 @@
+/* ih-corp-dashboard-mobile.css — Corporation User Dashboard mobile (Figma 29:616)
+   Scoped to .ih-rd.ih-corp-dash.ih-corp-dash-page — mobile overrides @768px and compact @390px */
+
+/* Desktop: hide mobile-only blocks */
+.ih-rd.ih-corp-dash .ih-corp-mobile-only,
+.ih-rd.ih-corp-dash .ih-corp-sub-short,
+.ih-rd.ih-corp-dash .ih-corp-donut-mobile,
+.ih-rd.ih-corp-dash .ih-corp-donut-label.ih-corp-donut-mobile,
+.ih-rd.ih-corp-dash .ih-corp-req-mobile-cards {
+  display: none;
+}
+
+/* KPI change pills (+2 wk / +1 wk) — mobile only per Figma */
+.ih-rd.ih-corp-dash .ih-corp-kpis .ih-stat-pill {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  body.ih-user-portal.ih-corp-dash-active,
+  body.ih-user-portal:has(.ih-corp-dash-page) {
+    background: var(--ih-canvas, #eceef4) !important;
+  }
+
+  body.ih-user-portal.ih-corp-dash-active .ih-site-nav-header.is-user,
+  body.ih-user-portal:has(.ih-corp-dash-page) .ih-site-nav-header.is-user {
+    min-height: 60px;
+    padding: 8px 16px;
+    background: rgba(255, 255, 255, .96);
+    border-bottom: 1px solid var(--ih-border, #e6e9f2);
+    box-shadow: 0 8px 24px rgba(26, 28, 43, .05);
+    box-sizing: border-box;
+    position: relative;
+  }
+
+  body.ih-user-portal.ih-corp-dash-active .ih-site-nav-header.is-user .ih-site-nav-header-actions,
+  body.ih-user-portal:has(.ih-corp-dash-page) .ih-site-nav-header.is-user .ih-site-nav-header-actions {
+    gap: 10px;
+    align-items: center;
+  }
+
+  body.ih-user-portal.ih-corp-dash-active .ih-site-nav-icon-btn,
+  body.ih-user-portal:has(.ih-corp-dash-page) .ih-site-nav-icon-btn {
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    border-color: #e6e9f2;
+    border-radius: 12px;
+    color: #5347ce;
+    box-shadow: 0 8px 18px rgba(83, 71, 206, .08);
+  }
+
+  body.ih-user-portal.ih-corp-dash-active .ih-site-nav-bell-dot,
+  body.ih-user-portal:has(.ih-corp-dash-page) .ih-site-nav-bell-dot {
+    top: 6px;
+    right: 6px;
+    border-color: #fff;
+  }
+
+  body.ih-user-portal.ih-corp-dash-active .ih-site-nav-account,
+  body.ih-user-portal:has(.ih-corp-dash-page) .ih-site-nav-account {
+    display: flex;
+    align-items: center;
+  }
+
+  body.ih-user-portal.ih-corp-dash-active .ih-site-nav-avatar,
+  body.ih-user-portal:has(.ih-corp-dash-page) .ih-site-nav-avatar {
+    width: 44px;
+    min-width: 44px;
+    height: 44px;
+    padding: 0;
+    background: linear-gradient(180deg, #6052ef 0%, #5347ce 100%);
+    box-shadow: none;
+  }
+
+  body.ih-user-portal.ih-corp-dash-active .ih-site-nav-account-menu,
+  body.ih-user-portal:has(.ih-corp-dash-page) .ih-site-nav-account-menu {
+    right: 0;
+    width: min(240px, calc(100vw - 24px));
+    min-width: min(220px, calc(100vw - 24px));
+    max-width: calc(100vw - 24px);
+    z-index: 10200;
+  }
+
+  .ih-rd.ih-corp-dash.ih-corp-dash-page {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 100%;
+    padding: 12px 12px 28px !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    overflow-x: hidden;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .ih-shell.ih-figma-dashboard.is-user.ih-corp-dash-page,
+  body.ih-corp-dash-active .ih-shell.ih-figma-dashboard.is-user,
+  .ih-shell.ih-figma-dashboard.is-user:has(.ih-corp-dash-page) {
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .ih-shell.ih-figma-dashboard.is-user.ih-corp-dash-page .ih-body,
+  body.ih-corp-dash-active .ih-shell.ih-figma-dashboard.is-user .ih-body,
+  .ih-shell.ih-figma-dashboard.is-user:has(.ih-corp-dash-page) .ih-body,
+  .ih-shell.ih-figma-dashboard.is-user.ih-corp-dash-page .ih-main,
+  body.ih-corp-dash-active .ih-shell.ih-figma-dashboard.is-user .ih-main,
+  .ih-shell.ih-figma-dashboard.is-user:has(.ih-corp-dash-page) .ih-main {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+  }
+
+  .ih-rd.ih-corp-dash.ih-corp-dash-page,
+  #ihCorpDash {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-desktop-only {
+    display: none !important;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-mobile-only,
+  .ih-rd.ih-corp-dash .ih-corp-sub-short {
+    display: block;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-req-desktop {
+    display: none !important;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-req-mobile-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Header — Figma 29:631 */
+  .ih-rd.ih-corp-dash .ih-corp-head {
+    margin-bottom: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-head-copy {
+    flex: 0 1 auto;
+    min-height: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-sub-long {
+    display: none;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin: 0 0 5px;
+    font-family: var(--ih-mono);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ih-text2);
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-eyebrow .dot {
+    background: var(--ih-green);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, .24);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ih-green) 24%, transparent);
+  }
+
+  .ih-rd.ih-corp-dash .ih-dashboard-title {
+    font-size: 26px !important;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-sub-short {
+    font-size: 12.5px !important;
+    margin-top: 4px !important;
+    color: var(--ih-text2);
+  }
+
+  /* KPI 2×2 — Figma 29:637 */
+  .ih-rd.ih-corp-dash .ih-corp-kpis {
+    display: flex !important;
+    flex-wrap: wrap;
+    gap: 12px !important;
+    margin: 0;
+    min-width: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpi {
+    flex: 1 1 calc(50% - 6px);
+    min-width: min(140px, 100%);
+    max-width: calc(50% - 6px);
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpi--moulds { order: 1; }
+  .ih-rd.ih-corp-dash .ih-corp-kpi--machines { order: 2; }
+  .ih-rd.ih-corp-dash .ih-corp-kpi--pending { order: 3; }
+  .ih-rd.ih-corp-dash .ih-corp-kpi--messages { order: 4; }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpis .ih-stat {
+    padding: 18px !important;
+    border-radius: 16px;
+    min-height: 0;
+    width: 100%;
+    overflow: hidden;
+    background: var(--ih-surface);
+    border: 1px solid var(--ih-border);
+    box-shadow: 0 10px 24px rgba(26, 28, 43, .04);
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpis .ih-stat-top {
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpis .ih-stat-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpis .ih-stat::before {
+    display: none;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpis .ih-stat-pill {
+    display: inline-flex;
+    flex: 0 0 auto;
+    max-width: 78px;
+    white-space: nowrap;
+    background: var(--ih-green-bg, #dcfce7);
+    color: var(--ih-green);
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpi--pending .ih-stat-value { color: #f59e0b; }
+  .ih-rd.ih-corp-dash .ih-corp-kpi--messages .ih-stat-value { color: var(--ih-violet); }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpis .ih-stat-value {
+    font-size: 30px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpis .ih-stat-label {
+    margin-top: 10px;
+    font-size: 10px;
+    letter-spacing: .08em;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpis .ih-spark {
+    margin-top: 12px;
+    width: 100%;
+    max-width: 100%;
+    height: 28px;
+    gap: 3px;
+    overflow: hidden;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpis .ih-spark i {
+    min-width: 0;
+  }
+
+  /* Main grid — reorder: listings → approvals → status */
+  .ih-rd.ih-corp-dash .ih-corp-main-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  /* Flex reorder (avoid display:contents — breaks in iOS Safari) */
+  .ih-rd.ih-corp-dash .ih-corp-rail {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    order: 2;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listings { order: 1; }
+  .ih-rd.ih-corp-dash .ih-corp-approvals { order: 1; }
+  .ih-rd.ih-corp-dash .ih-corp-status-panel { order: 2; }
+
+  /* Section cards */
+  .ih-rd.ih-corp-dash .ih-section {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-top: 0 !important;
+    padding: 16px;
+    border-radius: 18px;
+    background: var(--ih-surface);
+    border: 1px solid var(--ih-border);
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listings,
+  .ih-rd.ih-corp-dash .ih-corp-status-panel,
+  .ih-rd.ih-corp-dash .ih-corp-approvals,
+  .ih-rd.ih-corp-dash .ih-corp-requests,
+  .ih-rd.ih-corp-dash .ih-corp-req-mobile-cards {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-section-head {
+    margin-bottom: 12px;
+    align-items: center;
+  }
+
+  .ih-rd.ih-corp-dash .ih-section-head h3 {
+    font-size: 16px;
+    margin: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-section-head .ih-link {
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Listing filter pills */
+  .ih-rd.ih-corp-dash .ih-corp-listing-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-tabs .ih-tab {
+    flex-shrink: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-listing-card {
+    border-radius: 16px;
+    max-width: 100%;
+    min-width: 0;
+    box-shadow: 0 10px 24px rgba(26, 28, 43, .04);
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-listing-img-wrap {
+    height: 136px;
+    background:
+      radial-gradient(circle at 70% 36%, rgba(136, 124, 253, .42), transparent 32%),
+      linear-gradient(135deg, #174a3f 0%, #453783 100%);
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-listing-img-wrap .ih-ref {
+    bottom: 14px;
+    color: rgba(236, 238, 244, .58);
+    font-size: 9.5px;
+    letter-spacing: .12em;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-available-badge {
+    top: 10px;
+    left: 10px;
+    padding: 4px 9px;
+    font-size: 10px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-listing-body {
+    gap: 9px;
+    padding: 12px 14px 14px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-listing-title {
+    font-size: 14px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-listing-company,
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-listing-desc {
+    font-size: 11.5px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-date-label {
+    font-size: 8px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-date-val {
+    font-size: 11px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-spec-pill,
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-grade-pill {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-tabs .ih-tab {
+    min-height: 38px;
+    padding: 8px 14px;
+    font-size: 12.5px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-listing-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-listing-actions .ih-btn {
+    flex: 1 1 0;
+    justify-content: center;
+    min-width: 0;
+    min-height: 34px;
+    padding: 8px 10px;
+    font-size: 11.5px;
+  }
+
+  /* Requests & Approvals — Figma 30:782 */
+  .ih-rd.ih-corp-dash .ih-corp-approvals .ih-section-head {
+    margin-bottom: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-approval-row {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 0;
+    border-top: 0;
+    margin-top: 12px;
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-approval-row:first-of-type {
+    margin-top: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-approval-icon {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    border: 1px solid var(--ih-border);
+    background: var(--ih-surface2);
+    color: var(--ih-text2);
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-approval-copy {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-approval-copy strong {
+    font-size: 13px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-approval-copy .csub {
+    font-size: 11px;
+    margin-top: 2px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-approval-row .ih-ref-chip,
+  .ih-rd.ih-corp-dash .ih-corp-approval-row .ih-dash-status {
+    flex-shrink: 0;
+    font-size: 10.5px;
+    font-weight: 700;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-approval-row .ih-ref-chip,
+  .ih-rd.ih-corp-dash .ih-corp-approval-row .ih-dash-status {
+    margin-left: auto;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-req-card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    border: 1px solid var(--ih-border);
+    border-radius: 14px;
+    background: var(--ih-surface2);
+    min-width: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-req-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-req-type {
+    font-size: 13px;
+    color: var(--ih-text);
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-req-target {
+    font-family: var(--ih-mono);
+    font-size: 11.5px;
+    color: var(--ih-blue);
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-req-date {
+    font-family: var(--ih-mono);
+    font-size: 11px;
+    color: var(--ih-mut);
+  }
+
+  /* Listing Status donut — Figma 91:1344 */
+  .ih-rd.ih-corp-dash .ih-corp-donut-desktop,
+  .ih-rd.ih-corp-dash .ih-corp-donut-label.ih-corp-donut-desktop {
+    display: none !important;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-donut-mobile,
+  .ih-rd.ih-corp-dash .ih-corp-donut-label.ih-corp-donut-mobile {
+    display: block;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-donut-label {
+    font-family: var(--ih-mono);
+    font-size: 8.5px;
+    letter-spacing: 0.06em;
+    color: var(--ih-text2);
+    text-transform: uppercase;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-donut-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    justify-items: center;
+    gap: 12px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    height: auto !important;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-donut {
+    width: clamp(118px, 36vw, 136px);
+    height: clamp(118px, 36vw, 136px);
+    margin: 0 auto;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-legend {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 10px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-legend .lg {
+    box-sizing: border-box;
+    min-width: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 9px minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 7px;
+    margin: 0;
+    padding: 4px 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-legend .lg b {
+    margin-left: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-legend .lg[data-status="approved"] { order: 1; }
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-legend .lg[data-status="pending"] { order: 2; }
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-legend .lg[data-status="completed"] { order: 3; }
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-legend .lg[data-status="rejected"] { order: 4; }
+
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .csub {
+    font-size: 12px;
+  }
+
+  /* Footer — Figma before bottom nav */
+  .ih-rd.ih-corp-dash .ih-corp-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    border-top: 1px solid var(--ih-border);
+    padding-top: 14px;
+    margin-top: 0;
+    font-family: var(--ih-mono);
+    font-size: 10px;
+    color: var(--ih-text2);
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-footer-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-footer-mobile-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-footer-mobile-line .dot {
+    background: var(--ih-green);
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, .24);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--ih-green) 24%, transparent);
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-footer-clock {
+    font-size: 11px;
+    color: var(--ih-mut);
+    letter-spacing: 0.02em;
+    text-transform: none;
+  }
+
+  /* User shell: logo space matches Figma top bar */
+  body.ih-user-portal.ih-corp-dash-active .ih-site-nav-logo-trigger .ih-site-nav-logo-text,
+  body.ih-user-portal:has(.ih-corp-dash-page) .ih-site-nav-logo-trigger .ih-site-nav-logo-text {
+    visibility: hidden;
+  }
+
+  body.ih-user-portal.ih-corp-dash-active .ih-site-nav-logo-trigger,
+  body.ih-user-portal:has(.ih-corp-dash-page) .ih-site-nav-logo-trigger {
+    flex: 1 1 auto;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-donut {
+    width: clamp(116px, 38vw, 132px);
+    height: clamp(116px, 38vw, 132px);
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-legend .lg {
+    min-width: 0;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-tabs {
+    margin-left: -2px;
+    margin-right: -2px;
+  }
+}
+
+@media (max-width: 414px) {
+  .ih-rd.ih-corp-dash .ih-section {
+    padding: 14px;
+    border-radius: 16px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpis {
+    gap: 10px !important;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpis .ih-stat {
+    padding: 16px !important;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpi {
+    flex: 1 1 calc(50% - 5px);
+    max-width: calc(50% - 5px);
+  }
+}
+
+@media (max-width: 390px) {
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-listing-actions {
+    flex-direction: column;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-listing-actions .ih-btn {
+    width: 100%;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-approval-row .ih-ref-chip,
+  .ih-rd.ih-corp-dash .ih-corp-approval-row .ih-dash-status {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 375px) {
+  .ih-rd.ih-corp-dash .ih-dashboard-title {
+    font-size: 24px !important;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-grid .ih-listing-img-wrap {
+    height: 128px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-legend {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 7px 8px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-legend .lg {
+    column-gap: 6px;
+    padding-left: 3px;
+    padding-right: 3px;
+    font-size: 11.5px;
+  }
+}
+
+@media (max-width: 320px) {
+  body.ih-user-portal.ih-corp-dash-active .ih-site-nav-header.is-user,
+  body.ih-user-portal:has(.ih-corp-dash-page) .ih-site-nav-header.is-user {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-section {
+    padding: 12px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-kpi {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-listing-tabs .ih-tab {
+    min-height: 36px;
+    padding: 7px 11px;
+    font-size: 11.5px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-req-card-head {
+    align-items: flex-start;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-legend {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 7px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-status-panel .ih-donut {
+    width: 116px;
+    height: 116px;
+  }
+}
+
+/* ============================================================ *
+ *  Listing Health — mobile (stack rows, 2-up summary)
+ * ============================================================ */
+@media (max-width: 768px) {
+  .ih-rd.ih-corp-dash .ih-corp-health-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-health-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "main req"
+      "meter meter"
+      "badges badges"
+      "actions actions";
+    gap: 12px 10px;
+    padding: 14px;
+  }
+
+  .ih-rd.ih-corp-dash .ih-corp-health-main { grid-area: main; }
+  .ih-rd.ih-corp-dash .ih-corp-health-meter { grid-area: meter; }
+  .ih-rd.ih-corp-dash .ih-corp-health-badges { grid-area: badges; }
+  .ih-rd.ih-corp-dash .ih-corp-health-req {
+    grid-area: req;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 5px;
+    min-width: 0;
+    text-align: right;
+  }
+  .ih-rd.ih-corp-dash .ih-corp-health-req-num { font-size: 16px; }
+
+  .ih-rd.ih-corp-dash .ih-corp-health-actions {
+    grid-area: actions;
+  }
+  .ih-rd.ih-corp-dash .ih-corp-health-btn {
+    flex: 1 1 0;
+    justify-content: center;
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 390px) {
+  .ih-rd.ih-corp-dash .ih-corp-health-summary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

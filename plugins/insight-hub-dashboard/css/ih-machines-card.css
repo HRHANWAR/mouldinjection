@@ -1,0 +1,1527 @@
+/* Machines page + MachineCard (Figma node 15:4) — no card hover/shake animations */
+/* Page shell — Figma node 125:1386 (Machines — Listings Admin) */
+/* Mobile shell — Figma node 130:1770 (Machines — Listings Mobile) */
+/* Light listings canvas (overrides dark admin shell on this page only) */
+.ih-rd.ih-admin.ih-machines-listings {
+  --ih-canvas: #f2effc;
+  --ih-surface: #ffffff;
+  --ih-surface2: #f4f6fb;
+  --ih-border: #e6e9f2;
+  --ih-text: #1a1c2b;
+  --ih-text2: #6b7185;
+  --ih-mut: #9aa0b4;
+  --ih-brand: #5347ce;
+  --ih-lime: #887cfd;
+  --ih-accent-soft: #ece9ff;
+  --ih-ink: #3d2f9e;
+  --ih-on-accent: #ffffff;
+  --ih-on-soft: var(--ih-ink);
+  --ih-donut-track: #e6e9f2;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  background: #f2effc !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  padding: 28px 32px 32px !important;
+  box-shadow: none !important;
+}
+
+.ih-rd.ih-admin.ih-machines-listings .ih-section,
+.ih-rd.ih-admin.ih-machines-listings .ih-stat,
+.ih-rd.ih-admin.ih-machines-listings .ih-listing-card {
+  background: var(--ih-surface);
+  border-color: var(--ih-border);
+}
+
+.ih-rd.ih-admin.ih-machines-listings .ih-machine-stat-card {
+  background: #ffffff !important;
+  border-color: var(--ih-border) !important;
+  color: var(--ih-text) !important;
+}
+
+.ih-wrap.ih-figma-nav.is-admin:has(.ih-machines-listings) .ih-main,
+.ih-wrap.ih-figma-nav.is-admin:has(.ih-machines-listings) .ih-content {
+  background: #f2effc !important;
+}
+
+/* ---- Page shell ---- */
+.ih-machines-page-header { margin-bottom: 0 !important; }
+.ih-machines-page-header .ih-page-title {
+  font-size: 30px !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--ih-text) !important;
+}
+.ih-machines-page-header .ih-page-sub {
+  color: var(--ih-text2) !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  margin-top: 5px !important;
+}
+
+.ih-machines-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0 0 5px;
+  padding: 5px 12px 5px 10px;
+  border: 1px solid var(--ih-lime);
+  border-radius: 999px;
+  background: var(--ih-accent-soft);
+  font-family: var(--ih-figma-mono, "IBM Plex Mono", monospace);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ih-text);
+}
+
+.ih-machines-eyebrow .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ih-lime);
+  flex: 0 0 7px;
+}
+
+.ih-machines-hero {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 0;
+}
+
+.ih-machine-stat-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 94px;
+  border: 1px solid var(--ih-border);
+  border-radius: 16px;
+  background: var(--ih-surface);
+  padding: 16px 18px;
+  box-shadow: none;
+}
+
+.ih-machine-stat-card::after {
+  content: "";
+  position: absolute;
+  top: -61px;
+  right: -30px;
+  width: 150px;
+  height: 150px;
+  border-radius: 999px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.ih-machine-stat-card::after { background: #eaf4ff; }
+.ih-machine-stat-card.is-green::after { background: #dcfce7; }
+.ih-machine-stat-card.is-blue::after { background: #ece9ff; }
+.ih-machine-stat-card.is-amber::after { background: #fef9c3; }
+
+.ih-machine-stat-card span,
+.ih-machine-stat-card strong,
+.ih-machine-stat-card small {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.ih-machine-stat-card span {
+  font-family: var(--ih-figma-mono, "IBM Plex Mono", monospace);
+  color: var(--ih-text2);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.ih-stat-label-short { display: none; }
+.ih-stat-label-long { display: inline; }
+.ih-machine-stat-card strong {
+  margin-top: 8px;
+  font-family: var(--ih-figma-mono, "IBM Plex Mono", monospace);
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #3b82f5;
+}
+
+.ih-machine-stat-card.is-green strong { color: #21c45e; }
+.ih-machine-stat-card.is-blue strong { color: #a88cfa; }
+.ih-machine-stat-card.is-amber strong { color: #f59e0b; }
+
+.ih-machine-stat-card small {
+  margin-top: 8px;
+  color: var(--ih-mut);
+  font-size: 11.5px;
+  font-weight: 500;
+}
+
+.ih-card.ih-machines-page {
+  overflow: visible !important;
+  border: 1px solid var(--ih-border) !important;
+  border-radius: 18px !important;
+  background: var(--ih-surface) !important;
+  box-shadow: none !important;
+  padding: 20px 22px 24px !important;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ih-machines-head {
+  gap: 14px !important;
+  align-items: center !important;
+  border-bottom: 0 !important;
+  padding: 0 !important;
+  flex-wrap: wrap;
+}
+
+.ih-machines-head .ih-card-title {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: var(--ih-text) !important;
+}
+
+.ih-machines-head .ih-count-badge {
+  background: var(--ih-accent-soft) !important;
+  color: var(--ih-lime) !important;
+  padding: 3px 9px !important;
+  border-radius: 999px !important;
+  font-family: var(--ih-figma-mono, "IBM Plex Mono", monospace) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  vertical-align: middle !important;
+}
+
+.ih-machines-head .ih-search-wrap {
+  width: min(100%, 220px) !important;
+  height: 40px !important;
+  border: 1px solid var(--ih-border) !important;
+  border-radius: 10px !important;
+  background: var(--ih-surface2) !important;
+  box-shadow: none !important;
+}
+
+.ih-machines-head .ih-search-wrap svg {
+  color: var(--ih-mut) !important;
+}
+
+.ih-machines-head .ih-search-input {
+  color: var(--ih-text) !important;
+}
+
+.ih-machines-head .ih-search-input::placeholder {
+  color: var(--ih-mut) !important;
+}
+
+.ih-machines-head .ih-btn-primary {
+  min-height: 40px !important;
+  border-radius: 10px !important;
+  background: var(--ih-brand) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  font-size: 13.5px !important;
+  font-weight: 600 !important;
+}
+
+.ih-machines-head .ih-custom-select-btn {
+  border-radius: 10px !important;
+  color: var(--ih-text) !important;
+  font-weight: 600 !important;
+}
+
+/* Filter bar */
+.ih-machines-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.ih-machines-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.ih-machines-filter-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ih-text);
+}
+
+.ih-machines-filter-label svg {
+  color: var(--ih-text2);
+}
+
+.ih-machines-filter-row > .ih-machines-filter-label,
+.ih-machines-filter-row > .ih-machines-filter-select {
+  flex: 0 0 auto;
+}
+
+.ih-machines-filter-select.ih-custom-select {
+  display: inline-flex;
+  width: auto;
+  min-width: 0;
+  flex: 0 0 auto;
+}
+
+.ih-machines-filter-select .ih-custom-select-btn {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  flex: 0 0 auto;
+  justify-content: flex-start;
+  height: auto;
+  min-height: 36px;
+  padding: 9px 11px 9px 13px;
+  border-radius: 10px;
+  border: 1px solid var(--ih-border);
+  background: var(--ih-surface);
+  color: var(--ih-text);
+  font-size: 12.5px;
+  font-weight: 600;
+  gap: 7px;
+  box-shadow: none;
+}
+
+.ih-machines-filter-select.has-active .ih-custom-select-btn {
+  border-color: var(--ih-lime);
+  background: var(--ih-accent-soft);
+  color: var(--ih-ink);
+}
+
+.ih-machines-filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: var(--ih-brand);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ih-machines-filter-option {
+  cursor: pointer;
+}
+
+.ih-machines-filter-option input {
+  margin: 0 8px 0 0;
+  accent-color: var(--ih-brand);
+}
+
+.ih-machines-filter-sort {
+  margin-left: auto;
+}
+
+.ih-machines-active-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.ih-machines-active-label {
+  font-size: 11.5px;
+  font-weight: 500;
+  color: var(--ih-text2);
+}
+
+.ih-machines-active-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.ih-machines-active-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 8px 5px 10px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--ih-accent-soft);
+  color: var(--ih-ink);
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ih-machines-active-chip:hover {
+  filter: brightness(0.98);
+}
+
+.ih-machines-clear-all {
+  border: 0;
+  background: transparent;
+  color: #4896fe;
+  font-size: 11.5px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.ih-machines-results-count {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ih-text2);
+}
+
+/* Mobile filter pills + footer (hidden on desktop) */
+.ih-machines-mobile-filter-bar,
+.ih-machines-mobile-results-row,
+.ih-machines-page-footer {
+  display: none;
+}
+
+.ih-machines-mobile-filter-bar {
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.ih-machines-mobile-filters-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex: 0 0 auto;
+  border: 0;
+  border-radius: 10px;
+  background: var(--ih-brand);
+  color: #fff;
+  padding: 9px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.ih-machines-mobile-filters-btn svg {
+  flex: 0 0 15px;
+}
+
+.ih-machines-mobile-filters-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.ih-machines-mobile-filter-scroll {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  width: 100%;
+  padding-bottom: 2px;
+}
+
+.ih-machines-mobile-filter-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.ih-machines-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  border: 1px solid var(--ih-border);
+  border-radius: 999px;
+  background: var(--ih-surface);
+  color: var(--ih-text2);
+  padding: 8px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: none;
+}
+
+.ih-machines-filter-pill.is-active {
+  border-color: var(--ih-lime);
+  background: var(--ih-accent-soft);
+  color: var(--ih-ink);
+}
+
+.ih-machines-mobile-results-row {
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.ih-machines-mobile-active-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.ih-machines-mobile-active-chips:empty {
+  display: none;
+}
+
+.ih-machines-page-footer {
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding-top: 12px;
+  border-top: 1px solid var(--ih-border);
+}
+
+.ih-machines-footer-meta,
+.ih-machines-footer-status {
+  font-family: var(--ih-figma-mono, "IBM Plex Mono", monospace);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ih-mut);
+}
+
+.ih-machines-footer-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--ih-text2);
+  text-transform: uppercase;
+}
+
+.ih-machines-footer-status .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #21c45e;
+  flex: 0 0 7px;
+}
+
+.ih-page-btn-short { display: none; }
+.ih-page-btn-long { display: inline; }
+/* Match Figma light canvas on WP admin shell behind listings page */
+body.ih-site-nav-admin:has(.ih-machines-listings) #wpbody,
+body.ih-site-nav-admin:has(.ih-machines-listings) #wpcontent,
+body.ih-site-nav-admin:has(.ih-machines-listings) #wpbody-content,
+body.ih-site-nav-admin:has(.ih-machines-listings) .ih-wrap.ih-figma-nav,
+body.ih-site-nav-admin:has(.ih-machines-listings) .ih-wrap.ih-figma-nav .ih-main,
+body.ih-site-nav-admin:has(.ih-machines-listings) .ih-wrap.ih-figma-nav .ih-content {
+  background: #f2effc !important;
+}
+
+/* ---- Responsive card grid ---- */
+.ih-machine-grid-boost {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  padding: 0 !important;
+  align-items: stretch !important;
+  overflow: visible !important;
+}
+
+.ih-machine-listing-shell {
+  position: relative;
+  min-width: 0;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+}
+
+.ih-machine-listing-shell > .ih-listing-card {
+  flex: 1;
+  height: 100%;
+}
+
+/* ---- MachineCard (Figma 15:4) — static, no hover lift/shake ---- */
+.ih-machines-page .ih-machine-card--figma,
+.ih-machines-page .ih-machine-card--figma:hover {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+  max-width: 100%;
+  background: var(--ih-figma-surface, #fff) !important;
+  border: 1px solid var(--ih-figma-border, #e6e9f2) !important;
+  border-radius: 18px !important;
+  box-shadow: none !important;
+  transform: none !important;
+  animation: none !important;
+  transition: none !important;
+  will-change: auto !important;
+  color: var(--ih-figma-text, #1a1c2b);
+}
+
+.ih-machines-page .ih-machine-card--figma::before {
+  display: none !important;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-listing-img-wrap {
+  position: relative;
+  height: 150px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(146deg, #1a2e26 0%, #423b80 71.43%);
+  overflow: hidden;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-listing-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  inset: 0;
+  transform: none !important;
+  filter: none !important;
+  transition: none !important;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-glyph {
+  color: #3a5c4c;
+  opacity: 1;
+  z-index: 1;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-ref {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--ih-figma-mono, "IBM Plex Mono", monospace);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #8cb89e;
+  z-index: 2;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-available-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border: none;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: currentColor;
+}
+
+.ih-machines-page .ih-machine-card--figma .is-available {
+  background: var(--ih-figma-success-bg, #dcfce7);
+  color: var(--ih-figma-success, #16a34a);
+}
+
+.ih-machines-page .ih-machine-card--figma .is-pending {
+  background: var(--ih-figma-warning-bg, #fef9c3);
+  color: #a16207;
+}
+
+.ih-machines-page .ih-machine-card--figma .is-completed {
+  background: var(--ih-figma-info-bg, #eaf4ff);
+  color: #1d4ed8;
+}
+
+.ih-machines-page .ih-machine-card--figma .is-rejected {
+  background: var(--ih-figma-danger-bg, #fee2e2);
+  color: #b91c1c;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-listing-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px 16px;
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-listing-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-listing-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ih-figma-text, #1a1c2b);
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-type-chip {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--ih-figma-accent, #887cfd);
+  color: #fff;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-listing-company {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ih-figma-text-secondary, #6b7185);
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-listing-dates,
+.ih-machines-page .ih-machine-card--figma .ih-spec-cols {
+  display: flex;
+  gap: 12px;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-listing-dates > div,
+.ih-machines-page .ih-machine-card--figma .ih-spec-cols > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-date-label {
+  font-family: var(--ih-figma-mono, "IBM Plex Mono", monospace);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  color: var(--ih-figma-text-muted, #9aa0b4);
+  text-transform: uppercase;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-date-val {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ih-figma-text, #1a1c2b);
+  margin-top: 3px;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-spec-pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: var(--ih-figma-accent-soft, #ece9ff);
+  color: var(--ih-figma-ink, #3d2f9e);
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-meta-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0;
+  border: 0;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ih-figma-text-secondary, #6b7185);
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-util-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--ih-figma-text-secondary, #6b7185);
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-util-row b {
+  color: var(--ih-figma-text, #1a1c2b);
+  font-weight: 700;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-progress-bar {
+  height: 7px;
+  border-radius: 999px;
+  background: var(--ih-figma-surface-2, #f4f6fb);
+  border: 1px solid var(--ih-figma-border, #e6e9f2);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--ih-figma-brand, #5347ce);
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-listing-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-listing-actions .ih-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transform: none !important;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-btn-primary {
+  background: var(--ih-figma-brand, #5347ce) !important;
+  color: #fff !important;
+  border: 1px solid var(--ih-figma-brand, #5347ce) !important;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-btn-primary:hover {
+  filter: brightness(1.06);
+  transform: none !important;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-btn-outline {
+  background: var(--ih-figma-surface, #fff) !important;
+  color: var(--ih-figma-text, #1a1c2b) !important;
+  border: 1px solid var(--ih-figma-border, #e6e9f2) !important;
+}
+
+.ih-machines-page .ih-machine-card--figma .ih-btn-outline:hover {
+  border-color: var(--ih-figma-brand, #5347ce) !important;
+  transform: none !important;
+}
+
+/* Header overlay controls (heart + menu) — Figma dark circles */
+.ih-machine-fav-btn,
+.ih-machine-actions-btn {
+  position: absolute;
+  top: 12px;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  cursor: pointer;
+  transform: none !important;
+  transition: background 0.15s ease !important;
+  box-shadow: none !important;
+}
+
+.ih-machine-fav-btn { right: 48px; }
+.ih-machine-actions-btn { right: 12px; }
+
+.ih-machine-fav-btn:hover,
+.ih-machine-actions-btn:hover {
+  background: rgba(0, 0, 0, 0.5);
+  transform: none !important;
+}
+
+.ih-machine-fav-btn.is-favourite {
+  color: #fda4af;
+}
+
+.ih-machine-fav-btn svg,
+.ih-machine-actions-btn svg {
+  width: 15px;
+  height: 15px;
+  pointer-events: none;
+}
+
+.ih-machine-fav-btn.is-favourite svg {
+  fill: currentColor;
+}
+
+.ih-machine-listing-shell.ih-menu-open {
+  z-index: 100000 !important;
+}
+
+.ih-machine-enhanced-menu {
+  position: absolute;
+  top: 50px;
+  right: 12px;
+  z-index: 100001;
+  width: 160px;
+  padding: 4px;
+  overflow: hidden;
+  border: 1px solid var(--ih-figma-border, #e6e9f2);
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 18px 44px rgba(83, 71, 206, 0.14);
+}
+
+.ih-machine-enhanced-menu[hidden] {
+  display: none !important;
+}
+
+.ih-machine-enhanced-menu button,
+.ih-machine-enhanced-menu a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 34px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--ih-figma-text, #1a1c2b);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ih-machine-enhanced-menu button:hover,
+.ih-machine-enhanced-menu a:hover {
+  background: var(--ih-figma-surface-2, #f4f6fb);
+  color: var(--ih-figma-brand, #5347ce);
+}
+
+.ih-machine-enhanced-menu .ih-machine-delete-action {
+  color: var(--ih-figma-danger, #ef4444);
+  border-top: 1px solid var(--ih-figma-border, #e6e9f2);
+}
+
+.ih-machine-enhanced-menu .ih-machine-delete-action:hover {
+  background: var(--ih-figma-danger-bg, #fee2e2);
+  color: #dc2626;
+}
+
+/* Empty state + pagination */
+.ih-machines-empty {
+  margin: 0;
+  border: 1px dashed var(--ih-border);
+  border-radius: 20px;
+  background: var(--ih-figma-surface-2, #f4f6fb);
+  padding: 32px 20px;
+  text-align: center;
+  color: var(--ih-figma-text-secondary, #6b7185);
+}
+
+.ih-machines-empty-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: 0 auto 10px;
+  border-radius: 999px;
+  background: var(--ih-figma-accent-soft, #ece9ff);
+  color: var(--ih-figma-brand, #5347ce);
+}
+
+.ih-machines-empty strong {
+  display: block;
+  color: var(--ih-figma-text, #1a1c2b);
+  font-size: 15px;
+}
+
+.ih-machines-empty span {
+  display: block;
+  margin-top: 5px;
+  font-size: 13px;
+}
+
+.ih-machines-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 4px 0 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.ih-machines-page-info {
+  color: var(--ih-text2);
+  font-size: 12.5px;
+  font-weight: 500;
+}
+
+.ih-machines-page-controls {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.ih-machines-page-numbers {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.ih-machines-page-btn,
+.ih-machines-page-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: auto;
+  padding: 7px 12px;
+  border: 1px solid var(--ih-border);
+  border-radius: 999px;
+  background: var(--ih-surface2);
+  color: var(--ih-text2);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.ih-machines-page-btn {
+  padding: 0 12px;
+}
+
+.ih-machines-page-btn:hover,
+.ih-machines-page-number:hover {
+  background: var(--ih-accent-soft);
+  color: var(--ih-ink);
+  border-color: var(--ih-lime);
+}
+
+.ih-machines-page-number.is-active {
+  background: var(--ih-lime);
+  color: var(--ih-ink);
+  border-color: var(--ih-lime);
+  font-weight: 700;
+}
+
+.ih-machines-page-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Custom select */
+.ih-custom-select {
+  position: relative;
+  min-width: 130px;
+  user-select: none;
+}
+
+.ih-custom-select-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  height: 40px;
+  padding: 0 14px;
+  background: var(--ih-figma-surface-2, #f4f6fb);
+  border: 1.5px solid var(--ih-figma-border, #e6e9f2);
+  border-radius: 12px;
+  color: var(--ih-figma-brand, #5347ce);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ih-custom-select-btn:hover {
+  border-color: var(--ih-figma-brand, #5347ce);
+  background: var(--ih-figma-accent-soft, #ece9ff);
+}
+
+.ih-custom-select.open .ih-custom-select-btn {
+  border-color: var(--ih-figma-brand, #5347ce);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(83, 71, 206, 0.12);
+}
+
+.ih-custom-select.open .ih-custom-select-btn svg {
+  transform: rotate(180deg);
+}
+
+.ih-custom-select-btn svg {
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.ih-custom-select-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: max(100%, 150px);
+  background: #fff;
+  border: 1.5px solid var(--ih-figma-border, #e6e9f2);
+  border-radius: 14px;
+  box-shadow: 0 16px 40px rgba(83, 71, 206, 0.12);
+  z-index: 99999;
+  padding: 6px;
+}
+
+.ih-custom-select-menu.hidden {
+  display: none;
+}
+
+.ih-custom-select-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 14px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ih-figma-text, #1a1c2b);
+  cursor: pointer;
+}
+
+.ih-custom-select-option:hover,
+.ih-custom-select-option.selected {
+  background: var(--ih-figma-accent-soft, #ece9ff);
+  color: var(--ih-figma-brand, #5347ce);
+}
+
+.ih-custom-select-option.selected {
+  font-weight: 700;
+}
+
+.ih-check-icon {
+  display: none;
+  color: var(--ih-figma-brand, #5347ce);
+}
+
+.ih-custom-select-option.selected .ih-check-icon {
+  display: block;
+}
+
+/* Filter pills — must follow generic .ih-custom-select-btn (width:100%) above */
+.ih-machines-page .ih-machines-filter-select.ih-custom-select {
+  display: inline-flex;
+  width: auto;
+  min-width: 0;
+  flex: 0 0 auto;
+}
+
+.ih-machines-page .ih-machines-filter-select .ih-custom-select-btn {
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  flex: 0 0 auto;
+  justify-content: flex-start;
+  height: auto;
+  min-height: 36px;
+  padding: 9px 11px 9px 13px;
+  border-radius: 10px;
+  border: 1px solid var(--ih-border);
+  background: var(--ih-surface);
+  color: var(--ih-text);
+  font-size: 12.5px;
+  font-weight: 600;
+  gap: 7px;
+  box-shadow: none;
+}
+
+.ih-machines-page .ih-machines-filter-select .ih-custom-select-btn:hover {
+  border-color: var(--ih-border);
+  background: var(--ih-surface);
+}
+
+.ih-machines-page .ih-machines-filter-select.open .ih-custom-select-btn {
+  border-color: var(--ih-lime);
+  background: var(--ih-surface);
+  box-shadow: 0 0 0 3px rgba(136, 124, 253, 0.12);
+}
+
+.ih-machines-page .ih-machines-filter-select.has-active .ih-custom-select-btn {
+  border-color: var(--ih-lime);
+  background: var(--ih-accent-soft);
+  color: var(--ih-ink);
+}
+
+.ih-machines-page .ih-machines-filter-select .ih-custom-select-menu {
+  left: 0;
+  right: auto;
+  min-width: 180px;
+  width: max-content;
+  max-width: min(280px, calc(100vw - 48px));
+}
+
+.ih-machines-page .ih-machines-filter-sort {
+  margin-left: auto;
+}
+
+/* Remove modal */
+.ih-remove-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.5);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.ih-remove-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ih-remove-modal {
+  background: #fff;
+  border-radius: 24px;
+  padding: 36px 32px 28px;
+  width: min(400px, calc(100vw - 32px));
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+}
+
+/* Responsive */
+@media (max-width: 1440px) {
+  .ih-rd.ih-admin.ih-machines-listings {
+    padding-inline: 20px;
+  }
+
+  .ih-machines-hero {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ih-machines-hero {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ih-machine-grid-boost {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .ih-machines-filter-select {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ih-rd.ih-admin.ih-machines-listings {
+    padding: 16px 16px 28px !important;
+    gap: 16px;
+    overflow-x: hidden;
+  }
+
+  .ih-machines-page-header .ih-page-title {
+    font-size: 24px !important;
+  }
+
+  .ih-machines-page-header .ih-page-sub {
+    font-size: 12.5px !important;
+    margin-top: 4px !important;
+  }
+
+  .ih-machines-eyebrow {
+    margin-bottom: 4px;
+    font-size: 9px;
+    letter-spacing: 0.04em;
+  }
+
+  .ih-stat-label-long { display: none; }
+  .ih-stat-label-short { display: inline; }
+
+  .ih-machines-hero {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .ih-machine-stat-card {
+    min-height: auto;
+    border-radius: 14px;
+    padding: 14px;
+  }
+
+  .ih-machine-stat-card::after {
+    width: 120px;
+    height: 120px;
+    top: -56px;
+    right: -30px;
+  }
+
+  .ih-machine-stat-card span {
+    font-size: 9px;
+    letter-spacing: 0.045em;
+  }
+
+  .ih-machine-stat-card strong {
+    margin-top: 3px;
+    font-size: 24px;
+  }
+
+  .ih-machine-stat-card small {
+    display: none;
+  }
+
+  .ih-card.ih-machines-page {
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    gap: 16px;
+  }
+
+  .ih-machines-head {
+    align-items: stretch !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .ih-machines-head .ih-card-title {
+    display: none !important;
+  }
+
+  .ih-machines-head .ih-head-actions {
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+    gap: 10px !important;
+  }
+
+  .ih-machines-head .ih-search-wrap {
+    flex: 1 0 100% !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 40px !important;
+    border-radius: 10px !important;
+    background: var(--ih-surface) !important;
+  }
+
+  .ih-machines-head .ih-custom-select {
+    width: auto !important;
+    flex: 0 0 auto;
+  }
+
+  .ih-machines-head .ih-custom-select-btn {
+    min-height: 40px;
+    padding: 11px 14px;
+    background: var(--ih-surface) !important;
+    border: 1px solid var(--ih-border) !important;
+    color: var(--ih-text) !important;
+    font-weight: 600 !important;
+  }
+
+  .ih-machines-head .ih-btn-primary {
+    flex: 1 1 0 !important;
+    width: auto !important;
+    min-width: 0;
+    min-height: 40px !important;
+    padding: 11px 14px !important;
+    justify-content: center;
+  }
+
+  .ih-machines-mobile-filter-bar,
+  .ih-machines-mobile-results-row,
+  .ih-machines-page-footer {
+    display: flex;
+  }
+
+  .ih-machines-mobile-filter-bar {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ih-machines-mobile-filter-scroll {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  .ih-machines-desktop-filters {
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--ih-border);
+    border-radius: 14px;
+    background: var(--ih-surface);
+  }
+
+  .ih-machines-desktop-filters.is-expanded {
+    display: flex;
+  }
+
+  .ih-machines-desktop-filters .ih-machines-filter-label {
+    display: none;
+  }
+
+  .ih-machines-desktop-filters .ih-machines-filter-select,
+  .ih-machines-desktop-filters .ih-machines-filter-select .ih-custom-select-btn {
+    width: 100%;
+  }
+
+  .ih-machines-desktop-filters .ih-machines-filter-sort {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .ih-machines-active-row {
+    display: none !important;
+  }
+
+  .ih-machines-mobile-results-row .ih-machines-results-count {
+    font-size: 11.5px;
+    margin-left: auto;
+  }
+
+  .ih-machines-mobile-active-chips .ih-machines-active-chip {
+    padding: 4px 7px 4px 9px;
+    font-size: 11px;
+  }
+
+  .ih-machine-grid-boost {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .ih-machines-pagination {
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+  }
+
+  .ih-machines-page-info {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .ih-machines-page-controls {
+    width: auto;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
+  .ih-page-btn-short { display: inline; }
+  .ih-page-btn-long { display: none; }
+
+  .ih-machines-page-btn {
+    min-width: 0;
+    padding: 6px 11px;
+    background: var(--ih-surface);
+    font-size: 12px;
+  }
+
+  .ih-machines-page-number {
+    min-width: 0;
+    padding: 6px 11px;
+    font-size: 12px;
+  }
+
+  .ih-custom-select-menu {
+    right: auto;
+    left: 0;
+    min-width: 100%;
+  }
+
+  .ih-machine-fav-btn,
+  .ih-machine-actions-btn {
+    top: 10px;
+    width: 28px;
+    height: 28px;
+  }
+
+  .ih-machine-fav-btn {
+    right: 44px;
+  }
+
+  .ih-machine-actions-btn {
+    right: 10px;
+  }
+}
+@media (max-width: 390px) {
+  .ih-rd.ih-admin.ih-machines-listings {
+    padding: 16px 16px 24px !important;
+    gap: 16px;
+  }
+
+  .ih-machines-page-header .ih-page-title {
+    font-size: 24px !important;
+  }
+
+  .ih-machine-stat-card strong {
+    font-size: 24px;
+  }
+
+  .ih-machines-head .ih-btn-primary {
+    font-size: 13px !important;
+  }
+
+  .ih-machines-page-controls {
+    gap: 6px;
+  }
+
+  .ih-machines-page-btn,
+  .ih-machines-page-number {
+    padding: 6px 11px;
+    font-size: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ih-machines-page .ih-listing-card,
+  .ih-machine-stat-card,
+  .ih-machine-fav-btn,
+  .ih-machine-actions-btn {
+    animation: none !important;
+    transition: none !important;
+  }
+}

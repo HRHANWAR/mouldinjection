@@ -1,0 +1,419 @@
+/* ═══════════════════════════════════════════════════════════════════
+   IH ADMIN DASHBOARD — Light off-white theme (replaces dark figma v2)
+   Canvas: #f4f8fb · cards: #fff · accent: #164b3f / #d3f261
+═══════════════════════════════════════════════════════════════════ */
+
+/* ── Canvas (off-white, not dark green) ── */
+#wpcontent .ih-dashboard-modern {
+  background: #f4f8fb !important;
+  border-radius: 20px;
+  padding: 18px 18px 22px;
+  margin: -4px 0 0;
+  gap: 14px !important;
+}
+
+/* Hero */
+#wpcontent .ih-dashboard-modern .ih-hero-pill {
+  background: #eaf4ff !important;
+  border: 1px solid #cfe4fa !important;
+  color: #1e5f8a !important;
+  font-size: 10px;
+  letter-spacing: .1em;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+#wpcontent .ih-hero-pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: ihDashPulseLight 2s ease-in-out infinite;
+}
+@keyframes ihDashPulseLight {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, .35); }
+  50% { box-shadow: 0 0 0 5px rgba(34, 197, 94, 0); }
+}
+#wpcontent .ih-dashboard-modern .ih-dashboard-title { color: #11271d !important; }
+#wpcontent .ih-dashboard-modern .ih-dashboard-sub { color: #6b8aa3 !important; }
+#wpcontent .ih-dashboard-modern .ih-dash-btn {
+  background: #fff;
+  border-color: #d9e7f7;
+  color: #1e5f8a;
+}
+#wpcontent .ih-dashboard-modern .ih-dash-btn:hover { background: #eef7ff; }
+#wpcontent .ih-dashboard-modern .ih-dash-btn.is-primary {
+  background: #164b3f !important;
+  border-color: #164b3f !important;
+  color: #fff !important;
+  box-shadow: 0 8px 20px rgba(22, 75, 63, .14) !important;
+}
+#wpcontent .ih-dashboard-modern .ih-dash-btn.is-primary:hover { background: #0f3e33 !important; }
+
+/* KPI strip — colour indicators on values */
+#wpcontent .ih-dashboard-modern .ih-dash-stat-card {
+  background: #fff !important;
+  border: 1px solid #d9e7f7 !important;
+  box-shadow: 0 6px 18px rgba(30, 95, 138, .06) !important;
+  padding: 12px 14px !important;
+  min-height: 96px;
+}
+#wpcontent .ih-dashboard-modern .ih-dash-stat-card:after { display: none; }
+#wpcontent .ih-dashboard-modern .ih-stat-label { color: #6b8aa3 !important; }
+#wpcontent .ih-dashboard-modern .ih-stat-value { color: #11271d !important; font-size: 22px !important; }
+#wpcontent .ih-dashboard-modern .ih-stat-note { color: #9ca3af !important; }
+#wpcontent .ih-dashboard-modern .ih-stat-icon { color: #164b3f !important; }
+#wpcontent .ih-dashboard-modern .ih-dash-stat-card.is-blue .ih-stat-value { color: #1e5f8a !important; }
+#wpcontent .ih-dashboard-modern .ih-dash-stat-card.is-blue .ih-stat-icon { color: #3b82f6 !important; }
+#wpcontent .ih-dashboard-modern .ih-dash-stat-card.is-green .ih-stat-value { color: #15803d !important; }
+#wpcontent .ih-dashboard-modern .ih-dash-stat-card.is-green .ih-stat-icon { color: #22c55e !important; }
+#wpcontent .ih-dashboard-modern .ih-dash-stat-card.is-dark .ih-stat-value { color: #164b3f !important; }
+#wpcontent .ih-dashboard-modern .ih-dash-stat-card.is-amber .ih-stat-value { color: #b45309 !important; }
+#wpcontent .ih-dashboard-modern .ih-dash-stat-card.is-amber .ih-stat-icon { color: #f59e0b !important; }
+#wpcontent .ih-dashboard-modern .ih-dash-stat-card.is-rose .ih-stat-value { color: #be123c !important; }
+#wpcontent .ih-dashboard-modern .ih-dash-stat-card.is-rose .ih-stat-icon { color: #ef4444 !important; }
+#wpcontent .ih-dashboard-modern .ih-stat-change { color: #16a34a !important; }
+
+/* Cards */
+#wpcontent .ih-dashboard-modern .ih-card {
+  background: #fff !important;
+  border: 1px solid #d9e7f7 !important;
+  box-shadow: 0 8px 24px rgba(30, 95, 138, .06) !important;
+}
+#wpcontent .ih-dashboard-modern .ih-card-title { color: #11271d !important; }
+#wpcontent .ih-dashboard-modern .ih-card-subtitle { color: #6b8aa3 !important; }
+#wpcontent .ih-dashboard-modern .ih-link { color: #1e5f8a !important; }
+
+/* Monitor + action centre */
+#wpcontent .ih-dashboard-modern .ih-dash-health-row {
+  background: #f7fbff;
+  margin: 0 14px 14px;
+  padding: 11px 13px;
+}
+#wpcontent .ih-dashboard-modern .ih-dash-health-row > div:first-child { color: #6b8aa3; }
+#wpcontent .ih-dashboard-modern .ih-dash-health-row strong { color: #11271d; }
+#wpcontent .ih-dashboard-modern .ih-dash-health-row p { color: #6b8aa3; }
+#wpcontent .ih-dashboard-modern .ih-health-progress { background: #eaf4ff; }
+#wpcontent .ih-dashboard-modern .ih-action-list a {
+  background: #fbfdff;
+  border-color: #edf2f7;
+  color: #334155;
+}
+#wpcontent .ih-dashboard-modern .ih-action-list a:hover { background: #eef7ff; color: #1e5f8a; }
+#wpcontent .ih-dashboard-modern .ih-action-list strong {
+  background: #eaf4ff;
+  color: #1e5f8a;
+}
+
+/* Approvals queue */
+#wpcontent .ih-dashboard-modern .ih-approval-count-chip {
+  background: #fff8e1;
+  border-color: #fde68a;
+  color: #9a6500;
+}
+#wpcontent .ih-dashboard-modern .ih-approval-row { border-top-color: #edf2f7; }
+#wpcontent .ih-dashboard-modern .ih-approval-row:hover { background: #f7fbff; }
+#wpcontent .ih-dashboard-modern .ih-approval-name { color: #11271d; }
+#wpcontent .ih-dashboard-modern .ih-approval-uid { color: #6b8aa3; }
+#wpcontent .ih-dashboard-modern .ih-approval-ref { background: #eaf4ff; color: #1e5f8a; }
+#wpcontent .ih-dashboard-modern .ih-approval-listing { color: #475569; font-family: inherit; }
+#wpcontent .ih-dashboard-modern .ih-approval-wait { color: #6b8aa3; }
+#wpcontent .ih-dashboard-modern .ih-approval-empty,
+#wpcontent .ih-dashboard-modern .ih-request-empty {
+  background: #f7fbff;
+  border-color: #d9e7f7;
+  color: #6b8aa3;
+}
+
+/* Charts — condensed */
+#wpcontent .ih-dashboard-charts {
+  grid-template-columns: minmax(0, 1fr) 280px !important;
+  gap: 14px !important;
+}
+#wpcontent .ih-chart-canvas-wrap {
+  height: 168px !important;
+  padding: 0 12px 8px !important;
+}
+#wpcontent .ih-donut-wrap {
+  height: 150px !important;
+}
+#wpcontent .ih-donut-wrap canvas { max-height: 140px !important; }
+#wpcontent .ih-dashboard-modern .ih-donut-pct { color: #164b3f !important; font-size: 1.65rem !important; }
+#wpcontent .ih-dashboard-modern .ih-donut-sub { color: #6b8aa3 !important; }
+#wpcontent .ih-dashboard-modern .ih-pie-legend { color: #6b7280; padding-bottom: 12px; }
+
+/* Site pulse tiles (fills chart whitespace) */
+#wpcontent .ih-dash-site-pulse {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 0 12px 12px;
+}
+#wpcontent .ih-pulse-tile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 8px 10px;
+  border: 1px solid #e8f0f8;
+  border-radius: 12px;
+  background: #fbfdff;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+#wpcontent .ih-pulse-tile:hover {
+  border-color: #cfe4fa;
+  box-shadow: 0 4px 14px rgba(30, 95, 138, .08);
+  transform: translateY(-1px);
+}
+#wpcontent .ih-pulse-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+#wpcontent .ih-pulse-dot.is-blue { background: #3b82f6; }
+#wpcontent .ih-pulse-dot.is-green { background: #22c55e; }
+#wpcontent .ih-pulse-dot.is-amber { background: #f59e0b; }
+#wpcontent .ih-pulse-dot.is-rose { background: #ef4444; }
+#wpcontent .ih-pulse-dot.is-teal { background: #164b3f; }
+#wpcontent .ih-pulse-dot.is-violet { background: #8b5cf6; }
+#wpcontent .ih-pulse-meta { min-width: 0; flex: 1; }
+#wpcontent .ih-pulse-label {
+  display: block;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #6b8aa3;
+  line-height: 1.2;
+}
+#wpcontent .ih-pulse-val {
+  display: block;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #11271d;
+  line-height: 1.2;
+}
+#wpcontent .ih-pulse-sub {
+  display: block;
+  font-size: 10px;
+  color: #9ca3af;
+  margin-top: 1px;
+}
+
+/* Request table — profile avatar before name */
+#wpcontent .ih-req-user-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  max-width: 220px;
+}
+#wpcontent .ih-req-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid #d9e7f7;
+  background: #164b3f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#wpcontent .ih-req-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+#wpcontent .ih-req-avatar i {
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 800;
+  color: #c8e88e;
+}
+#wpcontent .ih-req-name-text {
+  font-weight: 600;
+  color: #11271d;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Listing cards — fixed responsive size */
+#wpcontent .ih-dash-listing-grid {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)) !important;
+  gap: 14px !important;
+  padding: 0 14px 14px !important;
+}
+#wpcontent .ih-dash-listing-grid .ih-dash-listing-card {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 420px;
+  max-height: none;
+  overflow: visible;
+  border-radius: 16px !important;
+  border: 1px solid #d9e7f7 !important;
+  background: #fff !important;
+  box-shadow: 0 6px 18px rgba(30, 95, 138, .06) !important;
+  transform-origin: center top;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  will-change: transform;
+}
+#wpcontent .ih-dash-listing-grid .ih-dash-listing-card:hover,
+#wpcontent .ih-dash-listing-grid .ih-dash-listing-card:focus-within {
+  transform: translateY(-5px) scale(1.012);
+  box-shadow: 0 18px 38px rgba(30, 95, 138, .14) !important;
+  border-color: #b8d4f0 !important;
+}
+#wpcontent .ih-dash-listing-grid .ih-dash-listing-card:hover .ih-listing-img,
+#wpcontent .ih-dash-listing-grid .ih-dash-listing-card:hover .ih-listing-img-wrap img {
+  transform: scale(1.035);
+}
+#wpcontent .ih-dash-listing-card--machine { border-top: 3px solid #3b82f6 !important; }
+#wpcontent .ih-dash-listing-card--tool { border-top: 3px solid #f59e0b !important; }
+#wpcontent .ih-dash-listing-grid .ih-listing-img-wrap {
+  height: 130px !important;
+  max-height: 130px !important;
+  overflow: hidden !important;
+  flex-shrink: 0;
+}
+#wpcontent .ih-dash-listing-grid .ih-listing-img,
+#wpcontent .ih-dash-listing-grid .ih-listing-img-wrap img {
+  width: 100% !important;
+  height: 130px !important;
+  max-height: 130px !important;
+  object-fit: cover !important;
+  transition: transform .25s ease;
+}
+#wpcontent .ih-dash-listing-grid .ih-listing-body {
+  min-height: 0 !important;
+  flex: 1;
+  padding: 12px 14px 14px !important;
+  display: flex;
+  flex-direction: column;
+}
+#wpcontent .ih-dash-listing-grid .ih-listing-title {
+  font-size: 14px !important;
+  line-height: 1.25 !important;
+  margin-bottom: 4px !important;
+}
+#wpcontent .ih-dash-listing-grid .ih-listing-dates { margin-bottom: 8px !important; }
+#wpcontent .ih-dash-listing-grid .ih-date-label { font-size: 9px !important; }
+#wpcontent .ih-dash-listing-grid .ih-date-val { font-size: 11px !important; }
+#wpcontent .ih-dash-listing-grid .ih-pill-row,
+#wpcontent .ih-dash-listing-grid .ih-grade-row { margin-bottom: 6px !important; }
+#wpcontent .ih-dash-listing-grid .ih-mat-pill,
+#wpcontent .ih-dash-listing-grid .ih-spec-pill,
+#wpcontent .ih-dash-listing-grid .ih-grade-pill {
+  font-size: 9px !important;
+  padding: 3px 7px !important;
+}
+#wpcontent .ih-dash-listing-grid .ih-meta-rows { margin-bottom: 8px !important; }
+#wpcontent .ih-dash-listing-grid .ih-meta-row { font-size: 11px !important; }
+#wpcontent .ih-dash-listing-grid .ih-listing-actions {
+  margin-top: auto !important;
+  padding-top: 8px;
+  gap: 6px !important;
+}
+#wpcontent .ih-dash-listing-grid .ih-btn {
+  min-height: 34px !important;
+  padding: 6px 12px !important;
+  font-size: 11.5px !important;
+}
+
+/* Tables + selects on light */
+#wpcontent .ih-dashboard-modern .ih-request-search {
+  background: #f7fbff;
+  border-color: #d9e7f7;
+}
+#wpcontent .ih-dashboard-modern .ih-request-search input { color: #11271d; }
+#wpcontent .ih-dashboard-modern .ih-request-search input::placeholder { color: #9ca3af; }
+#wpcontent .ih-dashboard-modern .ih-dashboard-table thead { background: #f7fbff !important; }
+#wpcontent .ih-dashboard-modern .ih-dashboard-table th { color: #6b8aa3 !important; }
+#wpcontent .ih-dashboard-modern .ih-dashboard-table td {
+  color: #334155 !important;
+  border-color: #edf2f7 !important;
+}
+#wpcontent .ih-dashboard-modern .ih-dashboard-table td.muted { color: #6b8aa3 !important; }
+#wpcontent .ih-dashboard-modern .ih-custom-select-btn {
+  background: #f7fbff;
+  border-color: #d9e7f7;
+  color: #1e5f8a;
+}
+#wpcontent .ih-dashboard-modern .ih-custom-select-menu {
+  background: #fff;
+  border-color: #d9e7f7;
+}
+#wpcontent .ih-dashboard-modern .ih-custom-select-option { color: #334155; }
+#wpcontent .ih-dashboard-modern .ih-custom-select-option:hover,
+#wpcontent .ih-dashboard-modern .ih-custom-select-option.selected {
+  background: #eaf4ff;
+  color: #1e5f8a;
+}
+#wpcontent .ih-dashboard-modern .ih-dash-row-menu .ih-dropdown {
+  background: #fff;
+  border-color: #d9e7f7;
+}
+#wpcontent .ih-dashboard-modern .ih-dash-row-menu .ih-dropdown-item { color: #334155; }
+#wpcontent .ih-dashboard-modern .ih-dash-row-menu .ih-dropdown-item:hover {
+  background: #eaf4ff;
+  color: #1e5f8a;
+}
+
+/* Grids — responsive */
+#wpcontent .ih-dashboard-stat-grid {
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)) !important;
+  gap: 10px !important;
+}
+#wpcontent .ih-dash-monitor-grid {
+  grid-template-columns: minmax(0, 1fr) 260px !important;
+  gap: 14px !important;
+}
+#wpcontent .ih-status-cards {
+  gap: 10px !important;
+  padding: 0 14px 14px !important;
+}
+#wpcontent .ih-status-card { padding: 12px 14px !important; }
+#wpcontent .ih-status-card strong { font-size: 26px !important; }
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  #wpcontent .ih-dashboard-charts { grid-template-columns: 1fr !important; }
+  #wpcontent .ih-dash-monitor-grid { grid-template-columns: 1fr !important; }
+  #wpcontent .ih-dash-listing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  #wpcontent .ih-dashboard-modern { padding: 14px 12px; border-radius: 16px; }
+  #wpcontent .ih-dashboard-hero { flex-direction: column; align-items: flex-start; }
+  #wpcontent .ih-dashboard-actions { width: 100%; }
+  #wpcontent .ih-status-cards { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  #wpcontent .ih-dash-site-pulse { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 768px) {
+  #wpcontent .ih-dashboard-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  #wpcontent .ih-dash-listing-grid { grid-template-columns: 1fr !important; }
+  #wpcontent .ih-dash-listing-grid .ih-dash-listing-card { min-height: 340px; max-height: none; height: auto !important; }
+  #wpcontent .ih-status-cards { grid-template-columns: 1fr !important; }
+  #wpcontent .ih-dash-site-pulse { grid-template-columns: 1fr; }
+  #wpcontent .ih-chart-canvas-wrap { height: 150px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #wpcontent .ih-dash-listing-grid .ih-dash-listing-card,
+  #wpcontent .ih-dash-listing-grid .ih-listing-img,
+  #wpcontent .ih-dash-listing-grid .ih-listing-img-wrap img {
+    transition: none !important;
+  }
+  #wpcontent .ih-dash-listing-grid .ih-dash-listing-card:hover,
+  #wpcontent .ih-dash-listing-grid .ih-dash-listing-card:focus-within,
+  #wpcontent .ih-dash-listing-grid .ih-dash-listing-card:hover .ih-listing-img,
+  #wpcontent .ih-dash-listing-grid .ih-dash-listing-card:hover .ih-listing-img-wrap img {
+    transform: none !important;
+  }
+}

@@ -1,0 +1,238 @@
+/* ============================================================================
+   Public Tool Detail — technical re-skin. Scoped ENTIRELY to .imd-page--tools
+   so nothing here can leak to the Machine Detail page (which is .imd-page with
+   no --tools modifier). Loads AFTER im-machine-detail.css, reusing its .imd-*
+   base chrome (cards, buttons, fields, gallery shell, summary, modals, lightbox)
+   and only adding the tool-specific technical modules + design treatment.
+   New module classes are prefixed .imt-*. Animations respect reduced-motion.
+   ========================================================================== */
+
+/* Local tokens (teal/cyan technical palette layered on the shared --imd-* set) */
+.imd-page--tools{
+	--imt-teal-1:#0fd6c2;
+	--imt-teal-2:#0aa6c9;
+	--imt-cyan-grad:linear-gradient(135deg,#16d6c1 0%,#10a9cd 55%,#1b86d6 100%);
+	--imt-green:#16a34a;
+	--imt-amber:#d97706;
+}
+
+/* ── Breadcrumb row + print button ───────────────────────────────────────── */
+.imd-page--tools .imt-crumbrow{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.imd-page--tools .imt-crumbrow .imd-crumb{margin-bottom:0;}
+.imd-page--tools .imt-crumbprint{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;border:1px solid var(--imd-border);background:var(--imd-surface);color:var(--imd-text-2);cursor:pointer;transition:background .15s,border-color .15s,color .15s;}
+.imd-page--tools .imt-crumbprint:hover{background:var(--imd-accent-soft);border-color:var(--imd-accent);color:var(--imd-brand);}
+.imd-page--tools .imt-crumbprint svg{width:16px;height:16px;}
+
+/* ── Hero gallery — teal/cyan technical treatment ────────────────────────── */
+.imd-page--tools .imd-gallery__stage{aspect-ratio:16/8;background:var(--imt-cyan-grad);}
+.imd-page--tools .imd-gallery__placeholder{background:var(--imt-cyan-grad);}
+.imd-page--tools .imd-gallery__placeholder svg{width:84px;height:84px;opacity:.95;}
+.imd-page--tools .imd-gallery__zoomhint{background:rgba(255,255,255,.18);box-shadow:0 4px 14px -4px rgba(8,60,80,.5);backdrop-filter:blur(3px);}
+.imd-page--tools .imd-thumb.is-active{border-color:var(--imt-teal-2);}
+/* Placeholder thumbnail slots (no images) mirror the design's four empty tiles */
+.imd-page--tools .imt-thumbs--ph{display:flex;gap:8px;padding:10px;}
+.imd-page--tools .imt-thumb-ph{flex:1;max-width:104px;aspect-ratio:4/3;border-radius:10px;border:1.5px solid var(--imd-border);background:var(--imd-surface-2);display:flex;align-items:center;justify-content:center;color:var(--imd-muted);}
+.imd-page--tools .imt-thumb-ph:first-child{border-color:var(--imd-accent);}
+.imd-page--tools .imt-thumb-ph svg{width:20px;height:20px;}
+
+/* ── Module shells ───────────────────────────────────────────────────────── */
+.imd-page--tools .imt-mod{overflow:hidden;}
+.imd-page--tools .imt-head{align-items:flex-start;gap:12px;flex-wrap:wrap;}
+.imd-page--tools .imt-head__txt{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1;}
+.imd-page--tools .imt-head__txt--center{align-items:center;text-align:center;}
+.imd-page--tools .imt-head__sub{font-size:12.5px;color:var(--imd-text-2);margin:0;line-height:1.4;}
+.imd-page--tools .imd-est-badge{display:inline-flex;align-items:center;gap:5px;}
+.imd-page--tools .imd-est-badge svg{width:11px;height:11px;}
+
+.imd-page--tools .imt-grouplbl{font-family:var(--imd-mono);font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--imd-muted);margin:0 0 12px;}
+.imd-page--tools .imt-grouplbl--mt{margin-top:22px;}
+
+/* Input grids */
+.imd-page--tools .imt-grid{display:grid;gap:14px;}
+.imd-page--tools .imt-grid--3{grid-template-columns:repeat(3,1fr);}
+.imd-page--tools .imt-select{width:100%;padding:9px 12px;border:1px solid var(--imd-border);border-radius:10px;font-size:13px;font-family:inherit;color:var(--imd-ink);background:var(--imd-surface);outline:none;cursor:pointer;transition:border-color .15s,box-shadow .15s;}
+.imd-page--tools .imt-select:focus{border-color:var(--imd-brand);box-shadow:0 0 0 3px var(--imd-accent-soft);}
+.imd-page--tools .imt-inputaffix{position:relative;}
+.imd-page--tools .imt-inputaffix input{padding-right:48px;}
+.imd-page--tools .imt-inputaffix__u{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:11px;font-weight:600;color:var(--imd-muted);pointer-events:none;}
+.imd-page--tools .imd-field input[readonly]{background:var(--imd-surface-2);color:var(--imd-text-2);cursor:default;}
+
+/* Output tiles */
+.imd-page--tools .imt-tiles{display:grid;gap:14px;}
+.imd-page--tools .imt-tiles--4{grid-template-columns:repeat(4,1fr);}
+.imd-page--tools .imt-tiles--1{grid-template-columns:1fr;}
+.imd-page--tools .imt-tile{background:var(--imd-surface-2);border:1px solid var(--imd-border);border-radius:14px;padding:14px 16px;min-width:0;}
+
+/* Headline "Grand cost" tile — single full-width tile that folds platform &
+   handling costs into one buyer-facing total (internal cut never shown). */
+.imd-page--tools .imt-tile--grand{background:var(--imd-accent-soft);border-color:rgba(83,71,206,.22);padding:18px 20px;}
+.imd-page--tools .imt-tile--grand .imt-tile__v{font-size:30px;}
+.imd-page--tools .imt-tile--grand .imt-tile__k{display:flex;align-items:center;gap:6px;font-size:11px;margin-top:8px;}
+.imd-page--tools .imt-tile__cap{display:block;margin-top:6px;font-size:11.5px;font-weight:500;color:var(--imd-text-2);line-height:1.45;}
+.imd-page--tools .imt-tile__info{display:inline-flex;align-items:center;justify-content:center;color:var(--imd-muted);cursor:help;}
+.imd-page--tools .imt-tile__info svg{width:13px;height:13px;display:block;}
+.imd-page--tools .imt-tile__info:hover,.imd-page--tools .imt-tile__info:focus-visible{color:var(--imd-brand);}
+.imd-page--tools .imt-tile__info:focus-visible{outline:2px solid var(--imd-brand);outline-offset:2px;border-radius:50%;}
+.imd-page--tools .imt-tile__v{display:block;font-size:23px;font-weight:800;line-height:1.1;color:var(--imd-ink);overflow-wrap:anywhere;}
+.imd-page--tools .imt-tile__v small{font-size:12px;font-weight:700;color:var(--imd-text-2);margin-left:1px;}
+.imd-page--tools .imt-tile__v--sm{font-size:16px;}
+.imd-page--tools .imt-tile__k{display:block;font-family:var(--imd-mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--imd-muted);margin-top:6px;}
+.imd-page--tools .imt-tile--brand .imt-tile__v{color:var(--imd-brand);}
+.imd-page--tools .imt-tile--teal .imt-tile__v{color:var(--imt-teal-2);}
+.imd-page--tools .imt-tile--green .imt-tile__v{color:var(--imt-green);}
+.imd-page--tools .imt-tile--amber .imt-tile__v{color:var(--imt-amber);}
+
+/* ── Staff-only "Order total & platform fees" breakdown ──────────────────────
+   Server-side gated (only emitted for users with the pricing capability). Shows
+   the marketplace's internal cut — never rendered into a public buyer's DOM. */
+.imd-page--tools .imt-feebreak{border:1px solid var(--imd-border);border-radius:14px;background:var(--imd-surface-2);padding:8px 18px 16px;}
+.imd-page--tools .imt-feebreak__title{font-family:var(--imd-mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--imd-muted);margin:12px 0 4px;}
+.imd-page--tools .imt-feebreak__list{margin:0;}
+.imd-page--tools .imt-feebreak__row{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid var(--imd-border);}
+.imd-page--tools .imt-feebreak__row:last-child{border-bottom:0;}
+.imd-page--tools .imt-feebreak__lbl{font-size:13.5px;font-weight:500;color:var(--imd-text-2);line-height:1.4;min-width:0;}
+.imd-page--tools .imt-feebreak__amt{font-size:14px;font-weight:700;color:var(--imd-ink);text-align:right;white-space:nowrap;overflow-wrap:anywhere;}
+.imd-page--tools .imt-feebreak__amt--add{color:var(--imd-brand);}
+.imd-page--tools .imt-feebreak__amt--add::before{content:"+ ";}
+.imd-page--tools .imt-feebreak__row--grand{padding-top:13px;}
+.imd-page--tools .imt-feebreak__row--grand .imt-feebreak__lbl{font-size:15px;font-weight:800;color:var(--imd-ink);}
+.imd-page--tools .imt-feebreak__row--grand .imt-feebreak__amt{font-size:20px;font-weight:800;}
+.imd-page--tools .imt-feebreak__callout{display:flex;align-items:flex-start;gap:11px;margin-top:14px;padding:13px 14px;border-radius:11px;background:rgba(22,163,74,.08);border:1px solid rgba(22,163,74,.22);}
+.imd-page--tools .imt-feebreak__ico{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:rgba(22,163,74,.14);color:var(--imt-green);}
+.imd-page--tools .imt-feebreak__ico svg{width:16px;height:16px;display:block;}
+.imd-page--tools .imt-feebreak__msg{margin:0;min-width:0;line-height:1.5;}
+.imd-page--tools .imt-feebreak__earn{display:block;font-size:13.5px;color:var(--imt-green);}
+.imd-page--tools .imt-feebreak__earn strong{font-weight:700;}
+.imd-page--tools .imt-feebreak__sub{display:block;margin-top:3px;font-size:12px;font-weight:500;color:var(--imd-text-2);}
+
+/* Footnote + recalc */
+.imd-page--tools .imt-modfoot{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:18px;padding-top:16px;border-top:1px solid var(--imd-border);flex-wrap:wrap;}
+.imd-page--tools .imt-foot{font-size:11px;color:var(--imd-muted);line-height:1.55;margin:0;flex:1;min-width:200px;}
+.imd-page--tools .imt-recalc{width:auto;flex-shrink:0;}
+
+/* ── Machine-fit map ─────────────────────────────────────────────────────── */
+.imd-page--tools .imt-fitmap{position:relative;width:100%;border:1px solid var(--imd-border);border-radius:14px;background:var(--imd-surface);overflow:hidden;}
+.imd-page--tools .imt-fitmap svg{display:block;width:100%;height:auto;}
+.imd-page--tools .imt-fitlegend{display:flex;flex-wrap:wrap;gap:8px 18px;margin:14px 0 4px;}
+.imd-page--tools .imt-fitleg{display:flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--imd-text-2);}
+.imd-page--tools .imt-fitleg__sw{width:14px;height:14px;border-radius:4px;flex-shrink:0;}
+.imd-page--tools .imt-fitleg__sw--tool{background:var(--imd-brand);}
+.imd-page--tools .imt-fitleg__sw--env{background:rgba(22,163,74,.16);border:1.5px dashed var(--imt-green);border-radius:4px;}
+
+/* Notes (success / hint / warning) */
+.imd-page--tools .imt-note{font-size:12.5px;line-height:1.5;border-radius:12px;padding:12px 14px;margin-top:12px;}
+.imd-page--tools .imt-note b{font-weight:700;}
+.imd-page--tools .imt-note--ok{background:var(--imd-success-bg);color:#15803d;border:1px solid rgba(22,163,74,.22);}
+.imd-page--tools .imt-note--warn{background:var(--imd-warning-bg);color:#92660a;border:1px solid rgba(245,158,11,.28);}
+.imd-page--tools .imt-note--hint{background:var(--imd-accent-soft);color:var(--imd-brand);border:1px solid rgba(83,71,206,.16);}
+.imd-page--tools .imt-note__sub{display:block;margin-top:3px;opacity:.85;font-weight:500;}
+
+/* ── Cost: material-price sub-panel ──────────────────────────────────────── */
+.imd-page--tools .imt-pricecard{background:var(--imd-surface-2);border:1px solid var(--imd-border);border-radius:14px;padding:18px;}
+.imd-page--tools .imt-pricecard__head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;}
+.imd-page--tools .imt-pricecard__title{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;color:var(--imd-ink);}
+.imd-page--tools .imt-pricecard__title svg{width:16px;height:16px;color:var(--imt-teal-2);}
+.imd-page--tools .imt-badge-est{font-family:var(--imd-mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--imt-teal-2);background:rgba(16,169,205,.12);padding:4px 10px;border-radius:999px;}
+.imd-page--tools .imt-pricecard__note{font-size:11px;color:var(--imd-muted);line-height:1.5;margin:12px 0 0;}
+
+.imd-page--tools .imt-override{display:flex;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap;}
+.imd-page--tools .imt-override__hint{font-size:11.5px;color:var(--imd-muted);}
+
+/* Live-price readouts + staff override workflow (material-pricing.js owned) */
+.imd-page--tools .imt-pricesource{display:inline-flex;align-items:center;min-height:38px;font-size:13px;font-weight:600;color:var(--imd-ink);overflow-wrap:anywhere;}
+.imd-page--tools .imt-priceupdated{font-family:var(--imd-mono);font-size:10.5px;color:var(--imd-muted);margin:10px 0 0;}
+.imd-page--tools .imt-priceupdated:empty{display:none;}
+.imd-page--tools .imt-override__switch{display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-size:13px;font-weight:700;color:var(--imd-ink);}
+.imd-page--tools .imt-override__switch input{width:18px;height:18px;accent-color:var(--imd-brand);cursor:pointer;}
+.imd-page--tools .imt-override__wrap{flex-basis:100%;display:grid;grid-template-columns:repeat(2,1fr) auto;gap:12px;align-items:end;margin-top:6px;}
+.imd-page--tools .imt-override__wrap[hidden]{display:none;}
+.imd-page--tools .imt-override__save{align-self:end;white-space:nowrap;}
+.imd-page--tools .imt-errors{margin:14px 0 0;padding:10px 14px;border-radius:10px;background:rgba(224,122,22,.1);border:1px solid rgba(224,122,22,.3);color:var(--imt-amber);font-size:12px;line-height:1.5;}
+.imd-page--tools .imt-errors[hidden]{display:none;}
+@media (max-width:560px){
+	.imd-page--tools .imt-override__wrap{grid-template-columns:1fr;}
+}
+.imd-page--tools .imt-switch{display:inline-flex;align-items:center;gap:9px;border:0;background:none;padding:0;cursor:pointer;font-family:inherit;}
+.imd-page--tools .imt-switch__track{position:relative;width:40px;height:22px;border-radius:999px;background:var(--imd-border);transition:background .18s;flex-shrink:0;}
+.imd-page--tools .imt-switch__thumb{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(20,20,40,.25);transition:transform .18s;}
+.imd-page--tools .imt-switch[aria-checked="true"] .imt-switch__track{background:var(--imd-brand);}
+.imd-page--tools .imt-switch[aria-checked="true"] .imt-switch__thumb{transform:translateX(18px);}
+.imd-page--tools .imt-switch__lbl{font-size:13px;font-weight:700;color:var(--imd-ink);}
+
+/* ── Production cycle ring (SVG donut) ───────────────────────────────────── */
+.imd-page--tools .imt-cyclereset{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;border:1px solid var(--imd-border);background:var(--imd-surface);color:var(--imd-brand);cursor:pointer;transition:background .15s,border-color .15s;}
+.imd-page--tools .imt-cyclereset:hover{background:var(--imd-accent-soft);border-color:var(--imd-accent);}
+.imd-page--tools .imt-cyclereset svg{width:16px;height:16px;}
+.imd-page--tools .imt-cycle{display:flex;gap:28px;align-items:center;}
+.imd-page--tools .imt-cycle__ring{position:relative;width:150px;height:150px;flex-shrink:0;}
+.imd-page--tools .imt-cycle__svg{width:100%;height:100%;transform:rotate(-90deg);}
+.imd-page--tools .imt-cycle__center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;}
+.imd-page--tools .imt-cycle__t{font-size:26px;font-weight:800;color:var(--imd-ink);line-height:1;}
+.imd-page--tools .imt-cycle__t small{font-size:13px;color:var(--imd-text-2);margin-left:1px;}
+.imd-page--tools .imt-cycle__sub{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--imd-muted);margin-top:3px;}
+.imd-page--tools .imt-cycle__side{flex:1;min-width:0;}
+.imd-page--tools .imt-cycle__stats{display:grid;grid-template-columns:1fr 1fr;gap:16px 24px;margin-bottom:14px;}
+.imd-page--tools .imt-cstat{display:flex;flex-direction:column;gap:2px;min-width:0;}
+.imd-page--tools .imt-cstat__v{font-size:21px;font-weight:800;color:var(--imd-ink);line-height:1.1;}
+.imd-page--tools .imt-cstat__v small{font-size:12px;font-weight:700;color:var(--imd-text-2);}
+.imd-page--tools .imt-cstat__k{font-family:var(--imd-mono);font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--imd-muted);}
+.imd-page--tools .imt-cycle__legend{list-style:none;display:flex;flex-wrap:wrap;gap:8px 16px;margin:0 0 12px;padding:0;}
+.imd-page--tools .imt-cycle__legend li{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:var(--imd-text-2);}
+.imd-page--tools .imt-dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+.imd-page--tools .imt-dot[data-seg="0"]{background:var(--imd-brand);}
+.imd-page--tools .imt-dot[data-seg="1"]{background:var(--imt-teal-1);}
+.imd-page--tools .imt-dot[data-seg="2"]{background:#4896fe;}
+.imd-page--tools .imt-dot[data-seg="3"]{background:#e07a16;}
+.imd-page--tools .imt-cycle__note{font-size:11px;color:var(--imd-muted);line-height:1.5;margin:0;}
+
+/* Machine-requirement check chips (filled by JS) */
+.imd-page--tools .imd-chip--ok{background:var(--imd-success-bg);color:#15803d;}
+.imd-page--tools .imd-chip--ok svg{width:13px;height:13px;}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width:980px){
+	.imd-page--tools .imd-gallery__stage{aspect-ratio:16/9;}
+}
+@media (max-width:760px){
+	.imd-page--tools .imt-grid--3{grid-template-columns:1fr 1fr;}
+	.imd-page--tools .imt-tiles--4{grid-template-columns:repeat(2,1fr);}
+	.imd-page--tools .imt-cycle{flex-direction:column;align-items:stretch;}
+	.imd-page--tools .imt-cycle__ring{align-self:center;}
+	.imd-page--tools .imt-modfoot{flex-direction:column;align-items:stretch;}
+	.imd-page--tools .imt-recalc{width:100%;}
+}
+@media (max-width:520px){
+	.imd-page--tools .imt-grid--3{grid-template-columns:1fr;}
+	.imd-page--tools .imt-cycle__stats{grid-template-columns:1fr 1fr;}
+	.imd-page--tools .imt-feebreak__lbl{font-size:12.5px;}
+	.imd-page--tools .imt-feebreak__row--grand{flex-wrap:wrap;}
+	.imd-page--tools .imt-feebreak__row--grand .imt-feebreak__amt{flex-basis:100%;text-align:left;}
+}
+@media (max-width:420px){
+	.imd-page--tools .imt-tiles--4{grid-template-columns:1fr 1fr;}
+	.imd-page--tools .imt-tile__v{font-size:20px;}
+}
+
+/* Wider desktop: tool spec grids gain a 4th column with the machine page */
+@media (min-width:1680px){
+	.imd-page--tools .imt-tiles--4{grid-template-columns:repeat(4,1fr);}
+}
+
+/* Touch targets */
+@media (pointer:coarse){
+	.imd-page--tools .imt-crumbprint,
+	.imd-page--tools .imt-cyclereset{min-width:44px;min-height:44px;}
+	.imd-page--tools .imt-switch__track{margin:11px 0;}
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion:reduce){
+	.imd-page--tools .imt-switch__track,
+	.imd-page--tools .imt-switch__thumb{transition:none !important;}
+}
+
+/* Print: hide interactive calculators, keep the static spec sheet */
+@media print{
+	.imd-page--tools .imt-mod,
+	.imd-page--tools .imt-crumbprint{display:none !important;}
+}

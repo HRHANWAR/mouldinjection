@@ -1,0 +1,442 @@
+/* Admin desktop sidebar — Figma node 22:303 */
+
+.ih-wrap.ih-figma-nav {
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 100%;
+  overflow-x: clip;
+  background: var(--ih-figma-canvas);
+}
+
+.ih-wrap.ih-figma-nav.is-admin {
+  overflow: visible !important;
+}
+
+/* Non-dashboard admin pages — Figma light canvas */
+.ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)) {
+  background: var(--ih-figma-canvas);
+}
+
+body.ih-site-nav-admin:not(:has(.ih-rd)) #wpbody,
+body.ih-site-nav-admin:not(:has(.ih-rd)) #wpcontent,
+body.ih-site-nav-admin:not(:has(.ih-rd)) #wpbody-content {
+  background: var(--ih-figma-canvas) !important;
+}
+
+body.ih-site-nav-admin:has(.ih-rd) #wpbody,
+body.ih-site-nav-admin:has(.ih-rd) #wpcontent,
+body.ih-site-nav-admin:has(.ih-rd) #wpbody-content {
+  background: var(--ih-figma-admin-canvas) !important;
+}
+
+.ih-wrap.ih-figma-nav.is-admin:has(.ih-rd) {
+  background: var(--ih-figma-admin-canvas);
+}
+
+.ih-wrap.ih-figma-nav.is-admin:has(.ih-rd) .ih-main,
+.ih-wrap.ih-figma-nav.is-admin:has(.ih-rd) .ih-content {
+  background: var(--ih-figma-admin-canvas);
+}
+
+.ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)) .ih-main,
+.ih-wrap.ih-figma-nav.is-admin:not(:has(.ih-rd)) .ih-content {
+  background: var(--ih-figma-canvas);
+}
+
+.ih-wrap.ih-figma-nav .ih-wrap-grid {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.ih-wrap.ih-figma-nav .ih-main {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.ih-wrap.ih-figma-nav .ih-content {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: clip;
+}
+
+.ih-wrap.ih-figma-nav .ih-card,
+.ih-wrap.ih-figma-nav .ih-section,
+.ih-wrap.ih-figma-nav .ih-stat-card,
+.ih-wrap.ih-figma-nav .ih-dash-stat-card,
+.ih-wrap.ih-figma-nav .ih-dashboard-modern {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.ih-wrap.ih-figma-nav .ih-sidebar {
+  width: 248px;
+  background: var(--ih-figma-surface);
+  border-right: 1px solid var(--ih-figma-border);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 16px 20px;
+  font-family: var(--ih-figma-sans);
+}
+
+.ih-wrap.ih-figma-nav .ih-sb-collapse {
+  display: none !important;
+}
+
+.ih-wrap.ih-figma-nav .ih-sidebar-logo {
+  display: none !important;
+}
+
+.ih-wrap.ih-figma-nav .ih-sidebar-logo > img {
+  width: 18px !important;
+  height: 18px !important;
+  object-fit: contain;
+}
+
+.ih-wrap.ih-figma-nav .ih-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.ih-wrap.ih-figma-nav .ih-logo-text div:first-child {
+  font-family: var(--ih-figma-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.66px;
+  color: var(--ih-figma-text-secondary);
+}
+
+.ih-wrap.ih-figma-nav .ih-sidebar-label--top {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.ih-wrap.ih-figma-nav .ih-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-height: 0;
+}
+
+.ih-wrap.ih-figma-nav .ih-nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 10px 12px;
+  border-radius: var(--ih-nav-radius);
+  color: var(--ih-figma-text-secondary);
+  font-size: 13.5px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
+}
+
+.ih-wrap.ih-figma-nav .ih-nav-item:hover {
+  background: var(--ih-figma-surface-2);
+  color: var(--ih-figma-text);
+}
+
+.ih-wrap.ih-figma-nav .ih-nav-item.active {
+  background: var(--ih-figma-accent-soft);
+  color: var(--ih-figma-ink);
+  font-weight: 600;
+}
+
+.ih-wrap.ih-figma-nav .ih-nav-item.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 3px;
+  height: 20px;
+  border-radius: 2px;
+  background: var(--ih-figma-brand);
+}
+
+.ih-wrap.ih-figma-nav .ih-nav-item img,
+.ih-wrap.ih-figma-nav .ih-nav-item svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.ih-wrap.ih-figma-nav .ih-nav-item.active img {
+  filter: none;
+}
+
+.ih-wrap.ih-figma-nav .ih-nav-req-badge,
+.ih-wrap.ih-figma-nav #ihSidebarBadge {
+  position: static !important;
+  margin-left: auto;
+  min-width: 21px;
+  height: 16px;
+  padding: 0 7px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.ih-wrap.ih-figma-nav .ih-nav-req-badge {
+  background: #f04545 !important;
+  color: #fff !important;
+  top: auto !important;
+  right: auto !important;
+}
+
+.ih-wrap.ih-figma-nav #ihSidebarBadge {
+  background: var(--ih-figma-accent-soft) !important;
+  color: var(--ih-figma-ink) !important;
+}
+
+.ih-wrap.ih-figma-nav .ih-admin-sb-user {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  background: var(--ih-figma-surface-2);
+  border: 1px solid var(--ih-figma-border);
+}
+
+.ih-wrap.ih-figma-nav .ih-admin-sb-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--ih-figma-brand);
+  color: var(--ih-figma-on-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ih-wrap.ih-figma-nav .ih-admin-sb-user-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ih-figma-text);
+  line-height: 1.2;
+}
+
+.ih-wrap.ih-figma-nav .ih-admin-sb-user-role {
+  font-size: 10.5px;
+  font-weight: 500;
+  color: var(--ih-figma-text-secondary);
+}
+
+/* Admin layout — overlay drawer at all breakpoints; main stays full width */
+.ih-wrap.ih-figma-nav.is-admin .ih-wrap-grid {
+  display: block;
+  grid-template-columns: 1fr !important;
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-main {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0;
+}
+
+/* Drawer stack: header (base) → overlay (dims page) → sidebar (top) */
+.ih-wrap.ih-figma-nav.is-admin {
+  --ih-admin-header-z: 9400;
+  --ih-admin-overlay-z: 10050;
+  --ih-admin-sidebar-z: 10100;
+  --ih-wp-admin-bar: 0px;
+}
+
+body.admin-bar .ih-wrap.ih-figma-nav.is-admin {
+  --ih-wp-admin-bar: 32px;
+}
+
+@media screen and (max-width: 782px) {
+  body.admin-bar .ih-wrap.ih-figma-nav.is-admin {
+    --ih-wp-admin-bar: 46px;
+  }
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar {
+  position: fixed !important;
+  top: var(--ih-wp-admin-bar, 0px);
+  left: 0;
+  height: calc(100vh - var(--ih-wp-admin-bar, 0px));
+  height: calc(100dvh - var(--ih-wp-admin-bar, 0px));
+  width: 248px !important;
+  max-width: min(280px, 88vw);
+  z-index: var(--ih-admin-sidebar-z) !important;
+  transform: translate3d(-105%, 0, 0);
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  pointer-events: none;
+  will-change: transform;
+  visibility: visible;
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar.open {
+  transform: translate3d(0, 0, 0) !important;
+  pointer-events: auto !important;
+  box-shadow: 8px 0 32px rgba(0, 0, 0, 0.22);
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar--smart-menu .ih-sidebar-close {
+  display: flex !important;
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar-close {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--ih-figma-brand) 8%, transparent);
+  color: var(--ih-figma-text);
+  cursor: pointer;
+  z-index: 1;
+  transition: background 0.2s;
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar.open .ih-sidebar-close {
+  display: flex;
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar-close:hover {
+  background: color-mix(in srgb, var(--ih-figma-brand) 14%, transparent);
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar-close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.ih-wrap.ih-figma-nav.is-admin {
+  margin-top: 5px;
+}
+
+.ih-wrap.ih-figma-nav.is-admin.sb-collapsed .ih-wrap-grid {
+  grid-template-columns: 1fr !important;
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: var(--ih-admin-overlay-z);
+  background: rgba(28, 27, 39, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-overlay.active {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Open state — dim header + page under overlay; sidebar stays on top */
+body.ih-admin-drawer-open .ih-wrap.ih-figma-nav.is-admin {
+  overflow: hidden;
+}
+
+body.ih-admin-drawer-open .ih-wrap.ih-figma-nav.is-admin .ih-site-nav-header {
+  z-index: calc(var(--ih-admin-header-z) - 400) !important;
+  pointer-events: none;
+}
+
+body.ih-admin-drawer-open .ih-wrap.ih-figma-nav.is-admin .ih-wrap-grid {
+  pointer-events: none;
+}
+
+body.ih-admin-drawer-open .ih-wrap.ih-figma-nav.is-admin .ih-main {
+  pointer-events: none;
+  user-select: none;
+  transition: filter 0.3s ease;
+}
+
+body.ih-admin-drawer-open .ih-wrap.ih-figma-nav.is-admin .ih-overlay.active {
+  pointer-events: auto;
+}
+
+body.ih-admin-drawer-open .ih-wrap.ih-figma-nav.is-admin .ih-sidebar.open {
+  pointer-events: auto !important;
+}
+
+/* Admin layout grid — legacy non-admin keeps 248px column */
+@media (min-width: 769px) {
+  .ih-wrap.ih-figma-nav {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .ih-wrap.ih-figma-nav:not(.is-admin) .ih-wrap-grid {
+    display: grid;
+    grid-template-columns: 248px 1fr;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .ih-wrap.ih-figma-nav:not(.is-admin).sb-collapsed .ih-wrap-grid {
+    grid-template-columns: 0 1fr;
+  }
+}
+
+
+.ih-wrap.ih-figma-nav .ih-sb-collapse {
+  margin-left: auto;
+  border-color: var(--ih-figma-border);
+  color: var(--ih-figma-text-secondary);
+}
+
+.ih-wrap.ih-figma-nav .ih-site-link .ih-ext-ico {
+  margin-left: auto;
+  width: 12px !important;
+  height: 12px !important;
+  opacity: 0.45;
+}
+
+@media (min-width: 961px) {
+  .ih-wrap.sb-collapsed:not(.is-admin) .ih-sidebar {
+    width: 248px !important;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ih-wrap.ih-figma-nav.is-admin .ih-main,
+  .ih-wrap.ih-figma-nav.is-admin .ih-content {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .ih-wrap.ih-figma-nav .ih-sidebar {
+    background: var(--ih-figma-admin-surface);
+    border-right-color: var(--ih-figma-admin-border);
+  }
+
+  .ih-wrap.ih-figma-nav .ih-nav-item {
+    color: var(--ih-figma-admin-text-secondary);
+  }
+
+  .ih-wrap.ih-figma-nav .ih-nav-item.active {
+    background: var(--ih-figma-admin-accent-soft);
+    color: var(--ih-figma-admin-ink);
+  }
+}

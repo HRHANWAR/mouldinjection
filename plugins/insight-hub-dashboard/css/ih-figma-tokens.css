@@ -1,0 +1,64 @@
+/* Figma design tokens — Nexus palette (COLOR-TYPO-CHANGE.md) */
+
+:root {
+  /* Brand */
+  --ih-figma-brand: #5347ce;
+  --ih-figma-accent: #887cfd;
+  --ih-figma-lime: #887cfd;
+  --ih-figma-lime-active: #9d8ffd;
+  --ih-figma-lime-text: #3d2f9e;
+  --ih-figma-on-accent: #ffffff;
+  --ih-figma-ink: #3d2f9e;
+
+  /* User / light shell */
+  --ih-figma-text: #1a1c2b;
+  --ih-figma-text-secondary: #6b7185;
+  --ih-figma-text-muted: #9aa0b4;
+  --ih-figma-nav-inactive: #9aa0b4;
+  --ih-figma-border: #e6e9f2;
+  --ih-figma-canvas: #eceef4;
+  --ih-figma-surface: #ffffff;
+  --ih-figma-surface-2: #f4f6fb;
+  --ih-figma-accent-soft: #ece9ff;
+
+  /* Admin shell — Nexus mid-slate (softened canvas) */
+  --ih-figma-admin-canvas: #242333;
+  --ih-figma-admin-surface: #2c2b3c;
+  --ih-figma-admin-surface-2: #343347;
+  --ih-figma-admin-border: #3f3d52;
+  --ih-figma-admin-text: #f0eff8;
+  --ih-figma-admin-text-secondary: #b4b0cc;
+  --ih-figma-admin-nav-muted: #847fa0;
+  --ih-figma-admin-accent-soft: #322e4e;
+  --ih-figma-admin-ink: #cfc9ff;
+
+  /* Semantic */
+  --ih-figma-success: #16a34a;
+  --ih-figma-success-bg: #dcfce7;
+  --ih-figma-warning: #f59e0b;
+  --ih-figma-warning-bg: #fef9c3;
+  --ih-figma-danger: #ef4444;
+  --ih-figma-info: #4896fe;
+  --ih-figma-info-bg: #eaf4ff;
+  --ih-figma-blue: #4896fe;
+  --ih-figma-danger-bg: #fee2e2;
+
+  /* Typography */
+  --ih-figma-sans: "SF Pro Display", "SF Pro Text", "SF Pro", -apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif;
+  --ih-figma-mono: "IBM Plex Mono", "DM Mono", ui-monospace, monospace;
+
+  /* Nav layout (nodes 30:804, 34:820, 33:781) */
+  --ih-nav-height: 72px;
+  --ih-nav-fab-size: 44px;
+  --ih-nav-header-height: 58px;
+  --ih-nav-radius: 10px;
+  --ih-nav-radius-fab: 14px;
+
+  /* Legacy aliases */
+  --ih-figma-teal: var(--ih-figma-brand);
+  --ih-figma-teal-dark: #3d2f9e;
+  --ih-figma-muted: var(--ih-figma-text-secondary);
+  --ih-figma-radius-lg: 18px;
+  --ih-figma-radius-md: 16px;
+  --ih-figma-radius-sm: var(--ih-nav-radius);
+}

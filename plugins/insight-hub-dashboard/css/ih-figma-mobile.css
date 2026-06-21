@@ -1,0 +1,536 @@
+/* ═══════════════════════════════════════════════════════════════════
+   FIGMA MOBILE — Messages 390px nodes 272:2 and 273:2
+   Converts the React/Tailwind reference into the current WP/PHP classes.
+═══════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  body {
+    background: #fff !important;
+  }
+
+  .ih-shell {
+    background: #fff !important;
+  }
+
+  /* Legacy desktop header hidden via .ih-header--desktop + ih-site-nav.css */
+  .ih-shell:has(.ih-site-nav-header) .ih-header--desktop {
+    display: none !important;
+  }
+
+  .ih-body {
+    background: #fff !important;
+  }
+
+  .ih-main,
+  .ih-content {
+    background: #fff !important;
+    padding: 0 !important;
+  }
+
+  .ih-um-pagehead {
+    height: 68px !important;
+    padding: 16px 18px 12px !important;
+    background: #fff !important;
+    border-bottom: 0 !important;
+    align-items: center !important;
+    flex-shrink: 0 !important;
+    z-index: 300 !important;
+  }
+
+  .ih-um-title {
+    font-size: 19px !important;
+    line-height: 1.05 !important;
+    color: #142f32 !important;
+    letter-spacing: -.02em !important;
+  }
+
+  .ih-um-sub {
+    margin-top: 4px !important;
+    font-size: 11px !important;
+    color: #5c6f66 !important;
+    font-weight: 500 !important;
+  }
+
+  .ih-um-sub-dot {
+    display: none !important;
+  }
+
+  .ih-um-new-msg {
+    width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    border-radius: 12px !important;
+    background: #00191c !important;
+    color: #c8ff00 !important;
+    justify-content: center !important;
+    box-shadow: none !important;
+  }
+
+  .ih-um-new-msg span,
+  .ih-um-new-msg::after {
+    display: none !important;
+  }
+
+  .ih-um-new-msg svg {
+    width: 15px !important;
+    height: 15px !important;
+  }
+
+  .ih-um-kpis {
+    display: none !important;
+  }
+
+  .ih-msg-layout {
+    height: calc(100vh - 68px - 58px - var(--ih-nav-height, 72px)) !important;
+    min-height: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+  }
+
+  /* Figma list view search + chips. */
+  .ih-thread-list {
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+  }
+
+  .ih-thread-search-wrap {
+    padding: 0 18px 12px !important;
+    background: #fff !important;
+    border: 0 !important;
+  }
+
+  .ih-thread-search-wrap input {
+    height: 36px !important;
+    border-radius: 11px !important;
+    border: 1px solid #d7e8de !important;
+    background: #f6f9f7 !important;
+    color: #142f32 !important;
+    font-size: 13px !important;
+    padding: 0 14px 0 36px !important;
+    background-image: radial-gradient(circle at 11px 17px, transparent 5px, transparent 5px) !important;
+  }
+
+  .ih-thread-search-wrap {
+    position: relative !important;
+  }
+
+  .ih-thread-search-wrap::before {
+    content: "";
+    position: absolute;
+    left: 31px;
+    top: 10px;
+    width: 12px;
+    height: 12px;
+    border: 2px solid #142f32;
+    border-radius: 50%;
+    opacity: .9;
+    z-index: 1;
+  }
+
+  .ih-thread-search-wrap::after {
+    content: "";
+    position: absolute;
+    left: 42px;
+    top: 23px;
+    width: 7px;
+    height: 2px;
+    border-radius: 2px;
+    background: #142f32;
+    transform: rotate(45deg);
+    opacity: .9;
+    z-index: 1;
+  }
+
+  .ih-um-chips {
+    gap: 6px !important;
+    padding: 0 18px 14px !important;
+    background: #fff !important;
+    border-bottom: 1px solid #d7e8de !important;
+  }
+
+  .ih-um-chip {
+    height: 30px !important;
+    padding: 0 13px !important;
+    border-radius: 999px !important;
+    border: 1px solid #d7e8de !important;
+    background: #f6f9f7 !important;
+    color: #5c6f66 !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    white-space: nowrap !important;
+  }
+
+  .ih-um-chip.active {
+    background: #00191c !important;
+    border-color: #00191c !important;
+    color: #c8ff00 !important;
+    font-weight: 700 !important;
+  }
+
+  .ih-thread-items {
+    background: #fff !important;
+  }
+
+  .ih-thread-item {
+    min-height: 80px !important;
+    padding: 14px 18px !important;
+    border-bottom: 1px solid #d7e8de !important;
+    border-left: 0 !important;
+    gap: 12px !important;
+    background: #fff !important;
+  }
+
+  .ih-thread-item.active {
+    border-left: 0 !important;
+    background: #fff !important;
+  }
+
+  .ih-t-avatar {
+    width: 46px !important;
+    height: 46px !important;
+    border-radius: 50% !important;
+    background: #00191c !important;
+    color: #c8ff00 !important;
+    font-size: 15.5px !important;
+    font-weight: 800 !important;
+    flex: 0 0 46px !important;
+    position: relative !important;
+  }
+
+  .ih-thread-item[data-unread]:not([data-unread="0"]) .ih-t-avatar::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 2px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #16a34a;
+    border: 2px solid #fff;
+  }
+
+  .ih-t-name {
+    color: #142f32 !important;
+    font-size: 14px !important;
+    font-weight: 800 !important;
+  }
+
+  .ih-t-time {
+    color: #16a34a !important;
+    font-family: "Roboto Mono", ui-monospace, monospace !important;
+    font-size: 10.5px !important;
+    font-weight: 700 !important;
+  }
+
+  .ih-t-context {
+    color: #8fa89d !important;
+    font-size: 9.5px !important;
+    font-weight: 800 !important;
+    letter-spacing: .6px !important;
+    margin-top: 3px !important;
+  }
+
+  .ih-t-last {
+    color: #142f32 !important;
+    font-size: 12px !important;
+    line-height: 1.25 !important;
+    max-width: none !important;
+  }
+
+  .ih-t-unread {
+    width: 18px !important;
+    height: 18px !important;
+    background: #c8ff00 !important;
+    color: #00191c !important;
+    font-family: "Roboto Mono", ui-monospace, monospace !important;
+    font-size: 10px !important;
+    font-weight: 800 !important;
+  }
+
+  /* Figma chat state. */
+  body.ih-mobile-chat-open .ih-site-nav-header,
+  body.ih-mobile-chat-open .ih-um-pagehead {
+    display: none !important;
+  }
+
+  body.ih-mobile-chat-open .ih-msg-layout {
+    height: 100vh !important;
+  }
+
+  .ih-chat-area.visible-mobile {
+    background: #f8fbf9 !important;
+    grid-template-rows: auto auto 1fr auto !important;
+  }
+
+  .ih-chat-header {
+    min-height: 64px !important;
+    padding: 14px 16px 12px !important;
+    border-bottom: 1px solid #d7e8de !important;
+    background: #fff !important;
+    gap: 12px !important;
+  }
+
+  .ih-back-btn {
+    width: 18px !important;
+    height: 38px !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    color: #00191c !important;
+  }
+
+  .ih-ch-avatar {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 50% !important;
+    background: #00191c !important;
+    color: #c8ff00 !important;
+    font-size: 12.5px !important;
+  }
+
+  .ih-ch-name {
+    color: #142f32 !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+  }
+
+  .ih-ch-status {
+    color: #5c6f66 !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+  }
+
+  .ih-ch-status::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #16a34a;
+    margin-right: 5px;
+    vertical-align: 1px;
+  }
+
+  .ih-ch-wa {
+    display: none !important;
+  }
+
+  #ihChatMenuWrap > button {
+    width: 34px !important;
+    height: 34px !important;
+    border: 1px solid #d7e8de !important;
+    background: #f8fbf9 !important;
+    border-radius: 9px !important;
+    color: #5c6f66 !important;
+  }
+
+  #ihChatMenuWrap > button svg {
+    display: none !important;
+  }
+
+  #ihChatMenuWrap > button::after {
+    content: "i";
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .ih-listing-bar {
+    padding: 8px 16px !important;
+    background: #e9f3ed !important;
+    border-bottom: 0 !important;
+    gap: 8px !important;
+  }
+
+  .ih-listing-img {
+    display: none !important;
+  }
+
+  .ih-listing-info {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .ih-listing-info::before {
+    content: "MACHINE";
+    flex: 0 0 auto;
+    background: #00191c;
+    color: #c8ff00;
+    border-radius: 5px;
+    padding: 2px 6px;
+    font-family: "Roboto Mono", ui-monospace, monospace;
+    font-size: 8px;
+    font-weight: 800;
+  }
+
+  .ih-listing-title {
+    color: #142f32 !important;
+    font-size: 11.5px !important;
+    font-weight: 800 !important;
+  }
+
+  .ih-listing-sub,
+  .ih-listing-badge {
+    display: none !important;
+  }
+
+  .ih-listing-bar::after {
+    content: "View ›";
+    color: #16a34a;
+    font-size: 11.5px;
+    font-weight: 800;
+    margin-left: auto;
+  }
+
+  .ih-chat-msgs {
+    background: #f8fbf9 !important;
+    padding: 18px 16px 14px !important;
+    gap: 12px !important;
+  }
+
+  .ih-chat-msgs::before {
+    content: "TODAY · 11 JUN";
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    color: #8fa89d;
+    font-family: "Roboto Mono", ui-monospace, monospace;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    margin-bottom: 2px;
+  }
+
+  .ih-msg-av,
+  .ih-msg-av-admin {
+    display: none !important;
+  }
+
+  .ih-msg-body {
+    max-width: 82% !important;
+  }
+
+  .ih-bubble {
+    padding: 9px 13px !important;
+    border-radius: 14px !important;
+    font-size: 13px !important;
+    line-height: 1.45 !important;
+    box-shadow: none !important;
+  }
+
+  .ih-msg-them .ih-bubble {
+    background: #fff !important;
+    border: 1px solid #d7e8de !important;
+    color: #142f32 !important;
+    border-bottom-left-radius: 4px !important;
+  }
+
+  .ih-msg-me .ih-bubble {
+    background: #00191c !important;
+    color: #fff !important;
+    border-bottom-right-radius: 4px !important;
+  }
+
+  .ih-msg-time {
+    color: #8fa89d !important;
+    opacity: 1 !important;
+    font-family: "Roboto Mono", ui-monospace, monospace !important;
+    font-size: 9px !important;
+  }
+
+  .ih-msg-me .ih-msg-meta {
+    color: #16a34a !important;
+  }
+
+  .ih-chat-input {
+    padding: 10px 14px 20px !important;
+    background: #fff !important;
+    border-top: 1px solid #d7e8de !important;
+  }
+
+  .ih-um-qr {
+    padding: 0 0 8px !important;
+    gap: 6px !important;
+  }
+
+  .ih-um-qr-chip {
+    height: 26px !important;
+    padding: 0 10px !important;
+    border-radius: 999px !important;
+    background: #f8fbf9 !important;
+    border: 1px solid #d7e8de !important;
+    color: #5c6f66 !important;
+    font-size: 10px !important;
+    font-weight: 500 !important;
+  }
+
+  .ih-input-bar {
+    background: transparent !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    gap: 8px !important;
+  }
+
+  .ih-icon-action {
+    width: 38px !important;
+    height: 38px !important;
+    border-radius: 10px !important;
+    border: 1px solid #d7e8de !important;
+    background: #f8fbf9 !important;
+    color: #00191c !important;
+  }
+
+  #ihEmojiBtn {
+    display: none !important;
+  }
+
+  .ih-msg-input {
+    height: 38px !important;
+    border: 1px solid #d7e8de !important;
+    border-radius: 10px !important;
+    background: #f8fbf9 !important;
+    color: #142f32 !important;
+    padding: 0 13px !important;
+    font-size: 13px !important;
+  }
+
+  .ih-msg-input::placeholder {
+    color: #8fa89d !important;
+  }
+
+  .ih-send-btn {
+    width: 38px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    border-radius: 12px !important;
+    background: #00191c !important;
+    color: #c8ff00 !important;
+    justify-content: center !important;
+  }
+
+  .ih-send-btn span {
+    display: none !important;
+  }
+
+  .ih-send-btn svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  .ih-lst-bar {
+    display: none !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .ih-msg-body {
+    max-width: 78% !important;
+  }
+
+  .ih-um-chip {
+    padding: 0 11px !important;
+  }
+}

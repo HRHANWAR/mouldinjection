@@ -1,0 +1,413 @@
+/* ═══════════════════════════════════════════════════════════════════
+   IH MESSAGES CONSOLE — Nexus admin dark theme
+   Loaded on insight-hub_page_ih-messages only.
+═══════════════════════════════════════════════════════════════════ */
+
+#wpcontent {
+  --ihm-canvas: #242333;
+  --ihm-surface: #2c2b3c;
+  --ihm-surface2: #343347;
+  --ihm-border: #3f3d52;
+  --ihm-text: #f0eff8;
+  --ihm-text2: #b4b0cc;
+  --ihm-mut: #847fa0;
+  --ihm-brand: #6f63e8;
+  --ihm-accent: #887cfd;
+  --ihm-accent-soft: #322e4e;
+  --ihm-ink: #cfc9ff;
+  --ihm-on-accent: #ffffff;
+  --ihm-green: #16a34a;
+  --ihm-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --ihm-ui: "SF Pro Display", "Inter", system-ui, sans-serif;
+}
+
+/* ── Page canvas ── */
+#wpcontent .ih-mc-header { display: flex !important; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+#wpcontent .ih-mc-admin-badge { background: var(--ihm-brand); color: var(--ihm-on-accent); font-size: 10px; font-weight: 800; letter-spacing: .08em; padding: 3px 10px; border-radius: 999px; text-transform: uppercase; }
+#wpcontent .ih-mc-live { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: var(--ihm-text2); }
+#wpcontent .ih-mc-live-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; animation: ihMcPulse 2s ease-in-out infinite; }
+@keyframes ihMcPulse { 0%,100% { box-shadow: 0 0 0 3px rgba(34,197,94,.18); } 50% { box-shadow: 0 0 0 6px rgba(34,197,94,.06); } }
+#wpcontent .ih-mc-header-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+#wpcontent .ih-mc-wa-pill { display: inline-flex; align-items: center; gap: 7px; background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; font-size: 12px; font-weight: 700; padding: 7px 14px; border-radius: 999px; }
+#wpcontent .ih-mc-wa-dot { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; }
+#wpcontent .ih-mc-wa-num { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 600; color: #15803d; }
+#wpcontent .ih-mc-export-btn { display: inline-flex; align-items: center; background: var(--ihm-surface); border: 1.5px solid var(--ihm-border); color: var(--ihm-text); font-size: 12.5px; font-weight: 700; padding: 8px 16px; border-radius: 999px; text-decoration: none; transition: .15s; }
+#wpcontent .ih-mc-export-btn:hover { border-color: var(--ihm-accent); background: var(--ihm-surface2); }
+
+/* ── KPI strip (Figma top cards) ── */
+#wpcontent .ih-mc-kpis { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 14px 0 16px; }
+#wpcontent .ih-mc-kpi { background: var(--ihm-surface); border: 1px solid var(--ihm-border); border-radius: 14px; padding: 14px 16px 12px; display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+#wpcontent .ih-mc-kpi-label { font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--ihm-mut); }
+#wpcontent .ih-mc-kpi-num { font-family: var(--ihm-mono); font-size: 26px; font-weight: 700; color: var(--ihm-text); line-height: 1.1; }
+#wpcontent .ih-mc-kpi-bar { display: block; height: 4px; border-radius: 999px; background: var(--ihm-surface2); overflow: hidden; }
+#wpcontent .ih-mc-kpi-bar i { display: block; height: 100%; border-radius: 999px; }
+#wpcontent .ih-mc-kpi-sub { font-size: 11px; color: #9ca3af; font-weight: 500; }
+
+/* Hide the duplicate stat grid (same numbers as the KPI strip) */
+#wpcontent .ih-analytics-summary-grid { display: none !important; }
+
+/* ── 3-pane console grid (rail is moved in by ih-messages-console.js) ── */
+#wpcontent .ih-messages-wrap {
+  display: grid !important;
+  grid-template-columns: 250px minmax(520px, 1fr) 230px !important;
+  gap: 0 !important;
+  background: transparent !important;
+  height: 875px !important;
+  max-height: none !important;
+  min-height: 420px;
+  border: none !important;
+}
+#wpcontent .ih-messages-wrap > .ih-thread-list { border: 1px solid var(--ihm-border) !important; border-right: none !important; border-radius: 16px 0 0 16px !important; background: var(--ihm-surface) !important; }
+#wpcontent .ih-messages-wrap > .ih-chat-area { border: 1px solid var(--ihm-border) !important; border-radius: 0 !important; background: var(--ihm-surface) !important; min-width: 0; }
+#wpcontent .ih-mc-rail { display: flex; flex-direction: column; background: var(--ihm-surface); border: 1px solid var(--ihm-border); border-left: none; border-radius: 0 16px 16px 0; overflow: hidden; min-width: 0; }
+
+/* ── Right rail: CONTACT REQUESTS (Figma 289:2 right column) ── */
+#wpcontent .ih-mc-rail-head { padding: 16px 16px 10px; flex-shrink: 0; }
+#wpcontent .ih-mc-rail-title { display: flex; align-items: center; justify-content: space-between; font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #6b7280; }
+#wpcontent .ih-mc-rail-title b { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; color: #11271d; }
+#wpcontent .ih-mc-rail-segbar { display: flex; height: 6px; border-radius: 999px; overflow: hidden; margin: 10px 0 8px; background: #eef2ef; }
+#wpcontent .ih-mc-rail-segbar i { display: block; height: 100%; }
+#wpcontent .ih-mc-rail-legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 10px; font-weight: 600; color: #6b7280; }
+#wpcontent .ih-mc-rail-legend span { display: inline-flex; align-items: center; gap: 5px; }
+#wpcontent .ih-mc-rail-legend i { width: 7px; height: 7px; border-radius: 50%; }
+#wpcontent .ih-mc-rail-queue-label { padding: 10px 16px 6px; font-size: 9.5px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: #9ca3af; flex-shrink: 0; }
+#wpcontent .ih-mc-rail-list { flex: 1; overflow-y: auto; padding: 0 12px 12px; display: flex; flex-direction: column; gap: 10px; }
+
+/* Queue cards */
+#wpcontent .ih-mc-qcard { border: 1px solid #e5ede8; border-radius: 14px; padding: 12px; background: #fff; }
+#wpcontent .ih-mc-qcard.is-pending { background: #f6fbef; border-color: #dcebc8; }
+#wpcontent .ih-mc-qcard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+#wpcontent .ih-mc-qcard-name { font-size: 12.5px; font-weight: 800; color: #11271d; line-height: 1.3; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+#wpcontent .ih-mc-qchip { flex-shrink: 0; font-size: 9px; font-weight: 800; letter-spacing: .06em; padding: 3px 8px; border-radius: 999px; text-transform: uppercase; }
+#wpcontent .ih-mc-qchip.is-pending { background: #fff8e1; color: #9a6500; }
+#wpcontent .ih-mc-qchip.is-approved { background: #dff6e8; color: #16824d; }
+#wpcontent .ih-mc-qchip.is-rejected { background: #ffebee; color: #c62828; }
+#wpcontent .ih-mc-qchip.is-completed { background: #eaf4ff; color: #1e5f8a; }
+#wpcontent .ih-mc-qcard-meta { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; color: #6b7280; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#wpcontent .ih-mc-qcard-date { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 9.5px; color: #9ca3af; margin-top: 2px; }
+#wpcontent .ih-mc-qcard-actions { display: flex; gap: 6px; margin-top: 10px; }
+#wpcontent .ih-mc-qbtn { border: none; cursor: pointer; font-family: inherit; font-size: 10.5px; font-weight: 800; padding: 6px 12px; border-radius: 999px; transition: .15s; display: inline-flex; align-items: center; gap: 4px; text-decoration: none; }
+#wpcontent .ih-mc-qbtn.is-approve { background: var(--ihm-brand); color: var(--ihm-on-accent); }
+#wpcontent .ih-mc-qbtn.is-approve:hover { background: var(--ihm-accent); }
+#wpcontent .ih-mc-qbtn.is-reject { background: #fff; color: #c62828; border: 1px solid #f3b3bb; }
+#wpcontent .ih-mc-qbtn.is-reject:hover { background: #ffebee; }
+#wpcontent .ih-mc-qbtn.is-view { background: #fff; color: #374151; border: 1px solid #e5e7eb; }
+#wpcontent .ih-mc-qbtn.is-view:hover { border-color: #1f3d2e; color: #1f3d2e; }
+#wpcontent .ih-mc-qbtn[disabled] { opacity: .5; pointer-events: none; }
+#wpcontent .ih-mc-rail-empty { padding: 24px 16px; text-align: center; color: #9ca3af; font-size: 12px; }
+
+/* ── Thread list (Figma left column) ── */
+#wpcontent .ih-thread-item { border-left: 3px solid transparent !important; transition: background .15s, border-color .15s !important; }
+#wpcontent .ih-thread-item:hover { background: var(--ihm-surface2) !important; }
+#wpcontent .ih-thread-item.active { background: var(--ihm-accent-soft) !important; border-left-color: var(--ihm-accent) !important; }
+#wpcontent .ih-thread-item .ih-thread-name { color: var(--ihm-text) !important; font-weight: 700 !important; }
+#wpcontent .ih-thread-item .ih-thread-time { color: var(--ihm-accent) !important; font-family: var(--ihm-mono); font-size: 10.5px !important; }
+#wpcontent .ih-thread-item { padding: 10px 10px !important; }
+#wpcontent .ih-thread-avatar,
+#wpcontent .ih-thread-item img { width: 32px !important; height: 32px !important; }
+#wpcontent .ih-unread-badge { background: var(--ihm-accent-soft) !important; color: var(--ihm-ink) !important; font-weight: 800 !important; }
+#wpcontent .ih-thread-search .ih-search-wrap { background: var(--ihm-surface2) !important; border: 1.5px solid var(--ihm-border) !important; border-radius: 999px !important; }
+#wpcontent .ih-thread-search .ih-search-wrap:focus-within { border-color: var(--ihm-accent) !important; background: var(--ihm-surface) !important; }
+#wpcontent #ihFilterBtn { background: var(--ihm-brand) !important; border-radius: 50% !important; }
+#wpcontent #ihFilterBtn svg { stroke: var(--ihm-on-accent) !important; }
+
+/* ── Chat area (Figma middle column) ── */
+#wpcontent .ih-chat-header { background: var(--ihm-surface) !important; border-bottom: 1px solid var(--ihm-border) !important; }
+#wpcontent .ih-chat-name { color: var(--ihm-text) !important; font-weight: 800 !important; }
+#wpcontent .ih-user-details-btn { background: #f0fdf4 !important; border: 1px solid #bbf7d0 !important; color: #166534 !important; border-radius: 999px !important; font-weight: 700 !important; }
+#wpcontent .ih-listing-context { background: #f7faf8 !important; border-bottom: 1px solid #e5ede8 !important; }
+#wpcontent .ih-context-title { color: #11271d !important; font-weight: 700 !important; }
+#wpcontent .ih-status-pending { background: #fff8e1 !important; border: 1px solid #f5d77a !important; color: #9a6500 !important; border-radius: 999px !important; font-weight: 700 !important; }
+#wpcontent .ih-status-approve { background: #dff6e8 !important; border: 1px solid #9be3bb !important; color: #16824d !important; border-radius: 999px !important; font-weight: 700 !important; }
+#wpcontent .ih-status-reject { background: #ffebee !important; border: 1px solid #f3b3bb !important; color: #c62828 !important; border-radius: 999px !important; font-weight: 700 !important; }
+#wpcontent .ih-status-completed { background: #eaf4ff !important; border: 1px solid #a8cdf0 !important; color: #1e5f8a !important; border-radius: 999px !important; font-weight: 700 !important; }
+
+/* Bubbles */
+#wpcontent #chatMessages { background: var(--ihm-canvas) !important; }
+#wpcontent #chatMessages .ih-msg-them .ih-msg-bubble { background: var(--ihm-surface2) !important; border: 1px solid var(--ihm-border) !important; color: var(--ihm-text) !important; border-radius: 16px 16px 16px 4px !important; }
+#wpcontent #chatMessages .ih-msg-me .ih-msg-bubble { background: var(--ihm-brand) !important; color: var(--ihm-on-accent) !important; border: none !important; border-radius: 16px 16px 4px 16px !important; }
+#wpcontent #chatMessages .ih-msg-me .ih-msg-time { color: rgba(255,255,255,.65) !important; }
+#wpcontent #chatMessages .ih-msg-me .ih-tick-read { color: var(--ihm-accent) !important; }
+#wpcontent .ih-dp-admin { background: var(--ihm-brand) !important; color: var(--ihm-on-accent) !important; }
+#wpcontent .ih-chat-input-wrap { background: var(--ihm-surface) !important; border-top: 1px solid var(--ihm-border) !important; }
+#wpcontent .ih-chat-input-bar { background: var(--ihm-surface2) !important; border: 1.5px solid var(--ihm-border) !important; border-radius: 999px !important; }
+#wpcontent .ih-chat-input-bar:focus-within { border-color: var(--ihm-accent) !important; background: var(--ihm-surface) !important; box-shadow: 0 0 0 3px rgba(136,124,253,.15) !important; }
+#wpcontent #sendMsg { background: var(--ihm-brand) !important; border-radius: 50% !important; width: 38px !important; height: 38px !important; }
+#wpcontent #sendMsg svg { stroke: var(--ihm-on-accent) !important; }
+#wpcontent #sendMsg:hover { background: var(--ihm-accent) !important; }
+#wpcontent #ihMobileTabs .ih-tab-active { background: var(--ihm-brand) !important; color: var(--ihm-on-accent) !important; }
+
+/* ═══════════════ RESPONSIVE ═══════════════ */
+
+/* Tablet — rail drops below the console */
+@media (max-width: 1280px) {
+  #wpcontent .ih-messages-wrap { grid-template-columns: minmax(250px, 290px) minmax(0, 1fr) !important; }
+  #wpcontent .ih-messages-wrap > .ih-chat-area { border-radius: 0 16px 16px 0 !important; }
+  #wpcontent .ih-mc-rail { grid-column: 1 / -1; border: 1px solid #e5ede8; border-radius: 16px; margin-top: 12px; max-height: 360px; }
+}
+
+/* Mobile — single column, tabs control panels, rail stacks */
+@media (max-width: 900px) {
+  #wpcontent .ih-mc-kpis { grid-template-columns: repeat(3, 1fr); }
+  #wpcontent .ih-messages-wrap { display: flex !important; flex-direction: column; height: auto !important; }
+  #wpcontent .ih-messages-wrap > .ih-thread-list,
+  #wpcontent .ih-messages-wrap > .ih-chat-area { border-radius: 16px !important; border: 1px solid #e5ede8 !important; height: calc(100vh - 250px); min-height: 380px; }
+  #wpcontent .ih-messages-wrap > .ih-panel-hidden { display: none !important; }
+  #wpcontent .ih-mc-rail { margin-top: 12px; max-height: 320px; }
+}
+
+@media (max-width: 768px) {
+  #wpcontent .ih-mc-kpis { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  #wpcontent .ih-mc-kpi-num { font-size: 21px; }
+  #wpcontent .ih-mc-header-actions { width: 100%; justify-content: flex-start; }
+  #wpcontent #chatMessages .ih-msg-inner { max-width: 82% !important; }
+}
+
+/* ── Chat area — reduce whitespace, tighter bubbles ── */
+#wpcontent .ih-chat-area { min-width: 0; display: flex; flex-direction: column; }
+#wpcontent #chatMessages {
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: none !important;
+  padding: 12px 14px !important;
+}
+#wpcontent #chatMessages .ih-msg-inner { max-width: 58% !important; }
+#wpcontent .ih-chat-input-wrap { padding: 10px 12px !important; flex-shrink: 0; }
+#wpcontent .ih-listing-context { padding: 8px 12px !important; }
+#wpcontent .ih-chat-header { padding: 10px 12px !important; min-height: auto !important; }
+
+/* ── Condensed analytics row below console ── */
+#wpcontent .ih-analytics-redesign-row {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.4fr) minmax(220px, 280px) !important;
+  gap: 12px !important;
+  margin-top: 12px !important;
+}
+#wpcontent .ih-analytics-redesign-row .ih-card {
+  border-radius: 16px !important;
+  border: 1px solid #e5ede8 !important;
+  box-shadow: 0 6px 18px rgba(30, 95, 138, .05) !important;
+}
+#wpcontent .ih-analytics-redesign-row .ih-card-head {
+  padding: 12px 14px 6px !important;
+}
+#wpcontent .ih-analytics-redesign-row .ih-chart-main > div[style*="height"] {
+  height: 140px !important;
+}
+#wpcontent .ih-success-health-card { padding-bottom: 8px !important; }
+#wpcontent .ih-success-meter-wrap { padding: 0 14px !important; }
+#wpcontent .ih-success-meter { width: 100px !important; height: 100px !important; }
+#wpcontent .ih-success-breakdown {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 6px !important;
+  padding: 8px 14px 12px !important;
+}
+#wpcontent .ih-success-breakdown div {
+  text-align: center;
+  padding: 6px 4px;
+  border-radius: 10px;
+  background: #f7faf8;
+  font-size: 10px;
+}
+
+/* ── Extra infograph beside Message Request Analytics ── */
+#wpcontent .ih-chart-main {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 12px;
+  align-items: stretch;
+}
+#wpcontent .ih-chart-main .ih-card-head {
+  grid-column: 1 / -1;
+}
+#wpcontent .ih-chart-main > div[style*="height"] {
+  min-height: 175px;
+}
+#wpcontent .ih-live-flow {
+  border: 1px solid #e5ede8;
+  border-radius: 16px;
+  background: radial-gradient(circle at top right, rgba(200,232,142,.26), transparent 35%), #f7faf8;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+}
+#wpcontent .ih-live-flow-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+#wpcontent .ih-live-flow-head span {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+#wpcontent .ih-live-flow-head strong {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  color: #11271d;
+}
+#wpcontent .ih-live-flow-grid {
+  display: grid;
+  grid-template-columns: 1fr 28px 1fr 28px 1fr;
+  gap: 6px;
+  align-items: center;
+}
+#wpcontent .ih-flow-node {
+  min-width: 0;
+  border-radius: 14px;
+  padding: 10px 8px;
+  background: #fff;
+  border: 1px solid #e5ede8;
+  text-align: center;
+}
+#wpcontent .ih-flow-node span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+#wpcontent .ih-flow-node strong {
+  display: block;
+  font-size: 22px;
+  line-height: 1;
+  color: #11271d;
+}
+#wpcontent .ih-flow-node em {
+  display: block;
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 700;
+  color: #6b7280;
+  margin-top: 4px;
+}
+#wpcontent .ih-flow-node.is-pending span { background: #fff8e1; color: #9a6500; }
+#wpcontent .ih-flow-node.is-approved span { background: #dff6e8; color: #16824d; }
+#wpcontent .ih-flow-node.is-completed span { background: #eaf4ff; color: #1e5f8a; }
+#wpcontent .ih-flow-line {
+  height: 5px;
+  border-radius: 999px;
+  background: #e5ede8;
+  overflow: hidden;
+}
+#wpcontent .ih-flow-line i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #22c55e, #887cfd);
+}
+#wpcontent .ih-live-flow-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+#wpcontent .ih-live-flow-foot span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid #e5ede8;
+  color: #6b7280;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 8px;
+}
+#wpcontent .ih-live-flow-foot i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+#wpcontent .ih-live-flow-foot i.is-approved { background: #22c55e; }
+#wpcontent .ih-live-flow-foot i.is-rejected { background: #ef4444; }
+#wpcontent .ih-live-flow-foot i.is-completed { background: #3b82f6; }
+
+/* ── Cleaner conversation spacing ── */
+#wpcontent .ih-chat-header {
+  padding: 12px 14px !important;
+}
+#wpcontent .ih-listing-context {
+  padding: 10px 14px !important;
+}
+#wpcontent #chatMessages {
+  padding: 18px 18px 14px !important;
+}
+#wpcontent #chatMessages .ih-msg {
+  margin-bottom: 14px !important;
+}
+#wpcontent #chatMessages .ih-msg-bubble {
+  padding: 11px 14px !important;
+  line-height: 1.45 !important;
+  box-shadow: 0 8px 22px rgba(15, 56, 45, .06);
+}
+#wpcontent #chatMessages .ih-msg-inner {
+  max-width: 64% !important;
+}
+#wpcontent .ih-chat-input-wrap {
+  padding: 12px 14px !important;
+}
+
+/* ── Request table avatars (admin messages) ── */
+#wpcontent .ih-req-user-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  max-width: 200px;
+}
+#wpcontent .ih-req-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid #d9e7f7;
+  background: var(--ihm-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#wpcontent .ih-req-avatar img { width: 100%; height: 100%; object-fit: cover; }
+#wpcontent .ih-req-avatar i {
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ihm-accent);
+}
+#wpcontent .ih-req-name-text {
+  font-weight: 600;
+  color: #11271d;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) {
+  #wpcontent .ih-analytics-redesign-row { grid-template-columns: 1fr !important; }
+  #wpcontent .ih-chart-main { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 900px) {
+  #wpcontent .ih-messages-wrap {
+    max-height: none !important;
+    height: auto !important;
+  }
+  #wpcontent .ih-messages-wrap > .ih-thread-list,
+  #wpcontent .ih-messages-wrap > .ih-chat-area {
+    height: min(480px, calc(100vh - 280px)) !important;
+    min-height: 360px !important;
+  }
+}

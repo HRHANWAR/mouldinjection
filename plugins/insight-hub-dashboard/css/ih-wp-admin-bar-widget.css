@@ -1,0 +1,131 @@
+/* Floating WP admin bar — hidden by default; on-demand widget */
+body.ih-site-nav-admin {
+  --ih-wp-admin-bar: 0px !important;
+}
+
+body.ih-site-nav-admin html.wp-toolbar,
+html.wp-toolbar body.ih-site-nav-admin {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+body.ih-site-nav-admin #wpadminbar {
+  display: none !important;
+  position: fixed !important;
+  top: 10px !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: auto !important;
+  width: min(920px, calc(100vw - 24px)) !important;
+  min-width: 0 !important;
+  max-width: calc(100vw - 24px) !important;
+  transform: translateX(-50%) translateY(-12px) !important;
+  border-radius: 14px !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  transition:
+    opacity 0.28s ease,
+    transform 0.32s cubic-bezier(0.34, 1.2, 0.64, 1) !important;
+  z-index: 100200 !important;
+  overflow: hidden !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.28) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+body.ih-site-nav-admin.ih-wp-admin-bar-visible #wpadminbar {
+  display: block !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  transform: translateX(-50%) translateY(0) !important;
+}
+
+/* Trigger widget — bottom-left so it does not cover the header logo */
+.ih-wp-admin-bar-tab {
+  position: fixed;
+  bottom: 14px;
+  left: 12px;
+  top: auto;
+  z-index: 100190;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  color: #1d2327;
+  font-family: var(--ih-figma-sans, system-ui, sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 8px 28px rgba(15, 30, 24, 0.14);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ih-wp-admin-bar-tab:hover,
+.ih-wp-admin-bar-tab:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px rgba(15, 30, 24, 0.18);
+  background: rgba(255, 255, 255, 0.88);
+  outline: none;
+}
+
+.ih-wp-admin-bar-tab:focus-visible {
+  box-shadow: 0 12px 32px rgba(15, 30, 24, 0.18), 0 0 0 3px rgba(200, 245, 66, 0.45);
+}
+
+.ih-wp-admin-bar-tab.is-active {
+  background: #1d2327;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.ih-wp-admin-bar-tab__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(29, 35, 39, 0.08);
+}
+
+.ih-wp-admin-bar-tab.is-active .ih-wp-admin-bar-tab__icon {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+body.ih-wp-admin-bar-visible .ih-wp-admin-bar-tab {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+}
+
+@media (max-width: 782px) {
+  body.ih-site-nav-admin #wpadminbar {
+    width: calc(100vw - 16px) !important;
+    top: 8px !important;
+    border-radius: 12px !important;
+  }
+
+  .ih-wp-admin-bar-tab {
+    bottom: calc(var(--ih-nav-height, 56px) + 12px);
+    left: 8px;
+    padding: 6px 10px;
+    top: auto;
+  }
+
+  .ih-wp-admin-bar-tab__text {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.ih-site-nav-admin #wpadminbar,
+  .ih-wp-admin-bar-tab {
+    transition: opacity 0.15s ease;
+  }
+}

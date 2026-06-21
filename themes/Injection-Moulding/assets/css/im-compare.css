@@ -1,0 +1,135 @@
+/* =====================================================================
+   Compare results page — scoped under .imc-page (no global CSS bleed).
+   Mirrors the browse/detail palette. Desktop: a sticky-header spec table
+   with a frozen first (label) column and horizontal scroll when columns
+   overflow. Mobile (≤720px): the table reflows into stacked per-listing
+   cards using data-label pseudo-rows.
+   ===================================================================== */
+.imc-page {
+  --imc-brand: #5347ce;
+  --imc-ink: #1a1c2b;
+  --imc-text-2: #6b7185;
+  --imc-muted: #9aa0b4;
+  --imc-border: #e6e9f2;
+  --imc-surface: #ffffff;
+  --imc-surface-2: #f4f6fb;
+  --imc-success: #16a34a;
+  --imc-success-bg: #dcfce7;
+  --imc-warning: #f59e0b;
+  --imc-radius: 16px;
+
+  font-family: 'Montserrat', -apple-system, system-ui, sans-serif;
+  color: var(--imc-ink);
+  background: var(--imc-surface-2);
+  padding: calc(var(--im-header-h, 140px) + 8px) 0 64px;
+  min-height: 60vh;
+  box-sizing: border-box;
+}
+.imc-page *, .imc-page *::before, .imc-page *::after { box-sizing: border-box; }
+
+.imc-shell { width: min(1200px, 92vw); margin: 0 auto; }
+
+/* Breadcrumb */
+.imc-crumb { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--imc-text-2); margin-bottom: 18px; flex-wrap: wrap; }
+.imc-crumb a { color: var(--imc-text-2); text-decoration: none; }
+.imc-crumb a:hover { color: var(--imc-brand); }
+.imc-crumb .sep { color: var(--imc-muted); }
+.imc-crumb [aria-current="page"] { color: var(--imc-ink); font-weight: 600; }
+
+/* Hero */
+.imc-hero { margin-bottom: 22px; }
+.imc-hero h1 { font-size: clamp(24px, 3vw, 34px); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 6px; }
+.imc-hero p { font-size: 15px; color: var(--imc-text-2); margin: 0 0 12px; max-width: 60ch; }
+.imc-back { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: var(--imc-brand); text-decoration: none; }
+.imc-back svg { width: 16px; height: 16px; }
+.imc-back:hover { text-decoration: underline; }
+
+/* Empty state */
+.imc-empty {
+  display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center;
+  background: var(--imc-surface); border: 1px solid var(--imc-border); border-radius: var(--imc-radius);
+  padding: 56px 24px; color: var(--imc-text-2);
+}
+.imc-empty__icon { font-size: 34px; }
+.imc-empty strong { color: var(--imc-ink); font-size: 18px; }
+.imc-empty .imc-btn { margin-top: 10px; }
+
+/* Buttons */
+.imc-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  font-size: 13px; font-weight: 700; border-radius: 999px; padding: 10px 18px;
+  border: 1px solid transparent; cursor: pointer; text-decoration: none; line-height: 1;
+}
+.imc-btn--primary { background: var(--imc-brand); color: #fff; }
+.imc-btn--primary:hover { filter: brightness(1.06); }
+
+/* Table wrapper — horizontal scroll on overflow */
+.imc-tablewrap {
+  background: var(--imc-surface); border: 1px solid var(--imc-border);
+  border-radius: var(--imc-radius); overflow-x: auto; -webkit-overflow-scrolling: touch;
+}
+.imc-tablewrap:focus-visible { outline: 2px solid var(--imc-brand); outline-offset: 2px; }
+
+.imc-table { width: 100%; border-collapse: collapse; min-width: 560px; }
+
+/* Header row with the listing cards */
+.imc-th { text-align: left; vertical-align: bottom; padding: 16px; background: var(--imc-surface); border-bottom: 1px solid var(--imc-border); }
+.imc-th--spec, .imc-rowlabel {
+  position: sticky; left: 0; z-index: 2; background: var(--imc-surface);
+  min-width: 150px; width: 180px; font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.04em; color: var(--imc-muted);
+}
+.imc-th--spec { vertical-align: bottom; }
+.imc-col { min-width: 220px; }
+
+/* Listing card in the header */
+.imc-card { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; }
+.imc-card__media {
+  position: relative; width: 100%; aspect-ratio: 16/10; border-radius: 12px; overflow: hidden;
+  background: linear-gradient(135deg, #5347ce 0%, #887cfd 100%);
+}
+.imc-page--tools .imc-card__media { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); }
+.imc-card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.imc-card__glyph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.85); }
+.imc-card__glyph svg { width: 34px; height: 34px; }
+.imc-card__remove {
+  position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.92);
+  color: #c0392b; border: none; text-decoration: none;
+}
+.imc-card__remove svg { width: 15px; height: 15px; }
+.imc-card__remove:hover { background: #fff; }
+.imc-card__ref { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 600; color: var(--imc-brand); }
+.imc-card__title { font-size: 14px; font-weight: 700; line-height: 1.3; color: var(--imc-ink); }
+.imc-card__cta { margin-top: 4px; width: 100%; }
+
+/* Status pill */
+.imc-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--imc-success-bg); color: var(--imc-success); }
+.imc-pill .dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.imc-pill--pending { background: #fef3c7; color: #b45309; }
+.imc-pill--expired { background: #fee2e2; color: #b91c1c; }
+
+/* Spec rows */
+.imc-row:nth-child(even) td, .imc-row:nth-child(even) .imc-rowlabel { background: var(--imc-surface-2); }
+.imc-rowlabel { padding: 14px 16px; text-transform: none; font-size: 13px; color: var(--imc-text-2); }
+.imc-cell { padding: 14px 16px; font-size: 14px; font-weight: 600; color: var(--imc-ink); border-bottom: 1px solid var(--imc-border); vertical-align: top; }
+.imc-empty-cell { color: var(--imc-muted); font-weight: 500; }
+
+/* Tag lists (materials, certs, compliance) */
+.imc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.imc-tag { font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: #ece9ff; color: var(--imc-brand); }
+
+.imc-foot { font-size: 12px; color: var(--imc-muted); margin: 14px 2px 0; }
+
+/* ── Mobile: keep the matrix intact but compact; the frozen Spec column +
+   horizontal scroll let users swipe between listing columns. The wrapper
+   gets a subtle edge-fade hint so it's clear there's more to the right. ── */
+@media (max-width: 720px) {
+  .imc-shell { width: 94vw; }
+  .imc-table { min-width: 480px; }
+  .imc-th, .imc-cell, .imc-rowlabel { padding: 10px; }
+  .imc-th--spec, .imc-rowlabel { min-width: 104px; width: 110px; font-size: 11px; }
+  .imc-col { min-width: 168px; }
+  .imc-card__title { font-size: 13px; }
+  .imc-cell { font-size: 13px; }
+}

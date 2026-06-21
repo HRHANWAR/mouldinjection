@@ -1,0 +1,252 @@
+/* ═══════════════════════════════════════════════════════════════════
+   IH DYNAMIC MENU — shared admin + user dashboard navigation
+═══════════════════════════════════════════════════════════════════ */
+
+body[class*="ih-"] #adminmenuback,
+body[class*="ih-"] #adminmenuwrap {
+  background: #0f2e21 !important;
+}
+
+body[class*="ih-"] #adminmenu {
+  background: #0f2e21 !important;
+  padding: 8px 6px !important;
+}
+
+body[class*="ih-"] #adminmenu li.menu-top {
+  margin: 3px 0 !important;
+}
+
+body[class*="ih-"] #adminmenu li.menu-top > a {
+  border-radius: 12px !important;
+  transition: background .16s ease, color .16s ease, transform .16s ease !important;
+}
+
+body[class*="ih-"] #adminmenu li.menu-top:hover > a,
+body[class*="ih-"] #adminmenu li.wp-has-current-submenu > a.wp-has-current-submenu,
+body[class*="ih-"] #adminmenu li.current > a.menu-top {
+  background: #1f4b37 !important;
+  color: #c8e88e !important;
+}
+
+body[class*="ih-"] #adminmenu li.menu-top:hover > a {
+  transform: translateX(2px);
+}
+
+body[class*="ih-"] #adminmenu .wp-menu-image:before {
+  color: #9cc5ae !important;
+}
+
+body[class*="ih-"] #adminmenu li.wp-has-current-submenu .wp-menu-image:before,
+body[class*="ih-"] #adminmenu li.current .wp-menu-image:before,
+body[class*="ih-"] #adminmenu li:hover .wp-menu-image:before {
+  color: #c8e88e !important;
+}
+
+body[class*="ih-"] #adminmenu .wp-submenu {
+  border-radius: 14px !important;
+  overflow: hidden;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, .2) !important;
+}
+
+body[class*="ih-"].ih-site-nav-active #collapse-button,
+body[class*="ih-"].ih-site-nav-admin #collapse-button,
+body.ih-site-nav-admin:has(.ih-wrap.ih-figma-nav) #collapse-button {
+  display: none !important;
+}
+
+body[class*="ih-"] #collapse-button {
+  color: #9cc5ae !important;
+}
+
+/* Custom dashboard sidebars (user dashboard + user messages). */
+.ih-wrap:not(.ih-figma-nav) .ih-sidebar {
+  background:
+    radial-gradient(circle at top left, rgba(200,232,142,.18), transparent 32%),
+    #ffffff !important;
+  border-right: 1px solid #dfeae4 !important;
+  box-shadow: 10px 0 30px rgba(15, 56, 45, .04);
+}
+
+.ih-wrap:not(.ih-figma-nav) .ih-sb-brand {
+  border-radius: 16px;
+  background: linear-gradient(135deg, #f7fbf8, #ffffff);
+  border: 1px solid #e5ede8;
+  box-shadow: 0 8px 20px rgba(15, 56, 45, .05);
+}
+
+.ih-wrap:not(.ih-figma-nav) .ih-nav-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.ih-wrap:not(.ih-figma-nav) .ih-nav-item::before {
+  content: "";
+  position: absolute;
+  inset: 8px auto 8px 0;
+  width: 3px;
+  border-radius: 999px;
+  background: transparent;
+  transition: background .18s ease;
+}
+
+.ih-wrap:not(.ih-figma-nav) .ih-nav-item:hover {
+  background: #f0f7f3 !important;
+  color: #142f32 !important;
+  transform: translateX(1px);
+}
+
+.ih-wrap:not(.ih-figma-nav) .ih-nav-item.active,
+.ih-wrap:not(.ih-figma-nav) .ih-sidebar .ih-nav-item.active {
+  background: #0f2e21 !important;
+  color: #c8e88e !important;
+  box-shadow: 0 10px 24px rgba(15, 46, 33, .18);
+}
+
+.ih-wrap:not(.ih-figma-nav) .ih-nav-item.active::before {
+  background: #c8e88e;
+}
+
+.ih-wrap:not(.ih-figma-nav) .ih-nav-item.active img,
+.ih-wrap:not(.ih-figma-nav) .ih-nav-item.active svg {
+  filter: none;
+}
+
+.ih-wrap:not(.ih-figma-nav) .ih-sidebar .ih-nav-label {
+  font-weight: 700 !important;
+}
+
+.ih-wrap:not(.ih-figma-nav) .ih-sidebar .ih-nav-item.active .ih-nav-label {
+  color: #c8e88e !important;
+}
+
+.ih-profile-dropdown .ih-dropdown-menu {
+  border-radius: 18px !important;
+  box-shadow: 0 18px 44px rgba(15, 56, 45, .12) !important;
+}
+
+/* Floating mobile menu trigger — not used when Figma shell is active */
+.ih-mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  left: 14px;
+  bottom: 16px;
+  z-index: 100000;
+  width: 46px;
+  height: 46px;
+  border: 0;
+  border-radius: 16px;
+  background: #0f2e21;
+  color: #c8e88e;
+  box-shadow: 0 14px 34px rgba(15, 46, 33, .28);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ih-mobile-menu-toggle span,
+.ih-mobile-menu-toggle span:before,
+.ih-mobile-menu-toggle span:after {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  position: relative;
+}
+
+.ih-mobile-menu-toggle span:before {
+  position: absolute;
+  top: -6px;
+}
+
+.ih-mobile-menu-toggle span:after {
+  position: absolute;
+  top: 6px;
+}
+
+body.ih-site-nav-active .ih-mobile-menu-toggle,
+body.ih-has-site-nav .ih-mobile-menu-toggle,
+body.ih-site-nav-admin .ih-mobile-menu-toggle,
+body:has(.ih-wrap.ih-figma-nav) .ih-mobile-menu-toggle,
+body:has(#ihSiteNavLogoBtn) .ih-mobile-menu-toggle,
+body:has(#ihNavClipTab) .ih-mobile-menu-toggle,
+body:has(#ihSiteNavBellBtn) .ih-mobile-menu-toggle {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+@media (max-width: 1024px) {
+  body:not(:has(.ih-wrap.ih-figma-nav)):not(:has(.ih-shell)) .ih-mobile-menu-toggle {
+    display: flex;
+  }
+
+  /* Figma admin shell — never use WP left admin menu drawer */
+  body.ih-site-nav-admin:has(.ih-wrap.ih-figma-nav) #adminmenuwrap,
+  body.ih-site-nav-admin:has(.ih-wrap.ih-figma-nav) #adminmenuback {
+    display: none !important;
+    transform: none !important;
+  }
+
+  body[class*="ih-"]:not(:has(.ih-wrap.ih-figma-nav)) #adminmenuwrap,
+  body[class*="ih-"]:not(:has(.ih-wrap.ih-figma-nav)) #adminmenuback {
+    transform: translateX(-105%);
+    transition: transform .22s ease;
+  }
+
+  body[class*="ih-"].ih-admin-menu-open:not(:has(.ih-wrap.ih-figma-nav)) #adminmenuwrap,
+  body[class*="ih-"].ih-admin-menu-open:not(:has(.ih-wrap.ih-figma-nav)) #adminmenuback {
+    transform: translateX(0);
+  }
+
+  body[class*="ih-"].ih-admin-menu-open:not(.ih-site-nav-active):not(:has(.ih-wrap.ih-figma-nav)):after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    background: rgba(15, 23, 42, .28);
+  }
+
+  body[class*="ih-"] #adminmenuwrap {
+    z-index: 9999;
+  }
+
+  /* Legacy shells only — ih-shell + ih-figma-nav use dedicated mobile CSS/JS */
+  .ih-wrap:not(.ih-figma-nav):not(.ih-shell) .ih-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: min(82vw, 300px) !important;
+    transform: translateX(-110%) !important;
+    transition: transform .24s ease !important;
+    z-index: 100001 !important;
+    overflow-y: auto !important;
+    align-items: flex-start !important;
+    padding-top: 14px !important;
+  }
+
+  .ih-wrap:not(.ih-figma-nav):not(.ih-shell) .ih-sidebar.mobile-open {
+    transform: translateX(0) !important;
+  }
+
+  .ih-wrap:not(.ih-figma-nav):not(.ih-shell) .ih-sidebar .ih-nav-item {
+    width: calc(100% - 20px) !important;
+    justify-content: flex-start !important;
+    padding: 0 14px !important;
+  }
+
+  .ih-wrap:not(.ih-figma-nav):not(.ih-shell) .ih-sidebar .ih-nav-label {
+    opacity: 1 !important;
+    width: auto !important;
+  }
+
+  body.ih-user-menu-open:not(.ih-user-portal):before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 100000;
+    background: rgba(15, 23, 42, .30);
+  }
+}

@@ -1,0 +1,382 @@
+/* Smart glass menu — pop-out sidebar + edge widget (mobile + desktop) */
+.ih-wrap.ih-figma-nav.is-admin:has(#ihNavClipTab) {
+  --ih-smart-menu-width: 280px;
+  --ih-smart-menu-gap: 14px;
+  --ih-smart-menu-radius: 22px;
+  --ih-wp-admin-bar: 0px;
+}
+
+body.admin-bar .ih-wrap.ih-figma-nav.is-admin:has(#ihNavClipTab) {
+  --ih-wp-admin-bar: 32px;
+}
+
+@media screen and (max-width: 782px) {
+  body.admin-bar .ih-wrap.ih-figma-nav.is-admin:has(#ihNavClipTab) {
+    --ih-wp-admin-bar: 46px;
+  }
+}
+
+/* ── Smart menu tab widget ── */
+.ih-smart-menu-tab {
+  position: fixed;
+  left: var(--ih-smart-menu-gap);
+  top: 50%;
+  z-index: calc(var(--ih-admin-sidebar-z, 10100) + 20);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transform: translateY(-50%) translateX(calc(-100% + 22px));
+  transition:
+    transform 0.42s cubic-bezier(0.34, 1.3, 0.64, 1),
+    opacity 0.28s ease;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: auto !important;
+}
+
+.ih-smart-menu-tab__glow {
+  position: absolute;
+  inset: -8px -4px -8px -12px;
+  border-radius: 20px;
+  background: radial-gradient(circle at 30% 50%, rgba(136, 124, 253, 0.35), transparent 68%);
+  opacity: 0.7;
+  pointer-events: none;
+  filter: blur(8px);
+  transition: opacity 0.3s ease;
+}
+
+.ih-smart-menu-tab__panel {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(18px) saturate(1.45);
+  -webkit-backdrop-filter: blur(18px) saturate(1.45);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow:
+    0 10px 36px rgba(15, 30, 24, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  color: var(--ih-figma-brand);
+  transition: transform 0.32s cubic-bezier(0.34, 1.35, 0.64, 1), box-shadow 0.28s ease;
+}
+
+.ih-smart-menu-tab__icon {
+  position: absolute;
+  transition: opacity 0.22s ease, transform 0.28s ease;
+}
+
+.ih-smart-menu-tab__icon--close {
+  opacity: 0;
+  transform: scale(0.75) rotate(-10deg);
+}
+
+.ih-smart-menu-tab.is-open .ih-smart-menu-tab__icon--open {
+  opacity: 0;
+  transform: scale(0.8) rotate(8deg);
+}
+
+.ih-smart-menu-tab.is-open .ih-smart-menu-tab__icon--close {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+.ih-smart-menu-tab__label {
+  font-family: var(--ih-figma-sans, system-ui, sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ih-figma-brand) 72%, transparent);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.ih-smart-menu-tab:hover,
+.ih-smart-menu-tab:focus-visible {
+  transform: translateY(-50%) translateX(0);
+  animation: none;
+  outline: none;
+}
+
+.ih-smart-menu-tab:hover .ih-smart-menu-tab__panel {
+  transform: scale(1.06);
+  box-shadow:
+    0 14px 44px rgba(15, 30, 24, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.ih-smart-menu-tab:hover .ih-smart-menu-tab__label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ih-smart-menu-tab:focus-visible .ih-smart-menu-tab__panel {
+  box-shadow:
+    0 14px 44px rgba(15, 30, 24, 0.2),
+    0 0 0 3px rgba(200, 245, 66, 0.45);
+}
+
+body.ih-admin-drawer-open .ih-smart-menu-tab {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) scale(0.85);
+}
+
+/* Attention shake — every 5s via JS class */
+.ih-smart-menu-tab.ih-smart-menu-tab--shake .ih-smart-menu-tab__panel {
+  animation: ih-smart-panel-shake 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+.ih-smart-menu-tab.ih-smart-menu-tab--shake .ih-smart-menu-tab__glow {
+  animation: ih-smart-glow-pulse 0.55s ease;
+}
+
+@keyframes ih-smart-panel-shake {
+  0%, 100% { transform: translateX(0) rotate(0deg); }
+  12% { transform: translateX(3px) rotate(4deg); }
+  24% { transform: translateX(-3px) rotate(-4deg); }
+  36% { transform: translateX(2px) rotate(3deg); }
+  48% { transform: translateX(-2px) rotate(-3deg); }
+  60% { transform: translateX(1px) rotate(2deg); }
+  72% { transform: translateX(-1px) rotate(-1deg); }
+}
+
+@keyframes ih-smart-glow-pulse {
+  0%, 100% { opacity: 0.7; }
+  40% { opacity: 1; }
+}
+
+/* ── Glass pop-out sidebar ── */
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar--smart-menu {
+  position: fixed !important;
+  top: calc(var(--ih-smart-menu-gap) + var(--ih-wp-admin-bar, 0px)) !important;
+  left: var(--ih-smart-menu-gap) !important;
+  height: calc(100dvh - (var(--ih-smart-menu-gap) * 2) - var(--ih-wp-admin-bar, 0px)) !important;
+  width: var(--ih-smart-menu-width) !important;
+  max-width: min(var(--ih-smart-menu-width), calc(100vw - (var(--ih-smart-menu-gap) * 2))) !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  border-radius: var(--ih-smart-menu-radius);
+  z-index: var(--ih-admin-sidebar-z) !important;
+  transform: translate3d(calc(-100% - 28px), 0, 0) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  visibility: visible;
+  overflow: hidden;
+  transition:
+    transform 0.48s cubic-bezier(0.34, 1.28, 0.64, 1),
+    opacity 0.35s ease,
+    box-shadow 0.35s ease;
+  transform-origin: left center;
+  will-change: transform, opacity;
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar--smart-menu.open {
+  transform: translate3d(0, 0, 0) scale(1) !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.ih-sidebar-glass {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px 12px 12px;
+  border-radius: var(--ih-smart-menu-radius);
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(22px) saturate(1.5);
+  -webkit-backdrop-filter: blur(22px) saturate(1.5);
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  box-shadow:
+    0 24px 64px rgba(15, 30, 24, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  overflow: hidden;
+}
+
+.ih-sidebar-glass__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid color-mix(in srgb, var(--ih-figma-brand) 8%, transparent);
+}
+
+.ih-sidebar-glass__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ih-sidebar-glass__title {
+  font-family: var(--ih-figma-sans, system-ui, sans-serif);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ih-figma-brand);
+  letter-spacing: -0.02em;
+}
+
+.ih-sidebar-glass__close {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--ih-figma-brand) 8%, transparent);
+  color: var(--ih-figma-brand);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s ease;
+}
+
+.ih-sidebar-glass__close:hover {
+  background: color-mix(in srgb, var(--ih-figma-brand) 14%, transparent);
+}
+
+.ih-sidebar-glass__section {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ih-figma-brand) 55%, transparent) !important;
+  padding-left: 6px !important;
+  margin-top: 4px !important;
+}
+
+.ih-sidebar-glass__nav {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 2px;
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar--smart-menu .ih-nav-item {
+  border-radius: 12px;
+  background: transparent;
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar--smart-menu .ih-nav-item:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar--smart-menu .ih-nav-item.active {
+  background: rgba(200, 245, 66, 0.28) !important;
+  color: #0f3a30 !important;
+  box-shadow: none !important;
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar--smart-menu .ih-nav-item.active .ih-nav-label,
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar--smart-menu .ih-nav-item.active span {
+  color: #0f3a30 !important;
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar--smart-menu .ih-nav-item.active svg {
+  color: #164b3f !important;
+  stroke: currentColor;
+}
+
+.ih-wrap.ih-figma-nav.is-admin .ih-sidebar--smart-menu .ih-nav-item.active::before {
+  background: #887cfd;
+}
+
+.ih-sidebar-glass__user {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+.ih-admin-sb-avatar-img {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+}
+
+.ih-admin-sb-avatar--fallback {
+  display: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  background: var(--ih-figma-accent-soft);
+  color: var(--ih-figma-ink);
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ih-admin-sb-avatar-img[style*="display: none"] + .ih-admin-sb-avatar--fallback,
+.ih-admin-sb-avatar-img:not([src]) + .ih-admin-sb-avatar--fallback {
+  display: flex;
+}
+
+/* Overlay — soft blur dim */
+.ih-wrap.ih-figma-nav.is-admin:has(#ihNavClipTab) .ih-overlay.active {
+  background: rgba(15, 30, 24, 0.28);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .ih-wrap.ih-figma-nav.is-admin:has(#ihNavClipTab) {
+    --ih-smart-menu-width: min(292px, calc(100vw - 28px));
+    --ih-smart-menu-gap: 10px;
+    --ih-smart-menu-radius: 20px;
+  }
+
+  .ih-smart-menu-tab {
+    top: 42%;
+  }
+
+  .ih-smart-menu-tab__panel {
+    width: 48px;
+    height: 48px;
+  }
+
+  .ih-smart-menu-tab__label {
+    display: none;
+  }
+
+  .ih-wrap.ih-figma-nav.is-admin .ih-sidebar--smart-menu {
+    transform: translate3d(calc(-100% - 16px), 0, 0) scale(0.94);
+  }
+}
+
+@media (min-width: 769px) {
+  .ih-wrap.ih-figma-nav.is-admin .ih-sidebar--smart-menu.open {
+    box-shadow: 0 28px 72px rgba(15, 30, 24, 0.22);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ih-smart-menu-tab,
+  .ih-wrap.ih-figma-nav.is-admin .ih-sidebar--smart-menu {
+    animation: none;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+}

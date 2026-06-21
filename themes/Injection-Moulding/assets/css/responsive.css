@@ -1,0 +1,271 @@
+/**
+ * Injection Moulding — cross-browser responsive layer
+ * Chrome, Edge, Firefox — phones, tablets, desktops
+ */
+
+/* ── Document & overflow (prevent horizontal scroll) ── */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: clip;
+}
+
+body {
+  overflow-x: clip;
+  min-width: 0;
+  width: 100%;
+}
+
+@supports not (overflow-x: clip) {
+  html,
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* ── Shared page wrapper (fixed header offset) ── */
+.im-page-main {
+  width: 100%;
+  min-width: 0;
+  padding-top: 72px;
+}
+
+@media (min-width: 1024px) {
+  .im-page-main {
+    padding-top: 90px;
+  }
+}
+
+/* Logged-in WP admin bar + fixed public header */
+body.admin-bar .im-page-main {
+  padding-top: calc(72px + 32px);
+}
+
+@media (min-width: 783px) {
+  body.admin-bar .im-page-main {
+    padding-top: calc(90px + 32px);
+  }
+}
+
+body.admin-bar main.w-full {
+  padding-top: calc(72px + 32px);
+}
+
+@media (min-width: 1024px) {
+  body.admin-bar main.w-full {
+    padding-top: calc(90px + 32px);
+  }
+}
+
+/* Public Tailwind header (header.php) — prevent CTA clipping */
+header.fixed {
+  width: min(100% - 20px, 80rem);
+  max-width: calc(100% - 20px);
+  box-sizing: border-box;
+  left: 50%;
+  right: auto;
+}
+
+header.fixed > div {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.im-public-header-top {
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  min-width: 0;
+}
+
+.im-public-header-actions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.im-public-header-actions > * {
+  min-width: 0;
+}
+
+body.admin-bar .site-header,
+body.admin-bar header.fixed {
+  top: calc(16px + 32px);
+}
+
+body.admin-bar .mobile-nav {
+  top: calc(100% + 8px);
+}
+
+@media (max-width: 1023px) {
+  .im-public-header-top {
+    padding-inline: 12px;
+  }
+}
+
+/* ── Site header — small phones & narrow tablets ── */
+@media (max-width: 1023px) {
+  .site-header {
+    top: max(10px, env(safe-area-inset-top, 0px));
+    width: calc(100% - 20px);
+    max-width: none;
+    left: 10px;
+    right: 10px;
+    transform: none;
+    border-radius: 18px;
+    padding-left: max(10px, env(safe-area-inset-left, 0px));
+    padding-right: max(10px, env(safe-area-inset-right, 0px));
+  }
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    top: 8px;
+    width: calc(100% - 16px);
+    left: 8px;
+    right: 8px;
+    padding: 6px 10px;
+    border-radius: 14px;
+  }
+
+  .nav-brand img {
+    height: 36px;
+    width: 36px;
+  }
+
+  .nav-brand-text {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .mobile-menu-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .mobile-nav a {
+    font-size: 15px;
+    padding: 10px 14px;
+  }
+
+  .nav-cta-mobile {
+    font-size: 15px;
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 782px) {
+  body.admin-bar .site-header,
+  body.admin-bar header.fixed {
+    top: calc(8px + 46px);
+  }
+
+  body.admin-bar .im-page-main,
+  body.admin-bar main.w-full {
+    padding-top: calc(72px + 46px);
+  }
+}
+
+@media (max-width: 380px) {
+  .nav-brand-text {
+    display: none;
+  }
+}
+
+/* ── Marketplace filter bars ── */
+#filterBar {
+  width: 100%;
+  min-width: 0;
+}
+
+#filterBar select {
+  width: 100%;
+  min-width: 0 !important;
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  #filterBar select {
+    width: auto;
+    min-width: 140px !important;
+  }
+}
+
+/* ── WordPress / static content tables ── */
+.entry-content table,
+.wp-block-table table {
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  width: 100%;
+}
+
+.entry-content img,
+.entry-content iframe,
+.entry-content video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Auth popup ── */
+.auth-box {
+  width: 96%;
+  max-width: 96vw;
+  height: auto;
+  max-height: 92vh;
+  max-height: 92dvh;
+}
+
+@media (max-width: 480px) {
+  .auth-box {
+    width: 100%;
+    max-width: 100vw;
+    border-radius: 0;
+    height: 100vh;
+    height: 100dvh;
+    max-height: none;
+  }
+}
+
+/* ── Hero / neon decorative (avoid off-screen bleed) ── */
+.neon-line::before {
+  left: 50%;
+}
+
+/* ── Touch-friendly targets ── */
+@media (pointer: coarse) {
+  .mobile-nav a,
+  .mobile-menu-btn,
+  .nav-cta-mobile,
+  .pg-btn {
+    min-height: 44px;
+  }
+}
+
+/* ── User dashboard shell safe height ── */
+.ih-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* ── Flex/grid children: prevent blowout on Firefox ── */
+[class*="min-w-"],
+.im-min-w-0 {
+  min-width: 0;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}

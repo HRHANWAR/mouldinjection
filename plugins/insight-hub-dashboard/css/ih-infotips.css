@@ -1,0 +1,324 @@
+/* ============================================================
+   ih-infotips.css — styles for ih-infotips.js field popovers
+   + the cost-calculator price badge (.ih-price-badge).
+
+   Scoped to the .ih-tip-* / .ih-price-* namespaces so nothing leaks
+   into surrounding admin / theme chrome. Colour cues follow the spec:
+     purple (#5347ce) = machine · teal (#0d9488) = tool · gradient = both
+   Tokens reuse the plugin's --ih-figma-* palette where present, with
+   hard fallbacks so the file also works standalone on theme pages.
+   ============================================================ */
+
+:root {
+  --ih-tip-machine: var(--ih-figma-brand, #5347ce);
+  --ih-tip-tool: #0d9488;
+  --ih-tip-surface: var(--ih-figma-surface, #ffffff);
+  --ih-tip-border: var(--ih-figma-border, #e6e9f2);
+  --ih-tip-text: var(--ih-figma-text, #1a1c2b);
+  --ih-tip-text-secondary: var(--ih-figma-text-secondary, #6b7185);
+  --ih-tip-radius: 12px;
+  --ih-tip-shadow: 0 12px 32px rgba(26, 28, 43, 0.18), 0 2px 6px rgba(26, 28, 43, 0.08);
+}
+
+/* ---- the injected (i) button -------------------------------- */
+.ih-tip-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-left: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ih-tip-text-secondary);
+  cursor: pointer;
+  vertical-align: middle;
+  line-height: 0;
+  transition: color 120ms ease, background-color 120ms ease, transform 120ms ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.ih-tip-btn:hover,
+.ih-tip-btn:focus-visible {
+  color: var(--ih-tip-machine);
+  background: var(--ih-figma-accent-soft, #ece9ff);
+}
+.ih-tip-btn:focus-visible {
+  outline: 2px solid var(--ih-tip-machine);
+  outline-offset: 2px;
+}
+.ih-tip-btn svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+/* ---- the shared popover card -------------------------------- */
+.ih-tip-pop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  width: 300px;
+  max-width: calc(100vw - 16px);
+  padding: 14px 16px 16px;
+  border: 1px solid var(--ih-tip-border);
+  border-left: 4px solid var(--ih-tip-machine);
+  border-radius: var(--ih-tip-radius);
+  background: var(--ih-tip-surface);
+  color: var(--ih-tip-text);
+  box-shadow: var(--ih-tip-shadow);
+  font-family: var(--ih-figma-sans, -apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif);
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 140ms ease, transform 140ms ease;
+}
+.ih-tip-pop.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* left colour-cue by audience */
+.ih-tip-pop[data-who="machine"] { border-left-color: var(--ih-tip-machine); }
+.ih-tip-pop[data-who="tool"]    { border-left-color: var(--ih-tip-tool); }
+.ih-tip-pop[data-who="both"] {
+  border-left-color: transparent;
+  border-image: linear-gradient(180deg, var(--ih-tip-machine), var(--ih-tip-tool)) 1;
+}
+
+/* ---- arrow -------------------------------------------------- */
+.ih-tip-arrow {
+  position: absolute;
+  bottom: -7px;
+  left: 24px;
+  width: 12px;
+  height: 12px;
+  background: var(--ih-tip-surface);
+  border-right: 1px solid var(--ih-tip-border);
+  border-bottom: 1px solid var(--ih-tip-border);
+  transform: rotate(45deg);
+}
+.ih-tip-arrow.is-up {
+  bottom: auto;
+  top: -7px;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 1px solid var(--ih-tip-border);
+  border-top: 1px solid var(--ih-tip-border);
+}
+
+/* ---- head: title + unit ------------------------------------- */
+.ih-tip-head {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0 18px 8px 0;
+}
+.ih-tip-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ih-tip-text);
+}
+.ih-tip-unit {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ih-tip-text-secondary);
+  font-family: var(--ih-figma-mono, ui-monospace, monospace);
+}
+
+/* ---- body paragraphs ---------------------------------------- */
+.ih-tip-what {
+  margin: 0 0 8px;
+  color: var(--ih-tip-text);
+}
+.ih-tip-why {
+  margin: 0 0 8px;
+  color: var(--ih-tip-text-secondary);
+}
+.ih-tip-eg {
+  margin: 8px 0 0;
+  padding-top: 8px;
+  border-top: 1px dashed var(--ih-tip-border);
+  font-size: 12px;
+  color: var(--ih-tip-text-secondary);
+}
+.ih-tip-eg span {
+  font-weight: 700;
+  color: var(--ih-tip-machine);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.ih-tip-pop[data-who="tool"] .ih-tip-eg span { color: var(--ih-tip-tool); }
+.ih-tip-eg em {
+  font-style: italic;
+}
+
+/* ---- close button ------------------------------------------- */
+.ih-tip-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--ih-tip-text-secondary);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+.ih-tip-close:hover,
+.ih-tip-close:focus-visible {
+  background: var(--ih-figma-surface-2, #f4f6fb);
+  color: var(--ih-tip-text);
+}
+.ih-tip-close:focus-visible {
+  outline: 2px solid var(--ih-tip-machine);
+  outline-offset: 1px;
+}
+
+/* ---- mobile: bottom sheet (≤760px) -------------------------- */
+@media (max-width: 760px) {
+  .ih-tip-pop.is-sheet {
+    position: fixed;
+    left: 0 !important;
+    right: 0;
+    top: auto !important;
+    bottom: 0;
+    width: 100%;
+    max-width: 100%;
+    border-radius: 16px 16px 0 0;
+    border-left: 0;
+    border-bottom: 0;
+    padding: 20px 18px calc(20px + env(safe-area-inset-bottom, 0px));
+    transform: translateY(100%);
+  }
+  .ih-tip-pop.is-sheet.open {
+    transform: translateY(0);
+  }
+  /* keep the audience colour cue as a top bar on the sheet */
+  .ih-tip-pop.is-sheet[data-who="machine"] { border-top: 4px solid var(--ih-tip-machine); }
+  .ih-tip-pop.is-sheet[data-who="tool"]    { border-top: 4px solid var(--ih-tip-tool); }
+  .ih-tip-pop.is-sheet[data-who="both"] {
+    border-top: 4px solid transparent;
+    border-image: linear-gradient(90deg, var(--ih-tip-machine), var(--ih-tip-tool)) 1;
+  }
+  .ih-tip-pop.is-sheet .ih-tip-arrow { display: none; }
+  .ih-tip-close { width: 32px; height: 32px; font-size: 22px; }
+}
+
+/* ---- reduced motion ----------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .ih-tip-pop,
+  .ih-tip-pop.is-sheet,
+  .ih-tip-btn,
+  .ih-tip-close {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   PRICE BADGE — status pill for the cost calculator
+   (set by material-pricing.js: badge(kind) → class is-<kind>)
+   semantic colours: green live · amber stale · grey offline/manual
+   · purple override · loading = muted pulse
+   ============================================================ */
+.ih-price-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-family: var(--ih-figma-sans, -apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.ih-price-badge::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  flex: 0 0 auto;
+}
+.ih-price-badge.is-live {
+  color: #15803d;
+  background: var(--ih-figma-success-bg, #dcfce7);
+  border-color: rgba(22, 163, 74, 0.25);
+}
+.ih-price-badge.is-stale {
+  color: #b45309;
+  background: var(--ih-figma-warning-bg, #fef9c3);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+.ih-price-badge.is-offline,
+.ih-price-badge.is-manual {
+  color: #4b5563;
+  background: #f1f3f7;
+  border-color: #d8dde7;
+}
+.ih-price-badge.is-override {
+  color: #5347ce;
+  background: var(--ih-figma-accent-soft, #ece9ff);
+  border-color: rgba(83, 71, 206, 0.3);
+}
+/* 24h reference-system source types.
+   Distinct, deliberately NON-green palette for every non-live source so a
+   public/delayed/estimate reference can never be mistaken for a "Live" price. */
+.ih-price-badge.is-csv {
+  color: #1d4ed8;
+  background: #e0ecff;
+  border-color: rgba(37, 99, 235, 0.28);
+}
+.ih-price-badge.is-public,
+.ih-price-badge.is-delayed {
+  color: #b45309;
+  background: var(--ih-figma-warning-bg, #fef9c3);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+.ih-price-badge.is-index {
+  color: #0f766e;
+  background: #d5f7f3;
+  border-color: rgba(13, 148, 136, 0.28);
+}
+.ih-price-badge.is-news {
+  color: #6d28d9;
+  background: #efe7fd;
+  border-color: rgba(109, 40, 217, 0.25);
+}
+.ih-price-badge.is-estimate {
+  color: #4b5563;
+  background: #eef1f6;
+  border-color: #d8dde7;
+}
+.ih-price-badge.is-loading {
+  color: var(--ih-tip-text-secondary, #6b7185);
+  background: var(--ih-figma-surface-2, #f4f6fb);
+  border-color: var(--ih-tip-border, #e6e9f2);
+}
+.ih-price-badge.is-loading::before {
+  animation: ih-price-badge-pulse 1s ease-in-out infinite;
+}
+@keyframes ih-price-badge-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ih-price-badge.is-loading::before { animation: none; }
+}
