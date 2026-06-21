@@ -330,8 +330,8 @@ include IH_DIR . 'pages/partials/ih-user-shell-header.php';
 							<span class="ihc-ava sq" style="width:42px;height:42px;font-size:16px">M<span class="ihc-online off" data-uid="0"></span></span>
 							<div class="ci">
 								<div class="nm"><?php esc_html_e( 'MouldHub Support', 'insight-hub-dashboard' ); ?></div>
-								<div class="ihc-presence off" data-presence>
-									<span class="pd"></span><span data-presence-text><?php esc_html_e( 'Admin online · replies in ~5 min', 'insight-hub-dashboard' ); ?></span>
+								<div class="ihc-presence">
+									<span class="pd"></span><span><?php esc_html_e( 'Admin online · replies in ~5 min', 'insight-hub-dashboard' ); ?></span>
 								</div>
 							</div>
 							<?php /* WhatsApp shortcut intentionally omitted on the user view (not in Figma 202:2199). */ ?>
@@ -515,9 +515,9 @@ include IH_DIR . 'pages/partials/ih-user-shell-header.php';
 							<span class="ihc-ava sq" style="width:42px;height:42px;font-size:16px">M<span class="ihc-online off" data-uid="0" style="width:12px;height:12px"></span></span>
 							<div class="tx">
 								<b><?php esc_html_e( 'MouldHub Support', 'insight-hub-dashboard' ); ?></b>
-								<span class="ihc-presence off" data-presence>
+								<span class="ihc-presence">
 									<span class="pd"></span>
-									<span data-presence-text><?php esc_html_e( 'Admin online · ~5 min reply', 'insight-hub-dashboard' ); ?></span>
+									<span><?php esc_html_e( 'Admin online · ~5 min reply', 'insight-hub-dashboard' ); ?></span>
 								</span>
 							</div>
 						</div>

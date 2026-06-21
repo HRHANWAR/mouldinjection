@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Insight Hub Dashboard
  * Description: Complete Admin Dashboard — Users, Machines, Tools, Messages with full DB backend.
- * Version:     2.7.26
+ * Version:     2.7.27
  * Author:      Naveed
  */
 defined( 'ABSPATH' ) || exit;
@@ -12,7 +12,7 @@ defined( 'ABSPATH' ) || exit;
 @ini_set( 'post_max_size',       '25M' );
 @ini_set( 'memory_limit',        '256M' );
 
-define( 'IH_VERSION', '2.7.26' );
+define( 'IH_VERSION', '2.7.27' );
 define( 'IH_DIR',     plugin_dir_path( __FILE__ ) );
 define( 'IH_URL',     plugin_dir_url( __FILE__ ) );
 // Absolute path to this main plugin file. Used by register_activation_hook()
