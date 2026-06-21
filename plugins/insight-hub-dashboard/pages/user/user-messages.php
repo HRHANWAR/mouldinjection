@@ -327,7 +327,7 @@ include IH_DIR . 'pages/partials/ih-user-shell-header.php';
 							<button type="button" class="ihc-back" id="ihcBack" aria-label="<?php esc_attr_e( 'Back to conversations', 'insight-hub-dashboard' ); ?>">
 								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1c2b" stroke-width="2.2" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>
 							</button>
-							<span class="ihc-ava sq" style="width:42px;height:42px;font-size:16px">M<span class="ihc-online off" data-uid="0"></span></span>
+							<span class="ihc-ava sq" style="width:42px;height:42px;font-size:15px">M<span class="ihc-online off" data-uid="0"></span></span>
 							<div class="ci">
 								<div class="nm"><?php esc_html_e( 'MouldHub Support', 'insight-hub-dashboard' ); ?></div>
 								<div class="ihc-presence">
@@ -335,8 +335,8 @@ include IH_DIR . 'pages/partials/ih-user-shell-header.php';
 								</div>
 							</div>
 							<?php /* WhatsApp shortcut intentionally omitted on the user view (not in Figma 202:2199). */ ?>
-							<button type="button" class="ihc-iconbtn" id="ihcInfoBtn" style="background:transparent;border:0" aria-label="<?php esc_attr_e( 'Request details', 'insight-hub-dashboard' ); ?>">
-								<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7185" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+							<button type="button" class="ihc-iconbtn" id="ihcInfoBtn" aria-label="<?php esc_attr_e( 'Request details', 'insight-hub-dashboard' ); ?>">
+								<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#6b7185" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
 							</button>
 						</header>
 
@@ -345,7 +345,7 @@ include IH_DIR . 'pages/partials/ih-user-shell-header.php';
 								<?php esc_html_e( 'Hover a message to react, or tap ⋯ for more.', 'insight-hub-dashboard' ); ?>
 								<button type="button" class="ih-msg-reactions-hint__dismiss" id="ihMsgReactionsHintDismiss" aria-label="<?php esc_attr_e( 'Dismiss', 'insight-hub-dashboard' ); ?>">×</button>
 							</p>
-							<div class="ihc-div"><span><?php esc_html_e( 'Conversation', 'insight-hub-dashboard' ); ?></span></div>
+							<div class="ihc-div"><span><?php esc_html_e( 'Today', 'insight-hub-dashboard' ); ?></span></div>
 							<?php if ( empty( $messages ) ) : ?>
 								<div class="ihc-row them">
 									<div class="ihc-bubble">

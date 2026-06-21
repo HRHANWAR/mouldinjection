@@ -321,6 +321,24 @@
 /* ── Accessibility & motion polish (design-alignment pass) ── */
 .ih-admin-messages-page .ihc a:focus-visible,.ih-admin-messages-page .ihc button:focus-visible,.ih-admin-messages-page .ihc input:focus-visible,.ih-admin-messages-page .ihc textarea:focus-visible,.ih-admin-messages-page .ihc [role="button"]:focus-visible{outline:2px solid var(--ih-brand);outline-offset:2px;border-radius:8px}
 .ih-admin-messages-page .ihc-thread:focus-visible{outline-offset:-2px}
+
+/* ════════════════════════════════════════════════════════════════════════
+   PIXEL-EXACT bubble/composer sizing mirrored from the user chat
+   (Figma node 202:2301). Admin-only side panels are left untouched.
+   ════════════════════════════════════════════════════════════════════════ */
+.ih-admin-messages-page .ihc-msgs .ihc-bubble{border-radius:15px;padding:10px 14px 9px;gap:5px}
+.ih-admin-messages-page .ihc-msgs .ihc-bubble .bt{font-size:13px;line-height:1.35}
+.ih-admin-messages-page .ihc-msgs .ihc-meta{font:500 9px/1 var(--ih-mono);gap:5px}
+.ih-admin-messages-page .ihc-msgs .ihc-row.them .ihc-bubble{border-radius:15px;border-top-left-radius:4px}
+.ih-admin-messages-page .ihc-msgs .ihc-row.me .ihc-bubble{border-radius:15px;border-top-right-radius:4px}
+.ih-admin-messages-page .ihc-msgs .ihc-row.them .ihc-meta{color:#99a1b5}
+.ih-admin-messages-page .ihc-msgs .ihc-row.me .ihc-meta{color:rgba(255,255,255,.75)}
+.ih-admin-messages-page .ihc-msgs .ih-msg-bubble--incoming{border-radius:15px!important;border-top-left-radius:4px!important}
+.ih-admin-messages-page .ihc-msgs .ih-msg-bubble--outgoing{border-radius:15px!important;border-top-right-radius:4px!important}
+.ih-admin-messages-page .ihc-composer .ihc-input{border-radius:12px}
+.ih-admin-messages-page .ihc-composer .ihc-input textarea::placeholder{color:var(--ih-mut);font-size:13.5px}
+.ih-admin-messages-page .ihc-composer .ihc-send{width:44px;height:44px;border-radius:12px;background:var(--ih-brand)}
+
 @media(prefers-reduced-motion:reduce){
  .ih-admin-messages-page .ihc *,.ih-admin-messages-page .ihc *::before,.ih-admin-messages-page .ihc *::after,.ih-invite-modal *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
 }

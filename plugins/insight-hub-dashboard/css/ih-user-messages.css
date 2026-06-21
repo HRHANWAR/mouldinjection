@@ -255,6 +255,46 @@
 .ih-user-messages-page .ihc-attmenu:not(.open){display:none!important}
 .ih-user-messages-page .ihc-emoji:not(.open){display:none!important}
 
+/* ════════════════════════════════════════════════════════════════════════
+   PIXEL-EXACT conversation column — Figma node 202:2301 (UChat).
+   Scoped under .ih-user-messages-page for enough specificity to beat the
+   WP/base styles, without touching the left rail (.ihc-p1) or right panel
+   (.ihc-p3) internals. Values lifted verbatim from the Figma design context.
+   ════════════════════════════════════════════════════════════════════════ */
+/* Header (h72, #fff, hairline #e6e9f2) */
+.ih-user-messages-page .ihc-chat-head{border-bottom:1px solid var(--ih-border)}
+.ih-user-messages-page .ihc-chat-head .ihc-ava.sq{background:var(--ih-brand);border-radius:11.76px}
+.ih-user-messages-page .ihc-chat-head .ihc-ava .ihc-online{width:11px;height:11px}
+.ih-user-messages-page .ihc-chat-head .nm{font-size:14.5px;font-weight:700;color:var(--ih-text)}
+.ih-user-messages-page .ihc-chat-head .ihc-presence{color:var(--ih-green);font-size:11.5px;font-weight:500}
+.ih-user-messages-page .ihc-chat-head .ihc-iconbtn{width:38px;height:38px;border-radius:10px;background:var(--ih-surface2);border:1px solid var(--ih-border);color:var(--ih-text2)}
+/* Date divider — IBM Plex Mono 9.5px, +0.38px tracking, uppercase */
+.ih-user-messages-page .ihc-msgs .ihc-div span{font:500 9.5px/1 var(--ih-mono);letter-spacing:.38px;text-transform:uppercase;color:var(--ih-mut)}
+.ih-user-messages-page .ihc-msgs .ihc-div::before,
+.ih-user-messages-page .ihc-msgs .ihc-div::after{background:var(--ih-border)}
+/* Bubbles — 13px body, 9px mono meta, 15px radius + 4px tail corner */
+.ih-user-messages-page .ihc-msgs .ihc-bubble{border-radius:15px;padding:10px 14px 9px;gap:5px}
+.ih-user-messages-page .ihc-msgs .ihc-bubble .bt{font-size:13px;line-height:1.35}
+.ih-user-messages-page .ihc-msgs .ihc-meta{font:500 9px/1 var(--ih-mono);gap:5px}
+.ih-user-messages-page .ihc-msgs .ihc-row.them .ihc-bubble{background:var(--ih-surface);border:1px solid var(--ih-border);border-radius:15px;border-top-left-radius:4px}
+.ih-user-messages-page .ihc-msgs .ihc-row.them .ihc-meta{color:#99a1b5}
+.ih-user-messages-page .ihc-msgs .ihc-row.me .ihc-bubble{background:var(--ih-brand);color:#fff;border-radius:15px;border-top-right-radius:4px}
+.ih-user-messages-page .ihc-msgs .ihc-row.me .ihc-meta{color:rgba(255,255,255,.75)}
+/* Request / status card — 380px, 14/16 padding, 15px radius + 4px TL tail */
+.ih-user-messages-page .ihc-msgs .ihc-reqmsg{max-width:380px;padding:14px 16px;border:1px solid var(--ih-border);background:var(--ih-surface);border-radius:15px;border-top-left-radius:4px}
+.ih-user-messages-page .ihc-msgs .ihc-reqmsg-ico{width:32px;height:32px;border-radius:9px;background:var(--ih-accent-soft);color:var(--ih-brand)}
+.ih-user-messages-page .ihc-msgs .ihc-reqmsg .tx b{font-size:12.5px;font-weight:700;color:var(--ih-text)}
+.ih-user-messages-page .ihc-msgs .ihc-reqmsg .tx span{font-size:11.5px;color:var(--ih-text2)}
+.ih-user-messages-page .ihc-p2 .ihc-statuspill{padding:4px 9px;border-radius:999px;font-size:10px;font-weight:700}
+.ih-user-messages-page .ihc-p2 .ihc-statuspill.pending{background:var(--ih-warn-bg);color:#d97805}
+.ih-user-messages-page .ihc-p2 .ihc-statuspill.approved{background:var(--ih-green-bg);color:var(--ih-green)}
+.ih-user-messages-page .ihc-p2 .ihc-statuspill.rejected{background:var(--ih-rose-bg);color:var(--ih-rose)}
+/* Composer — #f4f6fb controls, 12px input radius, square-rounded send */
+.ih-user-messages-page .ihc-composer{background:var(--ih-surface);border-top:1px solid var(--ih-border);padding:12px 20px 16px;gap:10px}
+.ih-user-messages-page .ihc-composer .ihc-input{border-radius:12px;min-height:44px}
+.ih-user-messages-page .ihc-composer .ihc-input textarea::placeholder{color:var(--ih-mut);font-size:13.5px}
+.ih-user-messages-page .ihc-composer .ihc-send{width:44px;height:44px;border-radius:12px;background:var(--ih-brand)}
+
 @media(max-width:1080px){
  .ihc-p3{display:none}
  .ihc-p3.open{display:flex;position:absolute;right:0;top:0;bottom:0;z-index:30;box-shadow:-12px 0 40px -16px rgba(0,0,0,.2)}
